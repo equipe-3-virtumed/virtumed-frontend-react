@@ -11,11 +11,13 @@ interface Models {
 }
 
 interface DynamicIntegrations {
-    refetchOptions?: null | any;
-    refetchPathOptions?: string;
-    generateLoading?: boolean;
-    displayToast?: boolean;
-    header?: {}
+  values?: {};
+  id?: string;
+  refetchOptions?: null | any;
+  refetchPathOptions?: string;
+  generateLoading?: boolean;
+  displayToast?: boolean;
+  header?: {};
 }
 
 const useCRUD = ({
@@ -23,19 +25,61 @@ const useCRUD = ({
   options,
   pathOptions,
   headerOptions,
-  immediatlyLoadData,
+  immediatlyLoadData = false,
 }: Models) => {
   const [loading, setLoading] = useState(immediatlyLoadData);
 
   const handleGet = useCallback(
     ({
-      refetchOptions = null,
-      refetchPathOptions = "",
-      generateLoading = true,
-      displayToast = true,
-      header = {},
+      refetchOptions,
+      refetchPathOptions,
+      generateLoading,
+      displayToast,
+      header,
     }: DynamicIntegrations) => {
-      return Api.get(`/${model}`)
+      if (generateLoading) setLoading(true);
+
+      if (refetchPathOptions !== undefined || pathOptions !== undefined) {
+        return Api.get(`/${model}/${refetchPathOptions || pathOptions}`, {
+          params: refetchOptions || options,
+          headers: header,
+        })
+          .catch((error) => {
+            console.log(error);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      } else {
+        return Api.get(`/${model}`, {
+          params: refetchOptions || options,
+          headers: header
+        })
+          .catch((error) => {
+            console.log(error);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      }
+    },
+    [model, pathOptions]
+  );
+
+  const handleCreate = useCallback(
+    ({
+      values,
+      refetchOptions,
+      refetchPathOptions,
+      generateLoading,
+      displayToast,
+      header,
+    }: DynamicIntegrations) => {
+      if (generateLoading) setLoading(true);
+
+      return Api.post(`/${model}`, values, {
+        params: refetchOptions || options,
+      })
         .catch((error) => {
           console.log(error);
         })
@@ -46,21 +90,40 @@ const useCRUD = ({
     [model, pathOptions]
   );
 
-  const handleCreate = useCallback(({ values = {}, refetchOptions = null, refetchPathOptions = '', generateLoading = true, displayToast = true, header = {} } = {}) => {
-    return Api.post(`/${model}`, values)
-    .catch((error) => {
-      console.log(error);
-    })
-    .finally(() => {
-      setLoading(false);
-    });
-  }, [model, pathOptions])
+  const handleUpdate = useCallback(
+    ({
+      values,
+      id,
+      refetchOptions,
+      refetchPathOptions,
+      generateLoading,
+      displayToast,
+      header,
+    }: DynamicIntegrations) => {
+      if (generateLoading) setLoading(true);
+
+      return Api.patch(
+        `/${model}/${id}${refetchPathOptions || pathOptions}`,
+        values,
+        { params: refetchOptions || options }
+      )
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    },
+    [model, pathOptions]
+  );
 
   return {
+    setLoading,
     loading,
     handleGet,
-    handleCreate
-  }
+    handleCreate,
+    handleUpdate,
+  };
 };
 
 export default useCRUD;
