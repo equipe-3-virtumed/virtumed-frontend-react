@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import Video, { Room } from "twilio-video";
 import { useNavigate } from "react-router";
-import { api } from "../services/index";
+import Api from "../services/index";
 
 interface Params {
   doctorName: string;
@@ -17,7 +17,7 @@ export const useRoom = ({ doctorName, patientName}: Params) => {
   }
 
   const connect = useCallback(async () => {
-    const response = await api.post("video/token", {
+    const response = await Api.post("video/token", {
       patientName,
       room: doctorName,
     });

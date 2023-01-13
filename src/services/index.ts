@@ -1,3 +1,17 @@
 import axios from "axios";
 
-export const api = axios.create({ baseURL: "http://localhost:3333" });
+const Api = axios.create({ baseURL: process.env.API_URL });
+
+Api.interceptors.request.use((config: any) => {
+  try {
+    const token = localStorage.getItem("TOKEN");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  } catch (error: any) {
+    console.log({ message: "Error" + error });
+  }
+});
+
+export default Api;

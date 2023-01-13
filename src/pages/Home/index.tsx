@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Transition,
   CarouselInformation,
@@ -9,9 +9,28 @@ import Header from "components/Header";
 import * as Styled from "./styles";
 import { SwapRightOutlined, LinkedinOutlined } from "@ant-design/icons";
 import Logo from "../../assets/logo.svg";
+import useCRUD from "services/api";
 
 const Home = () => {
   const navigate = useNavigate();
+
+  const { handleGet } = useCRUD({
+    model: 'doctor'
+  })
+
+  useEffect(() => {
+    handleGet({})
+    .then(({data, error}: any) => {
+      if (error) {
+        console.log("Error:")
+        console.log(error)
+        return
+      }
+      console.log(data)
+      return
+    })
+  }, [])
+
   return (
     <Styled.Container>
       <Header />

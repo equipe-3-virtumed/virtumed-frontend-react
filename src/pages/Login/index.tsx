@@ -6,12 +6,44 @@ import { FiSun } from "react-icons/fi";
 import Logo from "../../assets/logo.svg";
 import * as Styled from "./styles";
 import { useDesign } from "hooks/useDesign";
+import { useState } from "react";
+import useCRUD from "services/api";
 
+interface LoginTypes {
+  email: string;
+  password: string;
+}
+ 
 const Login = () => {
   const { themeDesign, setThemeDesign } = useDesign();
 
+  const { handleCreate: handleLoginUser } = useCRUD({
+    model: 'login'
+  })
+
+  const [loginInfos, setLoginInfos] = useState<LoginTypes>({
+    email: '',
+    password: ''
+  });
+
   const handleToggleTheme = () => {
     setThemeDesign(themeDesign === 'Light' ? 'Dark' : 'Light')
+  }
+
+  const handleLogin = () => {
+    handleLoginUser({
+      values: loginInfos
+    })
+    .then(({data, error}: any) => {
+      if (error) {
+        console.log("Error:")
+        console.log(error)
+        return
+      }
+
+      console.log(data)
+      return
+    })
   }
 
   return (
@@ -55,6 +87,12 @@ const Login = () => {
                     height: "40px",
                     backgroundColor: "#F5F8FB",
                   }}
+                  onChange={(e) => {
+                    setLoginInfos({
+                      ...loginInfos,
+                      email: e.target.value
+                    })
+                  }}
                 />
               </Form.Item>
 
@@ -78,6 +116,12 @@ const Login = () => {
                     height: "40px",
                     backgroundColor: "#F5F8FB",
                   }}
+                  onChange={(e) => {
+                    setLoginInfos({
+                      ...loginInfos,
+                      password: e.target.value
+                    })
+                  }}
                 />
               </Form.Item>
 
@@ -92,7 +136,7 @@ const Login = () => {
                   width: "100%",
                 }}
               >
-                <Styled.Button type="submit">Entrar</Styled.Button>
+                <Styled.Button type="submit" onClick={handleLogin}>Entrar</Styled.Button>
               </Form.Item>
             </Form>
           </Styled.FormContainer>
