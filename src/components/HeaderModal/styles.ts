@@ -7,7 +7,7 @@ export const Container = styled.section`
   position: fixed;
   z-index: 15;
   animation: go-back 1s;
-  animation-direction: alternate-reverse;
+  animation-direction: alternate;
 
   @keyframes go-back {
     from {
@@ -28,4 +28,4 @@ export const Container = styled.section`
       height: 35px;
     }
   }
-`; 
+`;
