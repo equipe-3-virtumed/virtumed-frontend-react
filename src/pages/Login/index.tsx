@@ -8,6 +8,7 @@ import * as Styled from "./styles";
 import { useDesign } from "hooks/useDesign";
 import { useState } from "react";
 import useCRUD from "services/api";
+import { useAuth } from "contexts/auth";
 
 interface LoginTypes {
   email: string;
@@ -16,6 +17,7 @@ interface LoginTypes {
  
 const Login = () => {
   const { themeDesign, setThemeDesign } = useDesign();
+  const { loginUser } = useAuth();
 
   const { handleCreate: handleLoginUser } = useCRUD({
     model: 'login'
@@ -42,6 +44,10 @@ const Login = () => {
       }
 
       console.log(data)
+      if (data.user.role === 'admin') {
+        loginUser({token: data.token, user: data.user})
+        return
+      }
       return
     })
   }
