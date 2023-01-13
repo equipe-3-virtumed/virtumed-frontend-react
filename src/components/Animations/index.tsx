@@ -176,9 +176,8 @@ export const CarouselClients = () => {
       autoplay
       style={{
         width: "90vw",
-        height: "200px",
-        display: "flex",
-        alignItems: "center",
+        height: "12.5rem",
+        padding: "3rem 0",
         animationDuration: "5000",
       }}
     >
