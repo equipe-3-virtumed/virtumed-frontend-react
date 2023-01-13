@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import HomeModal from "components/HomeModal";
+import { useEffect, useState } from "react";
+import HeaderModal from "components/HeaderModal";
 import { MenuOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Dropdown } from "antd";
@@ -11,15 +11,14 @@ import * as Styled from "./styles";
 
 const Header = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const { themeDesign, setThemeDesign } = useDesign();
+  const [width, setWidth] = useState<number>(0);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleShowModal = () => {
     setShowModal(!showModal);
   };
-  const { themeDesign, setThemeDesign } = useDesign();
-
-  const [width, setWidth] = useState<number>(0)
 
   const items: MenuProps["items"] = [
     {
@@ -55,32 +54,33 @@ const Header = () => {
   ];
 
   useEffect(() => {
-    setWidth(window.innerWidth)
-  })
+    setWidth(window.innerWidth);
+  });
 
-  console.log(width)
+  console.log(width);
 
   return (
-    <Styled.Header>
-      <Styled.Navbar>
-        <Styled.Logo src={Logo} alt="Logo Virtumed" />
-        <MenuOutlined
-          style={{
-            fontSize: "2rem",
-            color: "#000",
-          }}
-          onClick={handleShowModal}
-        />
+    <>
+      {showModal && <HeaderModal handleShowModal={handleShowModal} />}
+      <Styled.Header>
+        <Styled.Navbar>
+          <Styled.Logo src={Logo} alt="Logo Virtumed" />
+          <MenuOutlined
+            style={{
+              fontSize: "1.8rem",
+              color: "#000",
+            }}
+            onClick={handleShowModal}
+          />
 
-        {/* {width => 560 ? (
+          {/* {width => 560 ? (
           <Styled.Logo src={Logo} alt="Logo Virtumed" onClick={() => navigate("/")} />
         ) : (
           ''
         )} */}
-
-      </Styled.Navbar>
-      {showModal && <HomeModal handleShowModal={handleShowModal}/>}
-    </Styled.Header>
+        </Styled.Navbar>
+      </Styled.Header>
+    </>
   );
 };
 
