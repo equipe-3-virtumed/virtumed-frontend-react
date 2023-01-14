@@ -1,33 +1,37 @@
-import React from "react";
+import * as Styled from "./styles";
 import {
-  Transition,
+  TransitionText,
   CarouselInformation,
   CarouselClients,
 } from "components/Animations";
-import { useNavigate } from "react-router-dom";
 import Header from "components/Header";
-import * as Styled from "./styles";
 import { SwapRightOutlined, LinkedinOutlined } from "@ant-design/icons";
 import Logo from "../../assets/logo.svg";
 // import { Room } from "pages/Room";
 
 const Home = () => {
-  const navigate = useNavigate();
   // return <Room/>
   return (
     <Styled.Container>
       <Header />
-      <Transition />
+
+      <TransitionText />
+
       <p style={{ textAlign: "start" }}>
         Solução completa para gerenciamento de consultas, pacientes e
         profissionais, tudo em um só lugar.
       </p>
+
       <Styled.Carousel>
         <CarouselInformation />
       </Styled.Carousel>
+
       <Styled.ButtonContainer>
-        <Styled.Button>Saiba mais</Styled.Button>
+        <a href="https://www.virtumed.com.br/service/telemedicine">
+          <Styled.Button>Saiba mais</Styled.Button>
+        </a>
       </Styled.ButtonContainer>
+
       <section>
         <h3>Múltiplas soluções</h3>
         <p>
@@ -36,6 +40,7 @@ const Home = () => {
           da área de saúde se conectarem com seus clientes.
         </p>
         <h3>Alto desempenho</h3>
+
         <Styled.ContainerInformation>
           <div>
             <p>+5 mil consultas mensais</p>
@@ -68,13 +73,22 @@ const Home = () => {
           Se ainda está em dúvida se a Virtumed é a solução ideal para você ou
           sua empresa, entre em contato conosco e agende uma reunião.
         </p>
-        <Styled.Button>Entre em contato</Styled.Button>
+        <a href="https://api.whatsapp.com/send/?phone=5511968969999">
+          <Styled.Button>Entre em contato</Styled.Button>
+        </a>
       </Styled.ContainerQuestions>
 
       <footer>
         <div>
           <img src={Logo} alt="logo-virtumed" />
-          <LinkedinOutlined style={{ fontSize: "30px" }} />
+          <a
+            style={{ color: "inherit" }}
+            href="https://www.linkedin.com/company/virtumedbr/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <LinkedinOutlined style={{ fontSize: "35px" }} />
+          </a>
         </div>
         <p style={{ textAlign: "start" }}>
           A Virtumed é uma healthtech que desenvolve soluções direcionadas para
