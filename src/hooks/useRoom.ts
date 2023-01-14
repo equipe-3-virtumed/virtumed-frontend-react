@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import Video, { Room } from "twilio-video";
 import { useNavigate } from "react-router";
-import { api } from "../services/index";
+import api from "../services/api";
 
 interface Params {
   doctorName: string;
