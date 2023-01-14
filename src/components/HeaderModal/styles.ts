@@ -7,7 +7,6 @@ export const Container = styled.section`
   position: fixed;
   z-index: 15;
   animation: go-back 1s;
-  animation-direction: alternate;
 
   @keyframes go-back {
     from {
