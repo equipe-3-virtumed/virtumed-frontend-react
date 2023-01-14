@@ -1,5 +1,6 @@
 import * as Styled from "./styles";
 import Logo from "../../assets/logo.svg";
+import { CloseOutlined } from "@ant-design/icons";
 
 interface HomeModalProps {
   handleShowModal: () => void;
@@ -10,7 +11,13 @@ const HeaderModal = ({ handleShowModal }: HomeModalProps) => {
     <Styled.Container>
       <div>
         <img src={Logo} alt="Logo Virtumed" />
-        <p onClick={handleShowModal}>X</p>
+        <CloseOutlined
+          style={{
+            fontSize: "1.8rem",
+            color: "#000",
+          }}
+          onClick={handleShowModal}
+        />
       </div>
     </Styled.Container>
   );
