@@ -4,14 +4,16 @@ import {
   CarouselInformation,
   CarouselClients,
 } from "components/Animations";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import Header from "components/Header";
 import * as Styled from "./styles";
 import { SwapRightOutlined, LinkedinOutlined } from "@ant-design/icons";
 import Logo from "../../assets/logo.svg";
+// import { Room } from "pages/Room";
 
 const Home = () => {
   const navigate = useNavigate();
+  // return <Room/>
   return (
     <Styled.Container>
       <Header />
