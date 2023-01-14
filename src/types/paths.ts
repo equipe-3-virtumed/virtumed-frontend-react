@@ -1,6 +1,8 @@
-export enum RoutesPath {
-    HOME = '/',
-    LOGIN = '/login',
-    REGISTER = '/register',
-    PATIENT_PAGE = '/patient'
+const RoutesPath = {
+    HOME: '/',
+    LOGIN: '/login',
+    REGISTER: '/register',
+    PATIENT_PAGE: '/patient'
 }
+
+export { RoutesPath }
