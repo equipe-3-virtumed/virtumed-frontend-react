@@ -6,9 +6,10 @@ import { api } from "../services/index";
 interface Params {
   doctorName: string;
   patientName: string;
+  roomId?: string;
 }
 
-export const useRoom = ({ doctorName, patientName}: Params) => {
+export const useRoom = ({ doctorName, patientName, roomId }: Params) => {
   const navigate = useNavigate();
   const [room, setRoom] = useState<Room | null>(null);
 
@@ -17,12 +18,11 @@ export const useRoom = ({ doctorName, patientName}: Params) => {
   }
 
   const connect = useCallback(async () => {
-    const response = await api.post("video/token", {
-      patientName,
-      room: doctorName,
-    });
-    const roomResponse = await Video.connect(response.data.token, {
-      name: doctorName,
+    const response = await api.get(`room/connect/${roomId}`);
+
+    console.log("🚀 ~ file: useRoom.ts:23 ~ connect ~ response", response)
+    const roomResponse = await Video.connect(response.data, {
+      name: roomId,
       video: true,
       audio: true,
     });
