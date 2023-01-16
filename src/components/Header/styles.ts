@@ -4,7 +4,7 @@ export const Header = styled.header`
   display: block;
   position: fixed;
   z-index: 1;
-  width: 100%;
+  width: 100vw;
   height: auto;
   border: transparent;
   padding: 0.5rem 1rem 0.5rem 1rem;
@@ -21,6 +21,6 @@ export const Navbar = styled.nav`
 `;
 
 export const Logo = styled.img`
-  height: 35px;
+  height: 2.5rem;
   cursor: pointer;
 `;

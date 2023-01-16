@@ -1,3 +1,4 @@
+import DoctorPage from "pages/Doctor";
 import Home from "pages/Home";
 import Login from "pages/Login";
 import PatientPage from "pages/Patient";
@@ -22,6 +23,10 @@ const Routes = () => {
     {
       path: RoutesPath.PATIENT_PAGE,
       element: <PatientPage />
+    },
+    {
+      path: RoutesPath.DOCTOR_PAGE,
+      element: <DoctorPage />
     }
   ]);
 };
