@@ -85,7 +85,7 @@ const Login = () => {
               >
                 <Input.Password
                   prefix={<LockOutlined className="site-form-item-icon" />}
-                  type="password"
+                  type="current-password"
                   placeholder="Senha de acesso"
                   style={{
                     fontSize: "1.1rem",

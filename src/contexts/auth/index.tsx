@@ -36,21 +36,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   console.log("Logged", logged, "Role", role);
 
   const login = ({ token, user }: LoginParams) => {
-
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
     setLogged(true);
     setRole(user.role);
     //mensagem de login bem sucedido
-
-
-
-    // if (user.isAdmin) {
-    //   setAdmin(true);
-    //   navigate("/admin");
-    // } else {
-    //   navigate(`/partner/${user.id}${user.firstLogin ? "/firstlogin" : ""}`);
-    // }
   };
 
   const logout = () => {
@@ -61,9 +51,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const checkTokenExpiration = () => {
-    // const user = JSON.parse(localStorage.getItem("user") || "");
     const token = localStorage.getItem("token");
-
     const headers = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -72,18 +60,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     api
       .get(`/auth`, headers)
-      .then((res) => {          
+      .then((res) => {      
         setLogged(true);
-        // if (res.data.isAdmin) {
-        //   setAdmin(true);
-        //   navigate("/admin");
-        // } else {
-        //   navigate(`/partner/${res.data.id}${res.data.firstLogin ? "/firstlogin" : ""}`)
-        // }
+        setRole(res.data.role);
       })
       .catch((e) => {
-        logout();
-        //"Necessário fazer login novamente"
+        //open login modal
       });
   };
 
