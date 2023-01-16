@@ -1,5 +1,5 @@
-import Header from "components/Header";
 import React from "react";
+import Header from "components/Header";
 import ScheduleImg from "../../assets/agent.svg";
 import ChatImg from "../../assets/chatImg.svg";
 import ConsultationsImg from "../../assets/consultationsImg.svg";
@@ -11,53 +11,71 @@ import * as Styled from "./style";
 const PatientPage = () => {
   return (
     <Styled.Container>
-        <Header />
+      <Header />
 
-        <Styled.Content>
-          <Styled.Infos>
-            <Styled.ContainerInfo>
-              <Styled.Picture
-                src={ScheduleImg}
-                alt="Foto para página de agendamentos on-line"
-              />
-            </Styled.ContainerInfo>
+      <Styled.Content>
+        <Styled.Infos>
+          <Styled.ContainerInfo>
+            <Styled.Picture
+              src={ScheduleImg}
+              alt="Foto para página de agendamentos on-line"
+            />
+            <Styled.upDiv>
+              <p> Agendamento onlide </p>
+            </Styled.upDiv>
+          </Styled.ContainerInfo>
 
-            <Styled.ContainerInfo>
-              <Styled.Picture
-                src={ChatImg}
-                alt="Logo para página de chat on-line com o medico"
-              />
-            </Styled.ContainerInfo>
+          <Styled.ContainerInfo>
+            <Styled.Picture
+              src={ChatImg}
+              alt="Logo para página de chat on-line com o medico"
+            />
+              <Styled.upDiv>
+              <p> Atendimento Rápido </p>
+            </Styled.upDiv>
+          </Styled.ContainerInfo>
 
-            <Styled.ContainerInfo>
-              <Styled.Picture
-                src={ConsultationsImg}
-                alt="Logo para consultas agendadas"
-              />
-            </Styled.ContainerInfo>
+          <Styled.ContainerInfo>
+            <Styled.Picture
+              src={ConsultationsImg}
+              alt="Logo para consultas agendadas"
+            />
+             <Styled.middleDiv>
+              <p> Consultas Agendadas </p>
+            </Styled.middleDiv>
+          </Styled.ContainerInfo>
 
-            <Styled.ContainerInfo>
-              <Styled.Picture
-                src={DoneConsultationsImg}
-                alt="Logo para consultas realizadas"
-              />
-            </Styled.ContainerInfo>
+          <Styled.ContainerInfo>
+            <Styled.Picture
+              src={DoneConsultationsImg}
+              alt="Logo para consultas realizadas"
+            />
+            <Styled.middle2Div>
+              <p> Consultas Realizadas </p>
+            </Styled.middle2Div>
+          </Styled.ContainerInfo>
 
-            <Styled.ContainerInfo>
-              <Styled.Picture
-                src={MyHealthImg}
-                alt="Logo para página sobre minha saúde"
-              />
-            </Styled.ContainerInfo>
+          <Styled.ContainerInfo>
+            <Styled.Picture
+              src={MyHealthImg}
+              alt="Logo para página sobre minha saúde"
+            />
+            <Styled.downDiv>
+              <p> Minha Saúde </p>
+            </Styled.downDiv>
+          </Styled.ContainerInfo>
 
-            <Styled.ContainerInfo>
-              <Styled.Picture
-                src={MyPlansImg}
-                alt="Logo para página de meus planos de saúde"
-              />
-            </Styled.ContainerInfo>
-          </Styled.Infos>
-        </Styled.Content>
+          <Styled.ContainerInfo>
+            <Styled.Picture
+              src={MyPlansImg}
+              alt="Logo para página de meus planos de saúde"
+            />
+             <Styled.downDiv>
+              <p> Meus Planos </p>
+            </Styled.downDiv>
+          </Styled.ContainerInfo>
+        </Styled.Infos>
+      </Styled.Content>
     </Styled.Container>
   );
 };
