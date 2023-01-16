@@ -6,12 +6,27 @@ import { FiSun } from "react-icons/fi";
 import Logo from "../../assets/logo.svg";
 import * as Styled from "./styles";
 import { useDesign } from "hooks/useDesign";
+import { useState } from "react";
+import api from "services/api";
+import { useAuth } from "contexts/auth";
 
 const Login = () => {
   const { themeDesign, setThemeDesign } = useDesign();
 
   const handleToggleTheme = () => {
     setThemeDesign(themeDesign === 'Light' ? 'Dark' : 'Light')
+  }
+
+  const { login } = useAuth();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = () => {
+    api.post('/login', {email, password})
+    .then((res) => {
+      login({ token: res.data.token, user: res.data.user })
+    })
   }
 
   return (
@@ -55,6 +70,7 @@ const Login = () => {
                     height: "40px",
                     backgroundColor: "#F5F8FB",
                   }}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Form.Item>
 
@@ -69,7 +85,7 @@ const Login = () => {
               >
                 <Input.Password
                   prefix={<LockOutlined className="site-form-item-icon" />}
-                  type="password"
+                  type="current-password"
                   placeholder="Senha de acesso"
                   style={{
                     fontSize: "1.1rem",
@@ -78,6 +94,7 @@ const Login = () => {
                     height: "40px",
                     backgroundColor: "#F5F8FB",
                   }}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Form.Item>
 
@@ -92,7 +109,7 @@ const Login = () => {
                   width: "100%",
                 }}
               >
-                <Styled.Button type="submit">Entrar</Styled.Button>
+                <Styled.Button type="submit" onClick={handleLogin}>Entrar</Styled.Button>
               </Form.Item>
             </Form>
           </Styled.FormContainer>

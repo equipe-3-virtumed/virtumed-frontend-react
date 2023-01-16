@@ -16,6 +16,7 @@ import Participant from "../../components/participant";
 import { useRoom } from "../../hooks/useRoom";
 import { useVideo } from "../../hooks/useVideo";
 import { useAudio } from "../../hooks/useAudio";
+import { useParams } from "react-router";
 
 const calculateVideoCardSize = (participants: RemoteParticipant[]) => {
   const screenWidth = window.screen.width;
@@ -35,6 +36,7 @@ const calculateVideoCardSize = (participants: RemoteParticipant[]) => {
 };
 
 export const Room = () => {
+  const { roomId } = useParams();
   const navigate = useNavigate();
   // const [doctor, setDoctor] = useState("");
   // const [patient, setPatient] = useState("");
@@ -50,6 +52,7 @@ export const Room = () => {
   const { connect, disconnect } = useRoom({
     doctorName: routeData?.doctor,
     patientName: routeData?.patient,
+    roomId: roomId,
   });
   const { isCameraOn, toggleVideo } = useVideo();
   const { isMicOn, toggleAudio } = useAudio();
@@ -79,11 +82,10 @@ export const Room = () => {
     );
   };
 
-
-//   interface DisableType {
-//     room: Video.Room
-//     type: string
-//   }
+  // interface DisableType {
+  //   room: Video.Room
+  //   type: string
+  // }
 
   const disableTrackOnInit = (
     room: Video.Room,
@@ -91,8 +93,8 @@ export const Room = () => {
   ) => {
     // const { track } = Array.from[room.localParticipant[type].values()][0];
     const { track }: any = Array.from([room.localParticipant[type].values()])[0];
-    track.stop();
-    track.disable();
+    // track.stop();
+    // track.disable();
   };
 
   const handleOnCloseClick = () => {
