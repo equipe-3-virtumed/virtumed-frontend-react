@@ -93,8 +93,8 @@ export const Room = () => {
   ) => {
     // const { track } = Array.from[room.localParticipant[type].values()][0];
     const { track }: any = Array.from([room.localParticipant[type].values()])[0];
-    track.stop();
-    track.disable();
+    // track.stop();
+    // track.disable();
   };
 
   const handleOnCloseClick = () => {
