@@ -19,17 +19,12 @@ import TextTransition, { presets } from "react-text-transition";
 // Textos para transição
 const texts = ["clínicas", "hospitais", "pacientes", "profissionais"];
 
-// Class de transição de texto
-export const Transition = () => {
+// Componente de transição de textos
+export const TransitionText = () => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const intervalId = setInterval(() => setIndex((index) => index + 1), 3000);
-
-    //Tentar resetar valor quando chegar ao final do array
-    // if (index === texts.length) {
-    //   setIndex(0);
-    // }
     return () => clearInterval(intervalId);
   }, []);
 
@@ -52,96 +47,141 @@ export const Transition = () => {
   );
 };
 
-// Class do Carrossel de informações
+// Componente do Carrossel de informações
 export const CarouselInformation: React.FC = () => {
+  // 1º componente de informações
   const InformationOne = () => {
     return (
-      <div style={{ display: "flex" }}>
-        <div>
-          <TeamOutlined />
-          <p>Gestão de Agenda e Profissionais</p>
+      <div
+        style={{
+          flexWrap: "wrap",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          style={{
+            width: "22rem",
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+            padding: "16px 44px",
+          }}
+        >
+          <TeamOutlined style={{ fontSize: "1.5rem" }} />
+          <DollarCircleOutlined style={{ fontSize: "1.5rem" }} />
+          <TeamOutlined style={{ fontSize: "1.5rem" }} />
         </div>
-        <div>
-          <DollarCircleOutlined />
-          <p>Autoagendamento com Pagamento Online</p>
-        </div>
-        <div>
-          <TeamOutlined />
-          <p>Gestão de Agenda e Profissionais</p>
+        <div style={{ width: "21rem", display: "flex" }}>
+          <p style={{ padding: "0" }}>Gestão de Agenda e Profissionais</p>
+          <p style={{ padding: "0" }}>Autoagendamento com Pagamento Online</p>
+          <p style={{ padding: "0" }}>Gestão de Agenda e Profissionais</p>
         </div>
       </div>
     );
   };
 
+  // 2º componente de informações
   const InformationTwo = () => {
     return (
-      <div style={{ display: "flex" }}>
-        <div>
-          <DollarCircleOutlined />
-          <p>Autoagendamento com Pagamento Online</p>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div style={{ width: "7rem" }}>
+          <DollarCircleOutlined style={{ fontSize: "1.5rem" }} />
+          <p style={{ padding: "0" }}>Autoagendamento com Pagamento Online</p>
         </div>
-        <div>
-          <VideoCameraAddOutlined />
-          <p>
+        <div style={{ width: "7rem" }}>
+          <VideoCameraAddOutlined style={{ fontSize: "1.5rem" }} />
+          <p style={{ padding: "0" }}>
             Telemedicina com <br /> Prontuário Integrado
           </p>
         </div>
-        <div>
-          <SolutionOutlined />
-          <p>Visão dos pacientes internados</p>
+        <div style={{ width: "7rem" }}>
+          <SolutionOutlined style={{ fontSize: "1.5rem" }} />
+          <p style={{ padding: "0" }}>Visão dos pacientes internados</p>
         </div>
       </div>
     );
   };
 
+  // 3º componente de informações
   const InformationThree = () => {
     return (
-      <div style={{ display: "flex" }}>
-        <div>
-          <FundProjectionScreenOutlined />
-          <p>Lançamento de evoluções clínicas</p>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div style={{ width: "7rem" }}>
+          <FundProjectionScreenOutlined style={{ fontSize: "1.5rem" }} />
+          <p style={{ padding: "0" }}>Lançamento de evoluções clínicas</p>
         </div>
-        <div>
-          <ReconciliationOutlined />
-          <p>Histórico com o prontuário do paciente</p>
+        <div style={{ width: "7rem" }}>
+          <ReconciliationOutlined style={{ fontSize: "1.5rem" }} />
+          <p style={{ padding: "0" }}>Histórico com o prontuário do paciente</p>
         </div>
-        <div>
-          <ExclamationCircleOutlined />
-          <p>Informações sobre médicos e enfermeiros</p>
+        <div style={{ width: "7rem" }}>
+          <ExclamationCircleOutlined style={{ fontSize: "1.5rem" }} />
+          <p style={{ padding: "0" }}>
+            Informações sobre médicos e enfermeiros
+          </p>
         </div>
       </div>
     );
   };
 
+  // 4º componente de informações
   const InformationFour = () => {
     return (
-      <div style={{ display: "flex" }}>
-        <div>
-          <CreditCardOutlined />
-          <p>Agendamento com Pagamento Online</p>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div style={{ width: "7rem" }}>
+          <CreditCardOutlined style={{ fontSize: "1.5rem" }} />
+          <p style={{ padding: "0" }}>Agendamento com Pagamento Online</p>
         </div>
-        <div>
-          <VideoCameraOutlined />
-          <p>Teleconsulta com chat de texto</p>
+        <div style={{ width: "7rem" }}>
+          <VideoCameraOutlined style={{ fontSize: "1.5rem" }} />
+          <p style={{ padding: "0" }}>Teleconsulta com chat de texto</p>
         </div>
-        <div>
-          <UserOutlined />
-          <p>Gestão de Pacientes com Histórico</p>
+        <div style={{ width: "7rem" }}>
+          <UserOutlined style={{ fontSize: "1.5rem" }} />
+          <p style={{ padding: "0" }}>Gestão de Pacientes com Histórico</p>
         </div>
       </div>
     );
   };
 
+  // 5º componente de informações
   const InformationFive = () => {
     return (
-      <div style={{ display: "flex" }}>
-        <div>
-          <ScheduleOutlined />
-          <p>Gestão de Agenda</p>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+        }}
+      >
+        <div style={{ width: "7rem" }}>
+          <ScheduleOutlined style={{ fontSize: "1.5rem" }} />
+          <p style={{ padding: "8px" }}>Gestão de Agenda</p>
         </div>
-        <div>
-          <IdcardOutlined />
-          <p>Informações pacientes</p>
+        <div style={{ width: "7rem" }}>
+          <IdcardOutlined style={{ fontSize: "1.5rem" }} />
+          <p style={{ padding: "0" }}>Informações pacientes</p>
         </div>
       </div>
     );
@@ -150,12 +190,12 @@ export const CarouselInformation: React.FC = () => {
   return (
     <Carousel
       style={{
-        width: "92vw",
+        width: "93vw",
         height: "9rem",
-        display: "flex",
-        alignItems: "center",
-        textAlign: "center",
-        fontSize: "small",
+        // display: "flex",
+        // alignItems: "center",
+        // textAlign: "center",
+        fontSize: "14px",
         backgroundImage: "linear-gradient(to right, #fc7fbd, #66d3e2)",
         borderRadius: "8px",
         boxShadow: "0px 8px 8px 0px #0004",
@@ -170,6 +210,7 @@ export const CarouselInformation: React.FC = () => {
   );
 };
 
+// Componente de carrossel de clientes
 export const CarouselClients = () => {
   return (
     <Carousel

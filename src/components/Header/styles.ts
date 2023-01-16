@@ -17,7 +17,6 @@ export const Navbar = styled.nav`
   align-items: center;
   justify-content: space-between;
   gap: 4.5rem;
-  height: 3.5rem;
 `;
 
 export const Logo = styled.img`

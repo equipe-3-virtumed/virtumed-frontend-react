@@ -6,10 +6,9 @@ export const Container = styled.section`
   background-color: #fff;
   position: fixed;
   z-index: 15;
-  animation: go-back 1s;
-  animation-direction: alternate;
+  animation: go 1s;
 
-  @keyframes go-back {
+  @keyframes go {
     from {
       transform: translateX(100vw);
     }
