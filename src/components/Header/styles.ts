@@ -7,9 +7,9 @@ export const Header = styled.header`
   width: 100vw;
   height: auto;
   border: transparent;
-  padding: 1rem 1.5rem .6rem 1.5rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   background: ${(props) => props.theme.headerBackground};
-  transition: all .6s ease-in-out;
+  transition: all 0.6s ease-in-out;
 `;
 
 export const Navbar = styled.nav`
