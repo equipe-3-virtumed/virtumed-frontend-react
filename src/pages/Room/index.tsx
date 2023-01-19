@@ -17,6 +17,8 @@ import { useRoom } from "../../hooks/useRoom";
 import { useVideo } from "../../hooks/useVideo";
 import { useAudio } from "../../hooks/useAudio";
 import { useParams } from "react-router";
+import LoginModal from "components/LoginModal";
+import { useAuth } from "contexts/auth";
 
 const calculateVideoCardSize = (participants: RemoteParticipant[]) => {
   const screenWidth = window.screen.width;
@@ -37,9 +39,17 @@ const calculateVideoCardSize = (participants: RemoteParticipant[]) => {
 
 export const Room = () => {
   const { roomId } = useParams();
+  const { logged } = useAuth();
+
   const navigate = useNavigate();
   // const [doctor, setDoctor] = useState("");
   // const [patient, setPatient] = useState("");
+  const [showLoginModal, setShowLoginModal] = useState<boolean>(false);
+
+  const handleShowLoginModal = () => {
+    setShowLoginModal(!LoginModal);
+  };
+
   const routeData = {
     doctor: "Wirlley",
     patient: "Marcos",
@@ -111,14 +121,18 @@ export const Room = () => {
       disableTrackOnInit(roomResponse, "videoTracks");
       disableTrackOnInit(roomResponse, "audioTracks");
     });
+    if (!logged) setShowLoginModal(true)
 
     return () => {
       disconnect();
     };
-  }, []);
+  }, [logged]);
 
   return (
     <Styled.Container>
+       {showLoginModal && (
+        <LoginModal handleShowLoginModal={handleShowLoginModal} />
+      )}
       <Styled.Img src={Logo} alt="Logo Virtumed" />
       <Styled.VideoContainer>
         {localParticipant && (
