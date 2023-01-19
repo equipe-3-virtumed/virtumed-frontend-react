@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import HeaderModal from "components/HeaderModal";
 import { MenuOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Dropdown } from "antd";
 import { useDesign } from "hooks/useDesign";
 import { FiMoon, FiSun } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,21 +9,17 @@ import Logo from "../../assets/logo.svg";
 import * as Styled from "./styles";
 
 const Header = () => {
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showHeaderModal, setShowHeaderModal] = useState<boolean>(false);
   const { themeDesign, setThemeDesign } = useDesign();
   const [width, setWidth] = useState<number>(0);
 
   const navigate = useNavigate();
 
-  const handleShowModal = () => {
-    setShowModal(!showModal);
+  const handleShowHeaderModal = () => {
+    setShowHeaderModal(!showHeaderModal);
   };
 
   const items: MenuProps["items"] = [
-    {
-      label: <Link to={"/patient/profile"}>Perfil</Link>,
-      key: 0,
-    },
     {
       label: (
         <p>
@@ -47,10 +42,6 @@ const Header = () => {
       ),
       key: 1,
     },
-    {
-      label: <p onClick={() => navigate(-1)}>Voltar</p>,
-      key: 2,
-    },
   ];
 
   useEffect(() => {
@@ -61,7 +52,10 @@ const Header = () => {
 
   return (
     <>
-      {showModal && <HeaderModal handleShowModal={handleShowModal} />}
+      {showHeaderModal && (
+        <HeaderModal handleShowHeaderModal={handleShowHeaderModal} />
+      )}
+
       <Styled.Header>
         <Styled.Navbar>
           <Styled.Logo src={Logo} alt="Logo Virtumed" />
@@ -70,7 +64,7 @@ const Header = () => {
               fontSize: "1.8rem",
               color: "#000",
             }}
-            onClick={handleShowModal}
+            onClick={handleShowHeaderModal}
           />
 
           {/* {width => 560 ? (
