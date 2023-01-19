@@ -3,11 +3,13 @@ import Logo from "../../assets/logo.svg";
 import { CloseOutlined, UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
-interface HomeModalProps {
-  handleShowModal: () => void;
+interface HeaderModalProps {
+  handleShowHeaderModal: () => void;
 }
 
-const HeaderModal = ({ handleShowModal }: HomeModalProps) => {
+const HeaderModal = ({
+  handleShowHeaderModal,
+}: HeaderModalProps) => {
   const navigate = useNavigate();
   return (
     <Styled.Container>
@@ -18,7 +20,7 @@ const HeaderModal = ({ handleShowModal }: HomeModalProps) => {
             fontSize: "1.8rem",
             color: "#000",
           }}
-          onClick={handleShowModal}
+          onClick={handleShowHeaderModal}
         />
       </div>
       <div>
