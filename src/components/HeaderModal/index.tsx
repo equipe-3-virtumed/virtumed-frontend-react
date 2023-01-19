@@ -1,12 +1,14 @@
 import * as Styled from "./styles";
 import Logo from "../../assets/logo.svg";
-import { CloseOutlined } from "@ant-design/icons";
+import { CloseOutlined, UserOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 interface HomeModalProps {
   handleShowModal: () => void;
 }
 
 const HeaderModal = ({ handleShowModal }: HomeModalProps) => {
+  const navigate = useNavigate();
   return (
     <Styled.Container>
       <div>
@@ -18,6 +20,11 @@ const HeaderModal = ({ handleShowModal }: HomeModalProps) => {
           }}
           onClick={handleShowModal}
         />
+      </div>
+      <div>
+        <div onClick={() => navigate("/login")}>Login</div>
+        <div onClick={() => navigate("/register")}>Registre-se</div>
+        <a href="https://www.virtumed.com.br/contact">Contato</a>
       </div>
     </Styled.Container>
   );
