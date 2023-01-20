@@ -69,6 +69,7 @@ export const Button = styled.button`
   background-color: #5223ad;
   color: #fff;
   border-radius: 8px;
+  cursor: pointer;
   border: none;
   font-size: large;
 `;
@@ -83,11 +84,12 @@ export const ContainerInformation = styled.div`
   }
 
   div {
+    background-color: rgba(255, 255, 255, 0.7);
     width: 150px;
     height: 150px;
     display: flex;
     align-items: center;
-    margin: 16px;
+    margin: 2.1rem;
     box-shadow: 0 0 16px 0 #0004;
     :nth-child(1) {
       border-radius: 0 0 16px 0;
