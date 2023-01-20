@@ -6,6 +6,7 @@ import DoctorPage from "pages/Doctor";
 import { Room } from "pages/Room";
 import { useRoutes } from "react-router";
 import { RoutesPath } from "./paths";
+import ClinicPage from "pages/Clinic";
 
 const Routes = () => {
   return useRoutes([
@@ -28,6 +29,10 @@ const Routes = () => {
      {
       path: RoutesPath.DOCTOR_PAGE,
       element: <DoctorPage />
+    },
+    {
+      path: RoutesPath.CLINIC_PAGE,
+      element: <ClinicPage />
     },
     {
       path: RoutesPath.ROOM_PAGE,
