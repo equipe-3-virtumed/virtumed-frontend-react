@@ -58,6 +58,7 @@ export const CarouselInformation: React.FC = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          flexDirection: "column"
         }}
       >
         <div
@@ -73,10 +74,10 @@ export const CarouselInformation: React.FC = () => {
           <DollarCircleOutlined style={{ fontSize: "1.5rem" }} />
           <TeamOutlined style={{ fontSize: "1.5rem" }} />
         </div>
-        <div style={{ width: "21rem", display: "flex" }}>
+        <div style={{ width: "21rem", display: "flex", }}>
           <p style={{ padding: "0" }}>Gestão de Agenda e Profissionais</p>
           <p style={{ padding: "0" }}>Autoagendamento com Pagamento Online</p>
-          <p style={{ padding: "0" }}>Gestão de Agenda e Profissionais</p>
+          <p style={{ padding: "0" }}>Acompanhamento Personalizado</p>
         </div>
       </div>
     );
@@ -90,21 +91,22 @@ export const CarouselInformation: React.FC = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          // flexDirection: "column"
         }}
       >
-        <div style={{ width: "7rem" }}>
-          <DollarCircleOutlined style={{ fontSize: "1.5rem" }} />
-          <p style={{ padding: "0" }}>Autoagendamento com Pagamento Online</p>
+        <div style={{ width: "7rem", margin: "1rem" }}>
+          <DollarCircleOutlined style={{ fontSize: "1.5rem", marginLeft: "2rem"  }} />
+          <p style={{ padding: "0rem" }}>Autoagendamento com Pagamento Online</p>
         </div>
-        <div style={{ width: "7rem" }}>
-          <VideoCameraAddOutlined style={{ fontSize: "1.5rem" }} />
-          <p style={{ padding: "0" }}>
-            Telemedicina com <br /> Prontuário Integrado
+        <div style={{ width: "7rem", margin: "1rem" }}>
+          <VideoCameraAddOutlined style={{ fontSize: "1.5rem", marginLeft: "2rem"  }} />
+          <p style={{ padding: "0rem" }}>
+            Telemedicina com Prontuário Integrado
           </p>
         </div>
-        <div style={{ width: "7rem" }}>
-          <SolutionOutlined style={{ fontSize: "1.5rem" }} />
-          <p style={{ padding: "0" }}>Visão dos pacientes internados</p>
+        <div style={{ width: "7rem", margin: "1rem"}}>
+          <SolutionOutlined style={{ fontSize: "1.5rem", marginLeft: "2rem"  }} />
+          <p style={{ padding: "0rem" }}>Visão dos pacientes internados</p>
         </div>
       </div>
     );
@@ -118,19 +120,21 @@ export const CarouselInformation: React.FC = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-        }}
+          // flexDirection: "column"
+        }
+      }
       >
-        <div style={{ width: "7rem" }}>
-          <FundProjectionScreenOutlined style={{ fontSize: "1.5rem" }} />
-          <p style={{ padding: "0" }}>Lançamento de evoluções clínicas</p>
+        <div style={{ width: "7rem", margin: "1rem" }}>
+          <FundProjectionScreenOutlined style={{ fontSize: "1.5rem", marginLeft: "2rem"  }} />
+          <p style={{ padding: "0rem" }}>Lançamento de evoluções clínicas</p>
         </div>
-        <div style={{ width: "7rem" }}>
-          <ReconciliationOutlined style={{ fontSize: "1.5rem" }} />
-          <p style={{ padding: "0" }}>Histórico com o prontuário do paciente</p>
+        <div style={{ width: "7rem", margin: "1rem" }}>
+          <ReconciliationOutlined style={{ fontSize: "1.5rem", marginLeft: "2rem"  }} />
+          <p style={{ padding: "0rem" }}>Histórico com o prontuário do paciente</p>
         </div>
-        <div style={{ width: "7rem" }}>
-          <ExclamationCircleOutlined style={{ fontSize: "1.5rem" }} />
-          <p style={{ padding: "0" }}>
+        <div style={{ width: "7rem", margin: "1rem" }}>
+          <ExclamationCircleOutlined style={{ fontSize: "1.5rem", marginLeft: "2rem"  }} />
+          <p style={{ padding: "0rem" }}>
             Informações sobre médicos e enfermeiros
           </p>
         </div>
@@ -146,18 +150,19 @@ export const CarouselInformation: React.FC = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          // flexDirection: "column"
         }}
       >
-        <div style={{ width: "7rem" }}>
-          <CreditCardOutlined style={{ fontSize: "1.5rem" }} />
+        <div style={{ width: "7rem", margin: "1rem" }}>
+          <CreditCardOutlined style={{ fontSize: "1.5rem", marginLeft: "2rem"  }} />
           <p style={{ padding: "0" }}>Agendamento com Pagamento Online</p>
         </div>
-        <div style={{ width: "7rem" }}>
-          <VideoCameraOutlined style={{ fontSize: "1.5rem" }} />
+        <div style={{ width: "7rem", margin: "1rem" }}>
+          <VideoCameraOutlined style={{ fontSize: "1.5rem", marginLeft: "2rem"  }} />
           <p style={{ padding: "0" }}>Teleconsulta com chat de texto</p>
         </div>
-        <div style={{ width: "7rem" }}>
-          <UserOutlined style={{ fontSize: "1.5rem" }} />
+        <div style={{ width: "7rem", margin: "1rem" }}>
+          <UserOutlined style={{ fontSize: "1.5rem", marginLeft: "2rem" }} />
           <p style={{ padding: "0" }}>Gestão de Pacientes com Histórico</p>
         </div>
       </div>
@@ -175,11 +180,11 @@ export const CarouselInformation: React.FC = () => {
           textAlign: "center",
         }}
       >
-        <div style={{ width: "7rem" }}>
+        <div style={{ width: "21rem", margin: "2rem"}}>
           <ScheduleOutlined style={{ fontSize: "1.5rem" }} />
-          <p style={{ padding: "8px" }}>Gestão de Agenda</p>
+          <p style={{ padding: "0" }}>Gestão de Agenda</p>
         </div>
-        <div style={{ width: "7rem" }}>
+        <div style={{ width: "21rem", margin: "2rem"}}>
           <IdcardOutlined style={{ fontSize: "1.5rem" }} />
           <p style={{ padding: "0" }}>Informações pacientes</p>
         </div>
@@ -192,6 +197,9 @@ export const CarouselInformation: React.FC = () => {
       style={{
         width: "93vw",
         height: "9rem",
+        display: "flex",
+        alignItems: "first baseline",
+        // justifyContent: "center",
         // display: "flex",
         // alignItems: "center",
         // textAlign: "center",
@@ -216,9 +224,7 @@ export const CarouselClients = () => {
     <Carousel
       autoplay
       style={{
-        width: "90vw",
-        height: "12.5rem",
-        padding: "3rem 0",
+        width: "80vw",
         animationDuration: "5000",
       }}
     >
