@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface IconButtonProps {
-    IsActive: boolean;
+    IsActive?: boolean;
 }
 
 export const Img = styled.img`
