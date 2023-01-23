@@ -7,7 +7,6 @@ import Logo from "../../assets/logo.svg";
 import * as Styled from "./styles";
 import { useDesign } from "hooks/useDesign";
 import { useState } from "react";
-import api from "services/api";
 import { useAuth } from "contexts/auth";
 
 const Login = () => {
@@ -22,12 +21,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    api.post('/login', {email, password})
-    .then((res) => {
-      login({ token: res.data.token, user: res.data.user })
-    })
-  }
+  const handleLogin = () => { login({ email, password }) }
 
   return (
     <Styled.Container>

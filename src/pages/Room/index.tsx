@@ -17,7 +17,6 @@ import { useRoom } from "../../hooks/useRoom";
 import { useVideo } from "../../hooks/useVideo";
 import { useAudio } from "../../hooks/useAudio";
 import { useParams } from "react-router";
-import LoginModal from "components/LoginModal";
 import { useAuth } from "contexts/auth";
 
 const calculateVideoCardSize = (participants: RemoteParticipant[]) => {
@@ -44,11 +43,6 @@ export const Room = () => {
   const navigate = useNavigate();
   // const [doctor, setDoctor] = useState("");
   // const [patient, setPatient] = useState("");
-  const [showLoginModal, setShowLoginModal] = useState<boolean>(false);
-
-  const handleShowLoginModal = () => {
-    setShowLoginModal(!LoginModal);
-  };
 
   const routeData = {
     doctor: "Wirlley",
@@ -121,7 +115,6 @@ export const Room = () => {
       disableTrackOnInit(roomResponse, "videoTracks");
       disableTrackOnInit(roomResponse, "audioTracks");
     });
-    if (!logged) setShowLoginModal(true)
 
     return () => {
       disconnect();
@@ -130,9 +123,6 @@ export const Room = () => {
 
   return (
     <Styled.Container>
-       {showLoginModal && (
-        <LoginModal handleShowLoginModal={handleShowLoginModal} />
-      )}
       <Styled.Img src={Logo} alt="Logo Virtumed" />
       <Styled.VideoContainer>
         {localParticipant && (
@@ -163,7 +153,11 @@ export const Room = () => {
           {isCameraOn ? <MdVideocam /> : <MdVideocamOff />}
         </Styled.IconButton>
       </Styled.IconContainer>
-      <Styled.ChatContainer>Doctor: {routeData.doctor}</Styled.ChatContainer>
+      <Styled.ChatContainer>
+        <div> Doutor(a) {routeData.doctor}: Boa noite <br />
+        Paciente {routeData.patient}: Boa noite
+        </div>
+         </Styled.ChatContainer>
     </Styled.Container>
   );
 };

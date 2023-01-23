@@ -7,10 +7,8 @@ import {
 import Header from "components/Header";
 import { SwapRightOutlined, LinkedinOutlined } from "@ant-design/icons";
 import Logo from "../../assets/logo.svg";
-// import { Room } from "pages/Room";
 
 const Home = () => {
-  // return <Room/>
   return (
     <Styled.Container>
       <Header />
