@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setLogged(true);
       setNeeded(false);
       setRole(res.data.user.role);
-      navigate("/");
+      // navigate("/");
     })
     .finally(() => {
       //mensagem de login bem sucedido
