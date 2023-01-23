@@ -4,6 +4,7 @@ import {
   MdMic,
   MdMicOff,
   MdClose,
+  MdChat,
 } from "react-icons/md";
 import Logo from "../../assets/logo.svg";
 import * as Styled from "./styled";
@@ -18,6 +19,7 @@ import { useVideo } from "../../hooks/useVideo";
 import { useAudio } from "../../hooks/useAudio";
 import { useParams } from "react-router";
 import { useAuth } from "contexts/auth";
+import ChatModal from "components/Modal/ChatModal";
 
 const calculateVideoCardSize = (participants: RemoteParticipant[]) => {
   const screenWidth = window.screen.width;
@@ -53,6 +55,7 @@ export const Room = () => {
     []
   );
   const [localParticipant, setLocalParticipant] = useState<LocalParticipant>();
+  const [openModal, setOpenModal] = useState(false);
   const { connect, disconnect } = useRoom({
     doctorName: routeData?.doctor,
     patientName: routeData?.patient,
@@ -96,7 +99,9 @@ export const Room = () => {
     type: "videoTracks" | "audioTracks"
   ) => {
     // const { track } = Array.from[room.localParticipant[type].values()][0];
-    const { track }: any = Array.from([room.localParticipant[type].values()])[0];
+    const { track }: any = Array.from([
+      room.localParticipant[type].values(),
+    ])[0];
     // track.stop();
     // track.disable();
   };
@@ -152,13 +157,14 @@ export const Room = () => {
         >
           {isCameraOn ? <MdVideocam /> : <MdVideocamOff />}
         </Styled.IconButton>
+
+        <Styled.IconButton onClick={() => setOpenModal(true)}>
+          <MdChat />
+        </Styled.IconButton>
       </Styled.IconContainer>
-      <Styled.ChatContainer>
-        <div> Doutor(a) {routeData.doctor}: Boa noite <br />
-        Paciente {routeData.patient}: Boa noite
-        </div>
-         </Styled.ChatContainer>
+      {openModal && (
+        <ChatModal openModal={openModal} setOpenModal={setOpenModal} routeData={routeData} />
+      )}
     </Styled.Container>
   );
 };
-
