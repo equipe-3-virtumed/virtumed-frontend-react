@@ -36,8 +36,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [needed, setNeeded] = useState<boolean>(false);
   console.log("🚀 ~ file: index.tsx:38 ~ AuthProvider ~ needed", needed)
   const [logged, setLogged] = useState<boolean>(false);
-  // console.log("🚀 ~ file: index.tsx:40 ~ AuthProvider ~ logged", logged)
+  console.log("🚀 ~ file: index.tsx:40 ~ AuthProvider ~ logged", logged)
   const [role, setRole] = useState<string>('');
+  console.log("🚀 ~ file: index.tsx:41 ~ AuthProvider ~ role", role)
 
   const login = ({ email, password }: LoginParams) => {
     api.post('/login', {email, password})

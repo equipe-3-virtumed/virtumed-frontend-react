@@ -3,7 +3,7 @@ import Login from "pages/Login";
 import PatientPage from "pages/Patient";
 import Register from "pages/Register";
 import DoctorPage from "pages/Doctor";
-import { Room } from "pages/Room";
+import Room from "pages/Room/index";
 import { useRoutes } from "react-router";
 import { RoutesPath } from "./paths";
 import ClinicPage from "pages/Clinic";
