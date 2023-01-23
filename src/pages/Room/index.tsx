@@ -19,22 +19,22 @@ import { useAudio } from "../../hooks/useAudio";
 import { useParams } from "react-router";
 import { useAuth } from "contexts/auth";
 
-const calculateVideoCardSize = (participants: RemoteParticipant[]) => {
-  const screenWidth = window.screen.width;
-  const screenHeight = window.screen.height;
-  const calculateByParticipant = (quantity: number) =>
-    screenWidth / quantity - 20;
-  const totalParticipants = participants.length + 1;
-  const cardWidth =
-    totalParticipants > 3
-      ? calculateByParticipant(3)
-      : calculateByParticipant(totalParticipants);
+// const calculateVideoCardSize = (participants: RemoteParticipant[]) => {
+//   const screenWidth = window.screen.width;
+//   const screenHeight = window.screen.height;
+//   const calculateByParticipant = (quantity: number) =>
+//     screenWidth / quantity - 20;
+//   const totalParticipants = participants.length + 1;
+//   const cardWidth =
+//     totalParticipants > 3
+//       ? calculateByParticipant(3)
+//       : calculateByParticipant(totalParticipants);
 
-  return {
-    width: screenWidth > 880 ? `${cardWidth}px` : `90%`,
-    height: `${screenWidth > 880 ? cardWidth - 130 : screenHeight / 2}px`,
-  };
-};
+//   return {
+//     width: screenWidth > 880 ? `${cardWidth}px` : `90%`,
+//     height: `${screenWidth > 880 ? cardWidth - 130 : screenHeight / 2}px`,
+//   };
+// };
 
 export const Room = () => {
   const { roomId } = useParams();
@@ -61,14 +61,14 @@ export const Room = () => {
   const { isCameraOn, toggleVideo } = useVideo();
   const { isMicOn, toggleAudio } = useAudio();
 
-  const videoCard = calculateVideoCardSize(participants);
+  // const videoCard = calculateVideoCardSize(participants);
 
   const renderRemoteParticipants = useCallback(
     () =>
       participants.map((participant: Video.RemoteParticipant) => (
         <Participant
-          width={videoCard.width}
-          height={videoCard.height}
+          width={"auto"}
+          height={"100%"}
           key={participant.sid}
           participant={participant}
         />
@@ -77,7 +77,7 @@ export const Room = () => {
   );
 
   const participantConnected = (participant: Video.RemoteParticipant) => {
-    setParticipants((prevParticipants) => [...prevParticipants, participant]);
+    setParticipants([participant]);
   };
 
   const participantDisconnected = (participant: Video.RemoteParticipant) => {
@@ -127,8 +127,8 @@ export const Room = () => {
       <Styled.VideoContainer>
         {localParticipant && (
           <Participant
-            width={videoCard.width}
-            height={participants.length > 0 ? videoCard.height : "auto"}
+            width={"auto"}
+            height={"20%"}
             isLocal
             participant={localParticipant}
           />

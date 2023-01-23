@@ -13,6 +13,7 @@ import {
   import { useTrack } from "../../hooks/useTraks";
   
   const ParticipantCard = ({ participant, isLocal, width, height }: IProps) => {
+    // console.log("🚀 ~ file: index.tsx:16 ~ ParticipantCard ~ participant", participant)
     const [opacity, setOpacity] = useState("0");
     const {
       audioTracks,
@@ -41,22 +42,22 @@ import {
       if (!isLocal) setOpacity("0");
     };
   
-    const toggleLocalCamera = () => {
-      if (isRemoteCameraOn) {
-        videoTracks[0].mediaStreamTrack.enabled = isRemoteCameraDisabledFromLocal;
-        setIsRemoteCameraDisabledFromLocal(!isRemoteCameraDisabledFromLocal);
-      }
-    };
+    // const toggleLocalCamera = () => {
+    //   if (isRemoteCameraOn) {
+    //     videoTracks[0].mediaStreamTrack.enabled = isRemoteCameraDisabledFromLocal;
+    //     setIsRemoteCameraDisabledFromLocal(!isRemoteCameraDisabledFromLocal);
+    //   }
+    // };
   
-    const toggleLocalMic = () => {
-      if (isRemoteMicOn) {
-        console.log(!isMicOn());
-        setIsRemoteMicDisabledFromLocal(isMicOn());
-      }
-    };
+    // const toggleLocalMic = () => {
+    //   if (isRemoteMicOn) {
+    //     console.log(!isMicOn());
+    //     setIsRemoteMicDisabledFromLocal(isMicOn());
+    //   }
+    // };
   
-    const isMicOn = () => isRemoteMicOn && !isRemoteMicDisabledFromLocal;
-    const isCameraOn = () => isRemoteCameraOn && !isRemoteCameraDisabledFromLocal;
+    // const isMicOn = () => isRemoteMicOn && !isRemoteMicDisabledFromLocal;
+    // const isCameraOn = () => isRemoteCameraOn && !isRemoteCameraDisabledFromLocal;
   
     useEffect(() => {
       const videoTrack = videoTracks[0];
@@ -84,21 +85,21 @@ import {
         onMouseOut={hideBar}
         onMouseOver={showBar}
       >
-        {!isLocal && (
+        {/* {!isLocal && (
           <ToolBar top opacity={opacity}>
             <FirstNameChar>
               {participant.identity.charAt(0).toUpperCase()}
             </FirstNameChar>
             <span>{participant.identity.toUpperCase()}</span>
           </ToolBar>
-        )}
+        )} */}
         {isRemoteCameraOn ? (
           <Video ref={videoRef} autoPlay />
         ) : (
           <VideoTurnedOff />
         )}
         <audio ref={audioRef} autoPlay muted={isRemoteMicDisabledFromLocal} />
-        {!isLocal && (
+        {/* {!isLocal && (
           <ToolBar opacity={opacity} justifyCenter>
             <IconButton onClick={toggleLocalMic} isActive={isMicOn()}>
               {isMicOn() ? <MdMic /> : <MdMicOff />}
@@ -107,7 +108,7 @@ import {
               {isCameraOn() ? <MdVideocam /> : <MdVideocamOff />}
             </IconButton>
           </ToolBar>
-        )}
+        )} */}
       </VideoCard>
     );
   };

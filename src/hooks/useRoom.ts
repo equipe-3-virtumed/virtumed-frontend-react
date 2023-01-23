@@ -20,8 +20,10 @@ export const useRoom = ({ doctorName, patientName, roomId }: Params) => {
   const connect = useCallback(async () => {
     const response = await api.get(`room/connect/${roomId}`);
 
+    const token = response.data.patientVideoToken || response.data.doctorVideoToken
+
     console.log("🚀 ~ file: useRoom.ts:23 ~ connect ~ response", response)
-    const roomResponse = await Video.connect(response.data.patientVideoToken, {
+    const roomResponse = await Video.connect(token, {
       name: roomId,
       video: true,
       audio: true,
