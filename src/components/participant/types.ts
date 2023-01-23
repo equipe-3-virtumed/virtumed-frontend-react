@@ -19,7 +19,7 @@ import {
   }
   
   export interface IconButtonProps {
-    isActive: boolean;
+    isActive?: boolean;
   }
   
   export type VideoTracks = RemoteVideoTrack | LocalVideoTrack;
