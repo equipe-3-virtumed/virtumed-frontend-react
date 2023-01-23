@@ -64,6 +64,8 @@ export const IconButton = styled.button<IconButtonProps>`
   align-items: center;
   border: solid 1px #ddd;
   transition: 0.3s;
+  position: absolute;
+  z-index: 50;
   cursor: pointer;
   color: ${(props) => (props.isActive ? "#000c66" : "#EFEFEF")};
   :hover {

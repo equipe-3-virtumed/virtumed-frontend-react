@@ -10,6 +10,7 @@ const useVideo = (): {
   toggleVideo: (data: ToggleVideoParams) => void;
 } => {
   const [isCameraOn, setIsCameraOn] = useState(false);
+  console.log("🚀 ~ file: useVideo.ts:13 ~ isCameraOn", isCameraOn)
 
   const toggleVideo = ({ localParticipant }: ToggleVideoParams) => {
     if (!localParticipant) return;
