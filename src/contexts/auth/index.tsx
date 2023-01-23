@@ -4,9 +4,10 @@ import {
   ReactNode,
   useState,
   useEffect,
+  Dispatch,
+  SetStateAction,
 } from "react";
 import { useNavigate } from "react-router-dom";
-import { User } from "types";
 import api from "../../services/api"
 
 interface AuthProviderProps {
@@ -14,6 +15,8 @@ interface AuthProviderProps {
 }
 
 interface AuthProviderData {
+  needed: boolean;
+  setNeeded: Dispatch<SetStateAction<boolean>>;
   logged: boolean;
   login: (params: LoginParams) => void;
   role: string;
@@ -21,8 +24,8 @@ interface AuthProviderData {
 }
 
 interface LoginParams {
-  token: string;
-  user: User;
+  email: string;
+  password: string;
 }
 
 const AuthContext = createContext<AuthProviderData>({} as AuthProviderData);
@@ -30,17 +33,27 @@ const AuthContext = createContext<AuthProviderData>({} as AuthProviderData);
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const navigate = useNavigate();
 
+  const [needed, setNeeded] = useState<boolean>(false);
+  console.log("🚀 ~ file: index.tsx:38 ~ AuthProvider ~ needed", needed)
   const [logged, setLogged] = useState<boolean>(false);
+  // console.log("🚀 ~ file: index.tsx:40 ~ AuthProvider ~ logged", logged)
   const [role, setRole] = useState<string>('');
 
-  console.log("Logged", logged, "Role", role);
-
-  const login = ({ token, user }: LoginParams) => {
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(user));
-    setLogged(true);
-    setRole(user.role);
-    //mensagem de login bem sucedido
+  const login = ({ email, password }: LoginParams) => {
+    api.post('/login', {email, password})
+    .then((res) => {
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      setLogged(true);
+      setNeeded(false);
+      setRole(res.data.user.role);
+    })
+    .finally(() => {
+      //mensagem de login bem sucedido
+    })
+    .catch((e) => {
+      //do something
+    })
   };
 
   const logout = () => {
@@ -60,8 +73,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     api
       .get(`/auth`, headers)
-      .then((res) => {      
+      .then((res) => {
         setLogged(true);
+        setNeeded(false);        
         setRole(res.data.role);
       })
       .catch((e) => {
@@ -73,10 +87,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const token = localStorage.getItem("token");
 
     if (token) checkTokenExpiration();
-  }, []);
+  });
 
   return (
-    <AuthContext.Provider value={{ logged, login, role, logout }}>
+    <AuthContext.Provider value={{ needed, setNeeded, logged, role, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
