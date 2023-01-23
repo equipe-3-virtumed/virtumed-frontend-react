@@ -163,7 +163,11 @@ export const Room = () => {
           {isCameraOn ? <MdVideocam /> : <MdVideocamOff />}
         </Styled.IconButton>
       </Styled.IconContainer>
-      <Styled.ChatContainer>Doctor: {routeData.doctor}</Styled.ChatContainer>
+      <Styled.ChatContainer>
+        <div> Doutor(a) {routeData.doctor}: Boa noite <br />
+        Paciente {routeData.patient}: Boa noite
+        </div>
+         </Styled.ChatContainer>
     </Styled.Container>
   );
 };

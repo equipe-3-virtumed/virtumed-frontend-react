@@ -13,7 +13,7 @@ export const Img = styled.img`
 `;
 
 export const Container = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,12 +22,15 @@ export const Container = styled.div`
 `;
 
 export const VideoContainer = styled.div`
-  width: 85%;
+  width: 80%;
   min-height: 65%;
   margin: 15px;
-  background-color: #333333;
-  border: solid 15px ${(props) => (props.theme.body)};
-  border-radius: 5%;
+  border: double 2px transparent;
+  border-radius: 20px;
+  border-image: linear-gradient(45deg, rgb(229,65,151), rgb(82,35,173)) 1;
+  background-image: linear-gradient(#d2d2d2, #d2d2d2), radial-gradient(circle at top left, red, blue);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,6 +50,7 @@ export const VideoContainer = styled.div`
 `;
 
 export const IconContainer = styled.div`
+  margin: 2rem;
   width: 100%;
   height: 5%;
   background-color: #fff;
@@ -66,7 +70,7 @@ export const IconButton = styled.button<IconButtonProps>`
   height: 60px;
   border-radius: 32px;
   /* background-color: ${(props) => (props.IsActive ? props.theme.text : props.theme.body)}; */
-  border-image: linear-gradient(45deg, rgb(229,65,151), rgb(82,35,173)) 1;
+  /* border-image: linear-gradient(45deg, rgb(229,65,151), rgb(82,35,173)) 1; */
   margin: 0 10px;
   font-size: 25px;
   display: flex;
@@ -82,17 +86,24 @@ export const IconButton = styled.button<IconButtonProps>`
 `;
 
 export const ChatContainer = styled.div`
+  margin: 2rem;
   display: flex;
   width: 90%;
-  height: 15%;
+  height: 60%;
   position: relative;
-  border-radius: 32px;
-  border-style: solid;
-  border-width: 3px;
+  border: double 2px transparent;
+  border-radius: 20px;
   border-image: linear-gradient(45deg, rgb(229,65,151), rgb(82,35,173)) 1;
+  background-image: linear-gradient(white, white), radial-gradient(circle at top left, red, blue);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
   color: #000;
 
+  div {
+    margin-left: 1rem;
+  }
+
    @media (min-width: 980px) {
-    display: none; 
+    display: flex; 
    }
 `;

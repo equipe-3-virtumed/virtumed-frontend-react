@@ -5,7 +5,7 @@ import axios from "axios";
 // });
 
 const api = axios.create({
-  baseURL: "http://localhost:3333/"
+  baseURL: "https://virtumed-backend-production.up.railway.app/"
 });
 
 api.interceptors.request.use((config: any) => {
