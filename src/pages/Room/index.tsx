@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import api from "services/api";
 import { useParams } from "react-router";
-import { useAuth } from "contexts/auth";
+import { useAuth } from "contexts/authContext";
 import Login from "pages/Login";
 
 const Room = () => {

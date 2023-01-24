@@ -7,7 +7,7 @@ import Logo from "../../assets/logo.svg";
 import * as Styled from "./styles";
 import { useDesign } from "hooks/useDesign";
 import { useState } from "react";
-import { useAuth } from "contexts/auth";
+import { useAuth } from "contexts/authContext";
 
 const Login = () => {
   const { themeDesign, setThemeDesign } = useDesign();
