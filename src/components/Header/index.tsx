@@ -48,7 +48,7 @@ const Header = () => {
     setWidth(window.innerWidth);
   });
 
-  console.log(width);
+  // console.log(width);
 
   return (
     <>
