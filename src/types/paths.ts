@@ -6,5 +6,5 @@ export enum RoutesPath {
   DOCTOR_PAGE = "/doctor",
   CLINIC_PAGE = "/clinic",
   ROOM_PAGE = "/consulta/:roomId",
-  CONNECT_ROOM_PAGE = "/consulta/:roomId/entrar"
+  CONNECT_ROOM_PAGE = "/consulta/entrar/:roomId"
 }
