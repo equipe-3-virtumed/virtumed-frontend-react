@@ -12,13 +12,13 @@ const Room = () => {
     if (logged) {
       api.get(`room/connect/${roomId}`)
       .then(res => {
-        console.log("🚀 ~ file: index.tsx:23 ~ Room ~ res", res)
+        // console.log("🚀 ~ file: index.tsx:23 ~ Room ~ res", res)
       })
       setNeeded(false)
     } else {
       setNeeded(true)
     }
-  })
+  }, [])
   
   return (
     needed ? <Login /> :
