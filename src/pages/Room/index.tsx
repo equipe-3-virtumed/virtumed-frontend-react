@@ -18,8 +18,8 @@ import { useRoom } from "../../hooks/useRoom";
 import { useVideo } from "../../hooks/useVideo";
 import { useAudio } from "../../hooks/useAudio";
 import { useParams } from "react-router";
-import { useAuth } from "contexts/auth";
 import ChatModal from "components/Modal/ChatModal";
+// import { useAuth } from "contexts/auth";
 
 // const calculateVideoCardSize = (participants: RemoteParticipant[]) => {
 //   const screenWidth = window.screen.width;
@@ -40,7 +40,7 @@ import ChatModal from "components/Modal/ChatModal";
 
 export const Room = () => {
   const { roomId } = useParams();
-  const { logged } = useAuth();
+  // const { logged } = useAuth();
 
   const navigate = useNavigate();
   // const [doctor, setDoctor] = useState("");
@@ -124,7 +124,7 @@ export const Room = () => {
     return () => {
       disconnect();
     };
-  }, [logged]);
+  });
 
   return (
     <Styled.Container>
