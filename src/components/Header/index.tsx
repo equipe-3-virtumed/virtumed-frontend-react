@@ -6,7 +6,7 @@ import { FiMoon, FiSun } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo.svg";
 import * as Styled from "./styles";
-import { useDesign } from "contexts/ThemeContext";
+import { useDesign } from "contexts/themeContext";
 
 const Header = () => {
   const [showHeaderModal, setShowHeaderModal] = useState<boolean>(false);

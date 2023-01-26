@@ -13,7 +13,7 @@ import { Form, Input } from "antd";
 import { FaMoon } from "react-icons/fa";
 import { FiSun } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import { useDesign } from "contexts/ThemeContext";
+import { useDesign } from "contexts/themeContext";
 
 const Register = () => {
   const navigate = useNavigate();

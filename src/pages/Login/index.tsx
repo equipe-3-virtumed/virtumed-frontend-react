@@ -7,21 +7,23 @@ import Logo from "../../assets/logo.svg";
 import * as Styled from "./styles";
 import { useState } from "react";
 import { useAuth } from "contexts/authContext";
-import { useDesign } from "contexts/ThemeContext";
+import { useDesign } from "contexts/themeContext";
 
 const Login = () => {
   const { themeDesign, setThemeDesign } = useDesign();
 
   const handleToggleTheme = () => {
-    setThemeDesign(themeDesign === 'Light' ? 'Dark' : 'Light')
-  }
+    setThemeDesign(themeDesign === "Light" ? "Dark" : "Light");
+  };
 
   const { login } = useAuth();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleLogin = () => { login({ email, password }) }
+  const handleLogin = () => {
+    login({ email, password });
+  };
 
   return (
     <Styled.Container>
@@ -103,7 +105,9 @@ const Login = () => {
                   width: "100%",
                 }}
               >
-                <Styled.Button type="submit" onClick={handleLogin}>Entrar</Styled.Button>
+                <Styled.Button type="submit" onClick={handleLogin}>
+                  Entrar
+                </Styled.Button>
               </Form.Item>
             </Form>
           </Styled.FormContainer>

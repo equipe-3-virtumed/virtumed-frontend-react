@@ -1,7 +1,7 @@
-import { ReactNode } from "react"
+import { ReactNode } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./authContext";
-import { ThemeProvider } from "./ThemeContext";
+import { ThemeProvider } from "./themeContext";
 import ThemeDesign from "styles/globalTheme";
 
 interface ProviderProp {
@@ -13,13 +13,11 @@ const Providers = ({ children }: ProviderProp) => {
     <BrowserRouter>
       <AuthProvider>
         <ThemeProvider>
-          <ThemeDesign>
-            {children}
-          </ThemeDesign>
+          <ThemeDesign>{children}</ThemeDesign>
         </ThemeProvider>
       </AuthProvider>
     </BrowserRouter>
-  )
-}
+  );
+};
 
 export default Providers;
