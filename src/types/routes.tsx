@@ -1,12 +1,12 @@
 import Home from "pages/Home";
 import Login from "pages/Login";
-import PatientPage from "pages/Patient";
 import Register from "pages/Register";
+import PatientPage from "pages/Patient";
+import ClinicPage from "pages/Clinic";
 import DoctorPage from "pages/Doctor";
-import { Room } from "pages/Room/index";
+import Room from "pages/Room/index";
 import { useRoutes } from "react-router";
 import { RoutesPath } from "./paths";
-import ClinicPage from "pages/Clinic";
 import { useAuth } from "contexts/authContext";
 
 const Routes = () => {

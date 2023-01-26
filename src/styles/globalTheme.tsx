@@ -1,4 +1,4 @@
-import { useDesign } from "hooks/useDesign";
+import { useDesign } from "contexts/themeContext";
 import { ReactNode } from "react";
 import { ThemeProvider } from "styled-components";
 

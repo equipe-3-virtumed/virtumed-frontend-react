@@ -1,4 +1,4 @@
-import { createContext, Dispatch, ReactNode, useState } from "react";
+import { createContext, Dispatch, ReactNode, useContext, useState } from "react";
 
 interface Prop {
   children: ReactNode;
@@ -11,7 +11,7 @@ interface ThemeContextType {
   setThemeDesign: Dispatch<ThemeType>;
 }
 
-export const ThemeContext = createContext<ThemeContextType>(
+const ThemeContext = createContext<ThemeContextType>(
   {} as ThemeContextType
 );
 
@@ -24,3 +24,5 @@ export const ThemeProvider = ({ children }: Prop) => {
     </ThemeContext.Provider>
   );
 };
+
+export const useDesign = () => useContext(ThemeContext)
