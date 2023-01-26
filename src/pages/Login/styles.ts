@@ -12,7 +12,6 @@ export const Body = styled.section`
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 1rem 2rem;
   background: ${(props) => props.theme.body};
   transition: all 0.6s ease-in-out;
 `;
@@ -22,7 +21,6 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 60%;
   height: auto;
 `;
 
@@ -32,7 +30,6 @@ export const ToggleIcon = styled.i`
   transition: all 0.6s ease-out;
   position: relative;
   left: 40%;
-
   &:hover {
     transform: scale(1.1);
   }

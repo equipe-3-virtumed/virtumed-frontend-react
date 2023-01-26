@@ -7,6 +7,9 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
+  scrollbar-width: 8px; /* works on firefox */
+  scrollbar-color: #ddd; /* works on firefox */
+  scroll-behavior: smooth;
 }
 
 body {
@@ -14,6 +17,16 @@ body {
   font-family: "Poppins", sans-serif;
   vertical-align: baseline;
   list-style-type: none;
+  overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #ddd;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
 }
 
 ol,
@@ -41,18 +54,4 @@ table {
 
 .ant-form label {
   font-size: 1.3rem;
-}
-
-body::-webkit-scrollbar {
-  width: 12px;               /* width of the entire scrollbar */
-}
-
-body::-webkit-scrollbar-track {
-  background: orange;        /* color of the tracking area */
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: blue;    /* color of the scroll thumb */
-  border-radius: 20px;       /* roundness of the scroll thumb */
-  border: 3px solid orange;  /* creates padding around scroll thumb */
 }

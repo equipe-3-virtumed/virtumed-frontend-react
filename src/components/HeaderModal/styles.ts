@@ -1,30 +1,65 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
-  height: 100vh;
-  width: 100vw;
-  background-color: #fff;
-  position: fixed;
-  z-index: 15;
-  animation: go 1s;
+	position: fixed;
+	display: flex;
+  flex-direction: column;
+	height: 100vh;
+	width: 100vw;
+  padding: 20px 40px 30px;
+  background: ${(props) => props.theme.body};
+	z-index: 20;
+	animation: go 1s;
 
-  @keyframes go {
-    from {
-      transform: translateX(100vw);
-    }
-    to {
-      transform: translateX(0);
-    }
+	@keyframes go {
+		from {
+			transform: translateX(100vw);
+		}
+		to {
+			transform: translateX(0);
+		}
+	}
+`;
+
+export const ContainerHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  img {
+    height: 2rem;
   }
 
-  div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 1rem;
+  svg {
+    color: ${(props) => props.theme.text};
+    transition: all 0.6s ease-out;
+  }
+`
 
-    img {
-      height: 35px;
-    }
+export const Menu = styled.nav`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 60px 0px;
+  gap: 6px;
+  font: 400 1.125rem Poppins, sans-serif;
+  color: ${(props) => props.theme.text};
+
+  div {
+    cursor: pointer;
+  }
+
+  a {
+    color: ${(props) => props.theme.text};
+  }
+`
+
+export const ToggleIcon = styled.i`
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: all 0.6s ease-out;
+  color: ${(props) => props.theme.text};
+
+  &:hover {
+    transform: scale(0.98);
   }
 `;

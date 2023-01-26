@@ -4,11 +4,10 @@ interface Prop {
   children: ReactNode;
 }
 
-type ThemeType = "Light" | "Dark";
-
 interface ThemeContextType {
-  themeDesign: ThemeType;
-  setThemeDesign: Dispatch<ThemeType>;
+  lightTheme: boolean;
+  setLightTheme: Dispatch<boolean>;
+  toggleTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType>(
@@ -16,10 +15,14 @@ const ThemeContext = createContext<ThemeContextType>(
 );
 
 export const ThemeProvider = ({ children }: Prop) => {
-  const [themeDesign, setThemeDesign] = useState<ThemeType>("Light");
+  const [lightTheme, setLightTheme] = useState<boolean>(false);
+
+  const toggleTheme = () => {
+    setLightTheme(!lightTheme);
+  };
 
   return (
-    <ThemeContext.Provider value={{ themeDesign, setThemeDesign }}>
+    <ThemeContext.Provider value={{ lightTheme, setLightTheme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );

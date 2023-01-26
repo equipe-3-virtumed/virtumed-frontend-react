@@ -10,11 +10,7 @@ import { useAuth } from "contexts/authContext";
 import { useDesign } from "contexts/themeContext";
 
 const Login = () => {
-  const { themeDesign, setThemeDesign } = useDesign();
-
-  const handleToggleTheme = () => {
-    setThemeDesign(themeDesign === "Light" ? "Dark" : "Light");
-  };
+  const { lightTheme, toggleTheme } = useDesign();
 
   const { login } = useAuth();
 
@@ -29,8 +25,8 @@ const Login = () => {
     <Styled.Container>
       <Styled.Body>
         <Styled.Content>
-          <Styled.ToggleIcon onClick={handleToggleTheme}>
-            {themeDesign === "Light" ? <FaMoon /> : <FiSun />}
+          <Styled.ToggleIcon onClick={toggleTheme}>
+            {lightTheme ? <FaMoon /> : <FiSun />}
           </Styled.ToggleIcon>
 
           <Styled.Img src={Logo} alt="Logo Virtumed" />
@@ -39,7 +35,7 @@ const Login = () => {
             <Form
               autoComplete="on"
               style={{
-                width: "80%",
+                width: "100%",
                 fontSize: "1rem",
               }}
             >
@@ -62,9 +58,8 @@ const Login = () => {
                   style={{
                     fontSize: "1.1rem",
                     borderRadius: "15px",
-                    padding: "0 .6rem",
+                    padding: "0.6rem",
                     height: "40px",
-                    backgroundColor: "#F5F8FB",
                   }}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -86,15 +81,20 @@ const Login = () => {
                   style={{
                     fontSize: "1.1rem",
                     borderRadius: "15px",
-                    padding: "0 .6rem",
+                    padding: "0.6rem",
                     height: "40px",
-                    backgroundColor: "#F5F8FB",
                   }}
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Form.Item>
-
-              <Form.Item>
+              
+              <Form.Item
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  width: "100%",
+                }}
+              >
                 <Styled.Link href="#!">Esqueci minha senha!</Styled.Link>
               </Form.Item>
 

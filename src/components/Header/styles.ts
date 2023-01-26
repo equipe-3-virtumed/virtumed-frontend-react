@@ -3,12 +3,12 @@ import styled from "styled-components";
 export const Header = styled.header`
   display: block;
   position: fixed;
-  z-index: 1;
+  z-index: 19;
   width: 100vw;
   height: auto;
   border: transparent;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  background-color: #fff;
+  padding: 0.5rem 2rem 0.5rem 1.5rem;
+	background: ${(props) => props.theme.body};
   transition: all 0.6s ease-in-out;
 `;
 
@@ -21,5 +21,4 @@ export const Navbar = styled.nav`
 
 export const Logo = styled.img`
   height: 2.5rem;
-  cursor: pointer;
 `;

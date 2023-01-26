@@ -16,13 +16,10 @@ import { useNavigate } from "react-router-dom";
 import { useDesign } from "contexts/themeContext";
 
 const Register = () => {
+  
+  const { lightTheme, toggleTheme } = useDesign();
+  
   const navigate = useNavigate();
-
-  const { themeDesign, setThemeDesign } = useDesign();
-
-  const handleToggleTheme = () => {
-    setThemeDesign(themeDesign === "Light" ? "Dark" : "Light");
-  };
 
   return (
     <Styled.Container>
@@ -32,8 +29,8 @@ const Register = () => {
         </Styled.BackIcon>
 
         <Styled.Content>
-          <Styled.ToggleIcon onClick={handleToggleTheme}>
-            {themeDesign === "Light" ? <FaMoon /> : <FiSun />}
+          <Styled.ToggleIcon onClick={toggleTheme}>
+            {lightTheme ? <FaMoon /> : <FiSun />}
           </Styled.ToggleIcon>
 
           <Styled.Img src={Logo} alt="Logo Virtumed" />

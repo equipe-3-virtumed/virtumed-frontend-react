@@ -5,7 +5,6 @@ export const Container = styled.main`
 	flex-direction: column;
 	width: 100vw;
 	height: 100vh;
-	overflow-x: hidden;
 
 	p {
 		text-align: center;
@@ -21,7 +20,6 @@ export const Container = styled.main`
 	h4 {
 		margin-left: 16px;
 	}
-  
 
 	::before {
 		content: "";
@@ -34,13 +32,7 @@ export const Container = styled.main`
 		background-position: 50% 0px;
 		background-repeat: no-repeat;
 		background-image: url("imgs/background-main.png");
-
-    @media (min-width: 770px) {
-			height: 50vh;
-		}
-
 	}
-
 
 	footer {
 		div {
