@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./authContext";
-import { ThemeProvider } from "./themeContext";
+import { ThemeProvider } from "./ThemeContext";
 import ThemeDesign from "styles/globalTheme";
 
 interface ProviderProp {
