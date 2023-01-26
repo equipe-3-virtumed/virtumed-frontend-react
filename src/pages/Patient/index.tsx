@@ -20,9 +20,9 @@ const PatientPage = () => {
               src={ScheduleImg}
               alt="Foto para página de agendamentos on-line"
             />
-            <Styled.upDiv>
+            <Styled.UpDiv>
               <p> Agendamento onlide </p>
-            </Styled.upDiv>
+            </Styled.UpDiv>
           </Styled.ContainerInfo>
 
           <Styled.ContainerInfo>
@@ -30,9 +30,9 @@ const PatientPage = () => {
               src={ChatImg}
               alt="Logo para página de chat on-line com o medico"
             />
-              <Styled.upDiv>
+              <Styled.UpDiv>
               <p> Atendimento Rápido </p>
-            </Styled.upDiv>
+            </Styled.UpDiv>
           </Styled.ContainerInfo>
 
           <Styled.ContainerInfo>
@@ -40,9 +40,9 @@ const PatientPage = () => {
               src={ConsultationsImg}
               alt="Logo para consultas agendadas"
             />
-             <Styled.middleDiv>
+             <Styled.MiddleDiv>
               <p> Consultas Agendadas </p>
-            </Styled.middleDiv>
+            </Styled.MiddleDiv>
           </Styled.ContainerInfo>
 
           <Styled.ContainerInfo>
@@ -50,9 +50,9 @@ const PatientPage = () => {
               src={DoneConsultationsImg}
               alt="Logo para consultas realizadas"
             />
-            <Styled.middle2Div>
+            <Styled.Middle2Div>
               <p> Consultas Realizadas </p>
-            </Styled.middle2Div>
+            </Styled.Middle2Div>
           </Styled.ContainerInfo>
 
           <Styled.ContainerInfo>
@@ -60,9 +60,9 @@ const PatientPage = () => {
               src={MyHealthImg}
               alt="Logo para página sobre minha saúde"
             />
-            <Styled.downDiv>
+            <Styled.DownDiv>
               <p> Minha Saúde </p>
-            </Styled.downDiv>
+            </Styled.DownDiv>
           </Styled.ContainerInfo>
 
           <Styled.ContainerInfo>
@@ -70,9 +70,9 @@ const PatientPage = () => {
               src={MyPlansImg}
               alt="Logo para página de meus planos de saúde"
             />
-             <Styled.downDiv>
+             <Styled.DownDiv>
               <p> Meus Planos </p>
-            </Styled.downDiv>
+            </Styled.DownDiv>
           </Styled.ContainerInfo>
         </Styled.Infos>
       </Styled.Content>

@@ -1,6 +1,6 @@
 import * as Styled from "./styles";
 import Logo from "../../assets/logo.svg";
-import { CloseOutlined, UserOutlined } from "@ant-design/icons";
+import { CloseOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
 interface HeaderModalProps {
