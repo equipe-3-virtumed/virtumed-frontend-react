@@ -14,16 +14,6 @@ export const Body = styled.section`
   transition: all 0.6s ease-in-out;
 `;
 
-export const BackIcon = styled.i`
-  font-size: 2.5rem;
-  color: ${(props) => props.theme.text};
-  position: absolute;
-  top: 25px;
-  left: 50px;
-  cursor: pointer;
-  transition: all 0.6s ease-out;
-`;
-
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -38,7 +28,6 @@ export const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 1.5rem;
 `;
 
 export const Heading = styled.h2`
@@ -57,7 +46,7 @@ export const Label = styled.label`
 `;
 
 export const Button = styled.button`
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   padding: 0 5rem;
   border: transparent;
   border-radius: 15px;

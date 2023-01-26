@@ -13,7 +13,6 @@
 }
 
 body {
-  font-size: 100%;
   font-family: "Poppins", sans-serif;
   vertical-align: baseline;
   list-style-type: none;
@@ -22,6 +21,7 @@ body {
 
 body::-webkit-scrollbar {
   width: 12px;               /* width of the entire scrollbar */
+  
 }
 
 body::-webkit-scrollbar-thumb {
@@ -53,5 +53,5 @@ table {
 }
 
 .ant-form label {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }

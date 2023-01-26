@@ -5,6 +5,7 @@ import * as Styled from "./styles";
 import { useState } from "react";
 import { useAuth } from "contexts/authContext";
 import Header from "components/Header";
+import BackIcon from "components/BackIcon";
 
 const Login = () => {
 
@@ -21,6 +22,7 @@ const Login = () => {
     <Styled.Container>
       <Header />
       <Styled.Body>
+        <BackIcon />
         <Styled.Content>
           <Styled.FormContainer>
             <Form

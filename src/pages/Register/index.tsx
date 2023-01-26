@@ -5,24 +5,20 @@ import {
   SolutionOutlined,
   MailOutlined,
   SafetyCertificateOutlined,
-  LeftOutlined,
 } from "@ant-design/icons";
 import { Form, Input } from "antd";
-import { useNavigate } from "react-router-dom";
+
 import Header from "components/Header";
+import BackIcon from "components/BackIcon";
 
 const Register = () => {
-  
-  const navigate = useNavigate();
 
   return (
     <Styled.Container>
       <Header />
       <Styled.Body>
-        <Styled.BackIcon onClick={() => navigate(-1)}>
-          <LeftOutlined />
-        </Styled.BackIcon>
-
+        <BackIcon />
+        
         <Styled.Content>
           <Styled.FormContainer>
             <Styled.Heading>Cadastro</Styled.Heading>
