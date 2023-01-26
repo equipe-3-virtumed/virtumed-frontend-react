@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.main`
+	display: flex;
+	flex-direction: column;
 	width: 100vw;
 	height: 100vh;
 	overflow-x: hidden;
-  
-  p {
+
+	p {
 		text-align: center;
 		padding: 1rem;
 		font-weight: 500;
@@ -19,23 +21,26 @@ export const Container = styled.main`
 	h4 {
 		margin-left: 16px;
 	}
+  
 
-	:before {
+	::before {
 		content: "";
 		filter: opacity(70%) blur(0.1rem);
 		position: absolute;
 		z-index: -1;
 		width: 100vw;
-		height: 100vh;
+		height: 33vh;
 		background-size: cover;
 		background-position: 50% 0px;
 		background-repeat: no-repeat;
 		background-image: url("imgs/background-main.png");
 
-		@media (max-width: 27rem) {
-			height: 17rem;
+    @media (min-width: 770px) {
+			height: 50vh;
 		}
+
 	}
+
 
 	footer {
 		div {
