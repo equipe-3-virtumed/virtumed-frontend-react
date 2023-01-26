@@ -3,10 +3,9 @@ import LightLogo from "../../assets/light-logo.svg";
 import DarkLogo from "../../assets/logo.svg";
 import { CloseOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { useDesign } from "contexts/themeContext";
-import { FaMoon } from "react-icons/fa";
-import { FiSun } from "react-icons/fi";
 import { useAuth } from "contexts/authContext";
+import ToggleThemeButton from "components/ToggleThemeButton";
+import { useDesign } from "contexts/themeContext";
 
 interface HeaderModalProps {
   handleShowHeaderModal: () => void;
@@ -14,9 +13,8 @@ interface HeaderModalProps {
 
 const HeaderModal = ({ handleShowHeaderModal }: HeaderModalProps) => {
 
-  const { lightTheme, toggleTheme } = useDesign();
-
   const { logged, logout } = useAuth();
+  const { lightTheme } = useDesign();
 
   const navigate = useNavigate();
 
@@ -45,9 +43,7 @@ const HeaderModal = ({ handleShowHeaderModal }: HeaderModalProps) => {
             <div onClick={() => navigate("/register")}>Registre-se</div>
         }
       </Styled.Menu>
-      <Styled.ToggleIcon onClick={toggleTheme}>
-        {lightTheme ? <FaMoon /> : <FiSun />}
-      </Styled.ToggleIcon>
+      <ToggleThemeButton />
     </Styled.Container>
   );
 };

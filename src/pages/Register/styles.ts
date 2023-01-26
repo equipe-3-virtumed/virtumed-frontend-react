@@ -8,9 +8,8 @@ export const Container = styled.main`
 export const Body = styled.section`
   display: flex;
   justify-content: center;
-  width: 100%;
-  height: auto;
-  padding: 1rem 2rem;
+  width: 100vw;
+  height: 100vh;
   background: ${(props) => props.theme.body};
   transition: all 0.6s ease-in-out;
 `;
@@ -30,26 +29,7 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 60%;
   height: auto;
-`;
-
-export const ToggleIcon = styled.i`
-  font-size: 1.6rem;
-  cursor: pointer;
-  transition: all 0.6s ease-out;
-  position: relative;
-  top: 10px;
-  left: 40%;
-
-  &:hover {
-    transform: scale(1.1);
-  }
-`;
-
-export const Img = styled.img`
-  width: 360px;
-  height: 50px;
 `;
 
 export const FormContainer = styled.div`

@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./authContext";
 import { ThemeProvider } from "./themeContext";
-import ThemeDesign from "styles/globalTheme";
+import ThemeDesign from "styles/themeColors";
 
 interface ProviderProp {
   children: ReactNode;

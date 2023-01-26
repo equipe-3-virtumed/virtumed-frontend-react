@@ -1,16 +1,12 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Form, Input } from "antd";
 import { Link } from "react-router-dom";
-import { FaMoon } from "react-icons/fa";
-import { FiSun } from "react-icons/fi";
-import Logo from "../../assets/logo.svg";
 import * as Styled from "./styles";
 import { useState } from "react";
 import { useAuth } from "contexts/authContext";
-import { useDesign } from "contexts/themeContext";
+import Header from "components/Header";
 
 const Login = () => {
-  const { lightTheme, toggleTheme } = useDesign();
 
   const { login } = useAuth();
 
@@ -23,14 +19,9 @@ const Login = () => {
 
   return (
     <Styled.Container>
+      <Header />
       <Styled.Body>
         <Styled.Content>
-          <Styled.ToggleIcon onClick={toggleTheme}>
-            {lightTheme ? <FaMoon /> : <FiSun />}
-          </Styled.ToggleIcon>
-
-          <Styled.Img src={Logo} alt="Logo Virtumed" />
-
           <Styled.FormContainer>
             <Form
               autoComplete="on"
@@ -55,6 +46,7 @@ const Login = () => {
                 <Input
                   prefix={<UserOutlined className="site-form-item-icon" />}
                   placeholder="Email de acesso..."
+                  autoComplete="username"
                   style={{
                     fontSize: "1.1rem",
                     borderRadius: "15px",
@@ -76,7 +68,8 @@ const Login = () => {
               >
                 <Input.Password
                   prefix={<LockOutlined className="site-form-item-icon" />}
-                  type="current-password"
+                  type="password"
+                  autoComplete="current-password"
                   placeholder="Senha de acesso"
                   style={{
                     fontSize: "1.1rem",

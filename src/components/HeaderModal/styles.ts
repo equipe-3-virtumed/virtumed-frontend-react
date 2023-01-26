@@ -52,14 +52,3 @@ export const Menu = styled.nav`
     color: ${(props) => props.theme.text};
   }
 `
-
-export const ToggleIcon = styled.i`
-  font-size: 1.6rem;
-  cursor: pointer;
-  transition: all 0.6s ease-out;
-  color: ${(props) => props.theme.text};
-
-  &:hover {
-    transform: scale(0.98);
-  }
-`;
