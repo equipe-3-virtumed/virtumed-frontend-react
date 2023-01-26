@@ -8,21 +8,10 @@ export const Container = styled.main`
 export const Body = styled.section`
   display: flex;
   justify-content: center;
-  width: 100%;
-  height: auto;
-  padding: 1rem 2rem;
+  width: 100vw;
+  height: 100vh;
   background: ${(props) => props.theme.body};
   transition: all 0.6s ease-in-out;
-`;
-
-export const BackIcon = styled.i`
-  font-size: 2.5rem;
-  color: ${(props) => props.theme.text};
-  position: absolute;
-  top: 25px;
-  left: 50px;
-  cursor: pointer;
-  transition: all 0.6s ease-out;
 `;
 
 export const Content = styled.div`
@@ -30,26 +19,7 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 60%;
   height: auto;
-`;
-
-export const ToggleIcon = styled.i`
-  font-size: 1.6rem;
-  cursor: pointer;
-  transition: all 0.6s ease-out;
-  position: relative;
-  top: 10px;
-  left: 40%;
-
-  &:hover {
-    transform: scale(1.1);
-  }
-`;
-
-export const Img = styled.img`
-  width: 360px;
-  height: 50px;
 `;
 
 export const FormContainer = styled.div`
@@ -58,7 +28,6 @@ export const FormContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 1.5rem;
 `;
 
 export const Heading = styled.h2`
@@ -77,7 +46,7 @@ export const Label = styled.label`
 `;
 
 export const Button = styled.button`
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   padding: 0 5rem;
   border: transparent;
   border-radius: 15px;

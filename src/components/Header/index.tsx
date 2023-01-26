@@ -1,54 +1,21 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import HeaderModal from "components/HeaderModal";
 import { MenuOutlined } from "@ant-design/icons";
-import type { MenuProps } from "antd";
-import { useDesign } from "hooks/useDesign";
-import { FiMoon, FiSun } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
-import Logo from "../../assets/logo.svg";
+import LightLogo from "../../assets/light-logo.svg";
+import DarkLogo from "../../assets/logo.svg";
+
 import * as Styled from "./styles";
+import { useDesign } from "contexts/themeContext";
 
 const Header = () => {
-  const [showHeaderModal, setShowHeaderModal] = useState<boolean>(false);
-  const { themeDesign, setThemeDesign } = useDesign();
-  const [width, setWidth] = useState<number>(0);
 
-  const navigate = useNavigate();
+  const { lightTheme } = useDesign();
+
+  const [showHeaderModal, setShowHeaderModal] = useState<boolean>(false);
 
   const handleShowHeaderModal = () => {
     setShowHeaderModal(!showHeaderModal);
   };
-
-  const items: MenuProps["items"] = [
-    {
-      label: (
-        <p>
-          {themeDesign === "Light" ? (
-            <span
-              onClick={() => setThemeDesign("Dark")}
-              style={{ textAlign: "center" }}
-            >
-              <FiMoon />
-            </span>
-          ) : (
-            <span
-              onClick={() => setThemeDesign("Light")}
-              style={{ textAlign: "center" }}
-            >
-              <FiSun />
-            </span>
-          )}
-        </p>
-      ),
-      key: 1,
-    },
-  ];
-
-  useEffect(() => {
-    setWidth(window.innerWidth);
-  });
-
-  // console.log(width);
 
   return (
     <>
@@ -58,7 +25,9 @@ const Header = () => {
 
       <Styled.Header>
         <Styled.Navbar>
-          <Styled.Logo src={Logo} alt="Logo Virtumed" />
+          <Styled.Logo src={
+            lightTheme ? DarkLogo : LightLogo
+        } alt="Logo Virtumed" />
           <MenuOutlined
             style={{
               fontSize: "1.8rem",
@@ -66,12 +35,6 @@ const Header = () => {
             }}
             onClick={handleShowHeaderModal}
           />
-
-          {/* {width => 560 ? (
-          <Styled.Logo src={Logo} alt="Logo Virtumed" onClick={() => navigate("/")} />
-        ) : (
-          ''
-        )} */}
         </Styled.Navbar>
       </Styled.Header>
     </>

@@ -1,50 +1,32 @@
-import React from "react";
 import * as Styled from "./styles";
-import Logo from "../../assets/logo.svg";
 import {
   LockOutlined,
   UserOutlined,
   SolutionOutlined,
   MailOutlined,
   SafetyCertificateOutlined,
-  LeftOutlined,
 } from "@ant-design/icons";
 import { Form, Input } from "antd";
-import { FaMoon } from "react-icons/fa";
-import { FiSun } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
-import { useDesign } from "../../hooks/useDesign";
+
+import Header from "components/Header";
+import BackIcon from "components/BackIcon";
 
 const Register = () => {
-  const navigate = useNavigate();
-
-  const { themeDesign, setThemeDesign } = useDesign();
-
-  const handleToggleTheme = () => {
-    setThemeDesign(themeDesign === "Light" ? "Dark" : "Light");
-  };
 
   return (
     <Styled.Container>
+      <Header />
       <Styled.Body>
-        <Styled.BackIcon onClick={() => navigate(-1)}>
-          <LeftOutlined />
-        </Styled.BackIcon>
-
+        <BackIcon />
+        
         <Styled.Content>
-          <Styled.ToggleIcon onClick={handleToggleTheme}>
-            {themeDesign === "Light" ? <FaMoon /> : <FiSun />}
-          </Styled.ToggleIcon>
-
-          <Styled.Img src={Logo} alt="Logo Virtumed" />
-
           <Styled.FormContainer>
             <Styled.Heading>Cadastro</Styled.Heading>
 
             <Form
               autoComplete="on"
               style={{
-                width: "80%",
+                width: "100%",
                 fontSize: "1rem",
               }}
             >
@@ -68,7 +50,7 @@ const Register = () => {
                   style={{
                     fontSize: "1.1rem",
                     borderRadius: "15px",
-                    padding: "0 .6rem",
+                    padding: "0.6rem",
                     height: "40px",
                     backgroundColor: "#F5F8FB",
                   }}
@@ -91,10 +73,11 @@ const Register = () => {
                 <Input
                   prefix={<MailOutlined className="site-form-item-icon" />}
                   placeholder="Coloque o email..."
+                  autoComplete="username"
                   style={{
                     fontSize: "1.1rem",
                     borderRadius: "15px",
-                    padding: "0 .6rem",
+                    padding: "0.6rem",
                     height: "40px",
                     backgroundColor: "#F5F8FB",
                   }}
@@ -120,7 +103,7 @@ const Register = () => {
                   style={{
                     fontSize: "1.1rem",
                     borderRadius: "15px",
-                    padding: "0 .6rem",
+                    padding: "0.6rem",
                     height: "40px",
                     backgroundColor: "#F5F8FB",
                   }}
@@ -143,11 +126,12 @@ const Register = () => {
                 <Input.Password
                   prefix={<LockOutlined className="site-form-item-icon" />}
                   type="password"
+                  autoComplete="new-password"
                   placeholder="Digite uma senha..."
                   style={{
                     fontSize: "1.1rem",
                     borderRadius: "15px",
-                    padding: "0 .6rem",
+                    padding: "0.6rem",
                     height: "40px",
                     backgroundColor: "#F5F8FB",
                   }}
@@ -174,11 +158,12 @@ const Register = () => {
                     <SafetyCertificateOutlined className="site-form-item-icon" />
                   }
                   type="password"
+                  autoComplete="new-password"
                   placeholder="Confirme sua senha..."
                   style={{
                     fontSize: "1.1rem",
                     borderRadius: "15px",
-                    padding: "0 .6rem",
+                    padding: "0.6rem",
                     height: "40px",
                     backgroundColor: "#F5F8FB",
                   }}

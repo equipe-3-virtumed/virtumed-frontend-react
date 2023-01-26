@@ -1,33 +1,48 @@
 import * as Styled from "./styles";
-import Logo from "../../assets/logo.svg";
-import { CloseOutlined, UserOutlined } from "@ant-design/icons";
+import LightLogo from "../../assets/light-logo.svg";
+import DarkLogo from "../../assets/logo.svg";
+import { CloseOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "contexts/authContext";
+import ToggleThemeButton from "components/ToggleThemeButton";
+import { useDesign } from "contexts/themeContext";
 
 interface HeaderModalProps {
   handleShowHeaderModal: () => void;
 }
 
-const HeaderModal = ({
-  handleShowHeaderModal,
-}: HeaderModalProps) => {
+const HeaderModal = ({ handleShowHeaderModal }: HeaderModalProps) => {
+
+  const { logged, logout } = useAuth();
+  const { lightTheme } = useDesign();
+
   const navigate = useNavigate();
+
   return (
     <Styled.Container>
-      <div>
-        <img src={Logo} alt="Logo Virtumed" />
+      <Styled.ContainerHeader>
+        <img src={
+          lightTheme ? DarkLogo : LightLogo
+        } alt="Logo Virtumed"
+        />
         <CloseOutlined
           style={{
             fontSize: "1.8rem",
-            color: "#000",
           }}
           onClick={handleShowHeaderModal}
         />
-      </div>
-      <div>
-        <div onClick={() => navigate("/login")}>Login</div>
-        <div onClick={() => navigate("/register")}>Registre-se</div>
+      </Styled.ContainerHeader>
+      <Styled.Menu>
+        <div onClick={() => navigate("/patient")}>Área do Paciente</div>        
         <a href="https://www.virtumed.com.br/contact">Contato</a>
-      </div>
+        {
+          logged ?
+            <div onClick={logout}>Sair</div>
+          :
+            <div onClick={() => navigate("/register")}>Registre-se</div>
+        }
+      </Styled.Menu>
+      <ToggleThemeButton />
     </Styled.Container>
   );
 };

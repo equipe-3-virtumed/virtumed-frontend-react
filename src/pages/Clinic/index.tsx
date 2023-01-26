@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "components/Header";
 import ScheduleImg from "../../assets/agent.svg";
 import ChatImg from "../../assets/chatImg.svg";
@@ -20,9 +19,9 @@ const ClinicPage = () => {
               src={ScheduleImg}
               alt="Foto para página de agendamentos on-line"
             />
-            <Styled.upDiv>
+            <Styled.UpDiv>
               <p> Consultas Agendadas </p>
-            </Styled.upDiv>
+            </Styled.UpDiv>
           </Styled.ContainerInfo>
 
           <Styled.ContainerInfo>
@@ -30,9 +29,9 @@ const ClinicPage = () => {
               src={ChatImg}
               alt="Logo para página de chat on-line com o medico"
             />
-              <Styled.upDiv>
+              <Styled.UpDiv>
               <p> Meus Pacientes </p>
-            </Styled.upDiv>
+            </Styled.UpDiv>
           </Styled.ContainerInfo>
 
           <Styled.ContainerInfo>
@@ -40,9 +39,9 @@ const ClinicPage = () => {
               src={ConsultationsImg}
               alt="Logo para consultas agendadas"
             />
-             <Styled.middleDiv>
+             <Styled.MiddleDiv>
               <p> Calendário de Agendamento </p>
-            </Styled.middleDiv>
+            </Styled.MiddleDiv>
           </Styled.ContainerInfo>
 
           <Styled.ContainerInfo>
@@ -50,9 +49,9 @@ const ClinicPage = () => {
               src={DoneConsultationsImg}
               alt="Logo para consultas realizadas"
             />
-            <Styled.middle2Div>
+            <Styled.Middle2Div>
               <p> Minha Clínica </p>
-            </Styled.middle2Div>
+            </Styled.Middle2Div>
           </Styled.ContainerInfo>
 
           <Styled.ContainerInfo>
@@ -60,9 +59,9 @@ const ClinicPage = () => {
               src={MyHealthImg}
               alt="Logo para página sobre minha saúde"
             />
-            <Styled.downDiv>
+            <Styled.DownDiv>
               <p> Meus Prontuários </p>
-            </Styled.downDiv>
+            </Styled.DownDiv>
           </Styled.ContainerInfo>
 
           <Styled.ContainerInfo>
@@ -70,9 +69,9 @@ const ClinicPage = () => {
               src={MyPlansImg}
               alt="Logo para página de meus planos de saúde"
             />
-             <Styled.downDiv>
+             <Styled.DownDiv>
               <p> Meus Médicos </p>
-            </Styled.downDiv>
+            </Styled.DownDiv>
           </Styled.ContainerInfo>
         </Styled.Infos>
       </Styled.Content>

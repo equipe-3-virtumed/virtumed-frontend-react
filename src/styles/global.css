@@ -7,24 +7,38 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
+  scrollbar-width: 8px; /* works on firefox */
+  scrollbar-color: #ddd; /* works on firefox */
+  scroll-behavior: smooth;
 }
+
 body {
-  font-size: 100%;
   font-family: "Poppins", sans-serif;
   vertical-align: baseline;
   list-style-type: none;
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: #66d2e2 #e54197;
+  overflow-x: hidden;
 }
+
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+  
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #ddd;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+}
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -32,11 +46,12 @@ q:after {
   content: "";
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
 .ant-form label {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }

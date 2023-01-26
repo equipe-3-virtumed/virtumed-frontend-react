@@ -1,26 +1,31 @@
-import { createContext, Dispatch, ReactNode, useState } from "react";
+import { createContext, Dispatch, ReactNode, useContext, useState } from "react";
 
 interface Prop {
   children: ReactNode;
 }
 
-type ThemeType = "Light" | "Dark";
-
 interface ThemeContextType {
-  themeDesign: ThemeType;
-  setThemeDesign: Dispatch<ThemeType>;
+  lightTheme: boolean;
+  setLightTheme: Dispatch<boolean>;
+  toggleTheme: () => void;
 }
 
-export const ThemeContext = createContext<ThemeContextType>(
+const ThemeContext = createContext<ThemeContextType>(
   {} as ThemeContextType
 );
 
 export const ThemeProvider = ({ children }: Prop) => {
-  const [themeDesign, setThemeDesign] = useState<ThemeType>("Light");
+  const [lightTheme, setLightTheme] = useState<boolean>(false);
+
+  const toggleTheme = () => {
+    setLightTheme(!lightTheme);
+  };
 
   return (
-    <ThemeContext.Provider value={{ themeDesign, setThemeDesign }}>
+    <ThemeContext.Provider value={{ lightTheme, setLightTheme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
 };
+
+export const useDesign = () => useContext(ThemeContext)
