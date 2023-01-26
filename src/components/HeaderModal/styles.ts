@@ -9,7 +9,7 @@ export const Container = styled.section`
   padding: 20px 40px 30px;
   background: ${(props) => props.theme.body};
 	z-index: 20;
-	animation: go 1s;
+	animation: go 0.5s;
 
 	@keyframes go {
 		from {

@@ -17,6 +17,11 @@ export const Navbar = styled.nav`
   align-items: center;
   justify-content: space-between;
   gap: 4.5rem;
+
+  svg {
+    color: ${(props) => props.theme.text};
+    transition: all 0.6s ease-out;
+  }
 `;
 
 export const Logo = styled.img`

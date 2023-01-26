@@ -28,7 +28,6 @@ const HeaderModal = ({ handleShowHeaderModal }: HeaderModalProps) => {
         <CloseOutlined
           style={{
             fontSize: "1.8rem",
-            color: "#000",
           }}
           onClick={handleShowHeaderModal}
         />

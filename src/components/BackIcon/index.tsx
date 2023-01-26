@@ -1,13 +1,8 @@
-
-
-import { useDesign } from "contexts/themeContext";
 import * as Styled from "./styles";
 import { LeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router";
 
 const BackIcon = () => {
-
-  const { lightTheme, toggleTheme } = useDesign();
 
   const navigate = useNavigate();
 

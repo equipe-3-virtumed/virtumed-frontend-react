@@ -9,7 +9,7 @@ const ToggleThemeButton = () => {
 
   return (
     <Styled.ToggleIcon onClick={toggleTheme}>
-      {lightTheme ? <FaMoon /> : <FiSun color="white" />}
+      {lightTheme ? <FaMoon /> : <FiSun />}
     </Styled.ToggleIcon>
   )
 }
