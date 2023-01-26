@@ -5,9 +5,9 @@ import { FaMoon } from "react-icons/fa";
 import { FiSun } from "react-icons/fi";
 import Logo from "../../assets/logo.svg";
 import * as Styled from "./styles";
-import { useDesign } from "hooks/useDesign";
 import { useState } from "react";
 import { useAuth } from "contexts/authContext";
+import { useDesign } from "contexts/themeContext";
 
 const Login = () => {
   const { themeDesign, setThemeDesign } = useDesign();
