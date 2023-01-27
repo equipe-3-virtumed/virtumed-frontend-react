@@ -1,5 +1,5 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Form, Input } from "antd";
+import { Form, Input, Spin } from "antd";
 import { Link } from "react-router-dom";
 import * as Styled from "./styles";
 import { useState } from "react";
@@ -9,13 +9,14 @@ import BackIcon from "components/BackIcon";
 
 const Login = () => {
 
-  const { login } = useAuth();
+  const { login, loading, getLoader } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
     login({ email, password });
+    getLoader(3000);
   };
 
   return (
@@ -100,9 +101,14 @@ const Login = () => {
                   width: "100%",
                 }}
               >
-                <Styled.Button type="submit" onClick={handleLogin}>
-                  Entrar
-                </Styled.Button>
+                {
+                  loading ? 
+                    <Spin size="large" />
+                  :
+                    <Styled.Button type="submit" onClick={handleLogin}>
+                      Entrar
+                    </Styled.Button>
+                }
               </Form.Item>
             </Form>
           </Styled.FormContainer>

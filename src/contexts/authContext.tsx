@@ -18,6 +18,8 @@ interface AuthProviderData {
   role: string;
   logout: () => void;
   user: Object;
+  loading: boolean;
+  getLoader: (arg0: number) => void;
 }
 
 interface LoginParams {
@@ -31,8 +33,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const navigate = useNavigate();
 
   const [logged, setLogged] = useState<boolean>(false);
+  console.log("🚀 ~ file: authContext.tsx:36 ~ AuthProvider ~ logged", logged)
   const [role, setRole] = useState<string>('');
   const [user, setUser] = useState<any>({});
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const getLoader = (time: number) => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, time);
+  }
 
   const login = ({ email, password }: LoginParams) => {
     api.post('/login', {email, password})
@@ -81,7 +92,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ logged, role, login, logout, user }}>
+    <AuthContext.Provider value={{ logged, role, login, logout, user, loading, getLoader }}>
       {children}
     </AuthContext.Provider>
   );
