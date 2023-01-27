@@ -5,7 +5,7 @@ import LightLogo from "../../assets/light-logo.svg";
 import DarkLogo from "../../assets/logo.svg";
 
 import * as Styled from "./styles";
-import { useDesign } from "contexts/themeContext";
+import { useDesign } from "../../contexts/ThemeContext";
 
 const Header = () => {
 

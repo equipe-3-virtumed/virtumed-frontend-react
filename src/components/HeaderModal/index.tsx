@@ -5,7 +5,7 @@ import { CloseOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "contexts/authContext";
 import ToggleThemeButton from "components/ToggleThemeButton";
-import { useDesign } from "contexts/themeContext";
+import { useDesign } from "../../contexts/ThemeContext";
 
 interface HeaderModalProps {
   handleShowHeaderModal: () => void;

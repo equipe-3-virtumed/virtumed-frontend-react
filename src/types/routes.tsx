@@ -8,6 +8,7 @@ import Room from "pages/Room/index";
 import { useRoutes } from "react-router";
 import { RoutesPath } from "./paths";
 import { useAuth } from "contexts/authContext";
+import ChatContainerTesting from "components/Chat";
 
 const Routes = () => {
   const { logged } = useAuth();
@@ -44,6 +45,10 @@ const Routes = () => {
     {
       path: RoutesPath.CONNECT_ROOM_PAGE,
       element: logged ? <Room /> : <Login />
+    },
+    {
+      path: RoutesPath.TESTING_CHAT,
+      element: <ChatContainerTesting />
     }
   ]);
 };

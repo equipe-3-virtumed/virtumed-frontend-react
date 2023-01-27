@@ -1,4 +1,4 @@
-import { useDesign } from "contexts/themeContext";
+import { useDesign } from "../../contexts/ThemeContext";
 import * as Styled from "./styles";
 import { FaMoon } from "react-icons/fa";
 import { FiSun } from "react-icons/fi";

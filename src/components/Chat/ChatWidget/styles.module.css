@@ -1,0 +1,75 @@
+.ContentSending {
+  height: auto;
+  padding: 12px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.ContentSender {
+  height: auto;
+  padding: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.MsgSending {
+  height: auto;
+  width: auto;
+  height: min-content(40px);
+  width: min-content(120px);
+  background-color: #fdba74;
+  border-radius: 10px;
+  color: #f4f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 1rem 0;
+  padding: 1rem;
+  font-weight: 500;
+  overflow-wrap: break-word;
+}
+
+.MsgSender {
+  height: auto;
+  width: auto;
+  height: min-content(40px);
+  width: min-content(120px);
+  background-color: #2563eb;
+  border-radius: 10px;
+  color: #f4f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 4px 0;
+  padding: 4px;
+  font-weight: 500;
+  overflow-wrap: break-word;
+}
+
+.MsgContentSending {
+  height: auto;
+  padding: 12px;
+  margin-top: 8px;
+  justify-content: flex-start;
+  margin-left: 12px;
+}
+
+.MsgContentSender {
+  height: auto;
+  padding: 12px;
+  margin-top: 8px;
+  justify-content: flex-end;
+  margin-right: 1.2rem;
+}
+
+.btn {
+  display: flex;
+  flex-basis: 20%;
+  justify-content: center;
+  outline: none;
+  color: #f4f5f9;
+  font-weight: bold;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  background-color: #4f46e5;
+}
