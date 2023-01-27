@@ -2,11 +2,11 @@ import * as Styled from "./styles";
 import {
   TransitionText,
   CarouselInformation,
-  CarouselClients,
 } from "components/Animations";
 import Header from "components/Header";
 import { SwapRightOutlined, LinkedinOutlined } from "@ant-design/icons";
 import Logo from "../../assets/logo.svg";
+import  CarouselClients from "components/new-animation";
 
 const Home = () => {
   return (
