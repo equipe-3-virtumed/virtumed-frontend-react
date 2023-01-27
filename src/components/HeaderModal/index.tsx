@@ -33,7 +33,9 @@ const HeaderModal = ({ handleShowHeaderModal }: HeaderModalProps) => {
         />
       </Styled.ContainerHeader>
       <Styled.Menu>
-        <div onClick={() => navigate("/patient")}>Área do Paciente</div>        
+        <div onClick={() => navigate("/patient")}>Login de Paciente</div>
+        <div onClick={() => navigate("/doctor")}>Login Área Médica</div> 
+        <div onClick={() => navigate("/clinic")}>Login para Clínicas</div>         
         <a href="https://www.virtumed.com.br/contact">Contato</a>
         {
           logged ?
