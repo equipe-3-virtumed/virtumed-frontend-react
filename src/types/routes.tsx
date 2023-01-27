@@ -27,24 +27,24 @@ const Routes = () => {
     },
     {
       path: RoutesPath.PATIENT_PAGE,
-      element: logged ? <PatientPage /> : <Login />
+      element: logged ? <PatientPage /> : <Login />,
     },
-     {
+    {
       path: RoutesPath.DOCTOR_PAGE,
-      element: logged ? <DoctorPage /> : <Login />
+      element: logged ? <DoctorPage /> : <Login />,
     },
     {
       path: RoutesPath.CLINIC_PAGE,
-      element: logged ? <ClinicPage /> : <Login />
+      element: logged ? <ClinicPage /> : <Login />,
     },
     {
       path: RoutesPath.ROOM_PAGE,
-      element: "Página da consulta"
+      element: "Página da consulta",
     },
     {
       path: RoutesPath.CONNECT_ROOM_PAGE,
-      element: logged ? <Room /> : <Login />
-    }
+      element: logged ? <Room /> : <Login />,
+    },
   ]);
 };
 
