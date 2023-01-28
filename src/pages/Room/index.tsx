@@ -1,7 +1,7 @@
 import "./styles";
 import React, { useState } from "react";
 import { MeetingProvider, MeetingConsumer } from "@videosdk.live/react-sdk";
-import { videoToken, CreateMeeting } from "../../api";
+import { videoToken, createMeeting } from "../../api";
 import JoinScreen from "../../components/Room/JoinScreen";
 import Container from "../../components/Room/Container";
 
@@ -9,7 +9,8 @@ const Room = () => {
   const [meetingId, setMeetingId] = useState<string>('');
 
   const getMeetingAndToken = async (id: string) => {
-    const meetingId = await CreateMeeting(id);
+    const meetingId =
+      id == null ? await createMeeting({ token: videoToken }) : id;
     setMeetingId(meetingId);
   };
 

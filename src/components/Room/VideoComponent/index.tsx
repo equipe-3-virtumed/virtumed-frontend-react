@@ -7,11 +7,14 @@ const VideoComponent = (props: any) => {
   const { webcamStream, micStream, webcamOn, micOn, isLocal } = useParticipant(
     props.participantId
   );
+  console.log(
+    "🚀 ~ file: index.tsx:60 ~ VideoComponent ~ props.participantId",
+    props.participantId
+  );
 
   const videoStream = useMemo(() => {
     if (webcamOn) {
-      const mediaStream = new MediaStream();
-      mediaStream.addTrack(webcamStream);
+      const mediaStream = new MediaStream([webcamStream.track]);
       return mediaStream;
     }
   }, [webcamStream, webcamOn]);
@@ -19,8 +22,7 @@ const VideoComponent = (props: any) => {
   useEffect(() => {
     if (micRef.current) {
       if (micOn) {
-        const mediaStream = new MediaStream();
-        mediaStream.addTrack(micStream);
+        const mediaStream = new MediaStream([micStream.track]);
 
         micRef.current.srcObject = mediaStream;
         micRef.current
@@ -49,8 +51,8 @@ const VideoComponent = (props: any) => {
           //
           url={videoStream}
           //
-          height={"100px"}
-          width={"100px"}
+          height={"250px"}
+          width={"250px"}
           onError={(err) => {
             console.log(err, "participant video error");
           }}
