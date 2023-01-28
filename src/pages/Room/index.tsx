@@ -1,7 +1,7 @@
 import "./styles";
 import React, { useState } from "react";
 import { MeetingProvider, MeetingConsumer } from "@videosdk.live/react-sdk";
-import { authToken, CreateMeeting } from "../../api";
+import { videoToken, CreateMeeting } from "../../api";
 import JoinScreen from "../../components/Room/JoinScreen";
 import Container from "../../components/Room/Container";
 
@@ -9,12 +9,11 @@ const Room = () => {
   const [meetingId, setMeetingId] = useState<string>('');
 
   const getMeetingAndToken = async (id: string) => {
-    const meetingId =
-      id == null ? await CreateMeeting({ token: authToken }) : id;
+    const meetingId = await CreateMeeting(id);
     setMeetingId(meetingId);
   };
 
-  return authToken && meetingId ? (
+  return videoToken && meetingId ? (
     <MeetingProvider
       config={{
         meetingId,
@@ -22,7 +21,7 @@ const Room = () => {
         webcamEnabled: true,
         name: "C.V. Raman",
       }}
-      token={authToken}
+      token={videoToken}
     >
       <MeetingConsumer>
         {() => <Container meetingId={meetingId} />}

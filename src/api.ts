@@ -1,18 +1,14 @@
-export const authToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJlYmYyMjk5Zi1lOTk4LTQ3NGUtYTk0NC05ODM5YmIwN2RjODgiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY3NDc4NjMzOSwiZXhwIjoxNjc0NzkzNTM5fQ.dn9cq16iGhKI8kcAxQCgJYvL_5JF9Ehog-ul-V61npU";
+export const videoToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJlYmYyMjk5Zi1lOTk4LTQ3NGUtYTk0NC05ODM5YmIwN2RjODgiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY3NDg3NTA3OSwiZXhwIjoxNjc1NDc5ODc5fQ.F2HCRxJWpj2w94MYq_dSw29S1iMojjCblwh9POFkxcU";
 
-  interface CreateMeetingProps {
-  token: string;
-}
-
-export const CreateMeeting = async ({ token }: CreateMeetingProps) => {
+export const CreateMeeting = async (id: string) => {
   const res = await fetch(`https://api.videosdk.live/v2/rooms`, {
     method: "POST",
     headers: {
-      authorization: `${authToken}`,
+      authorization: `${videoToken}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({}),
+    body: JSON.stringify({"region" : "sg001", "customRoomId" : `${id}`}),
   });
 
   const { roomId } = await res.json();
