@@ -9,6 +9,7 @@ import { useRoutes } from "react-router";
 import { RoutesPath } from "./paths";
 import { useAuth } from "contexts/authContext";
 import ChatContainerTesting from "components/Chat";
+import ChatModal from "components/Modal/ChatModal";
 
 const Routes = () => {
   const { logged } = useAuth();
@@ -48,7 +49,7 @@ const Routes = () => {
     },
     {
       path: RoutesPath.TESTING_CHAT,
-      element: <ChatContainerTesting />
+      element: <ChatModal />
     }
   ]);
 };

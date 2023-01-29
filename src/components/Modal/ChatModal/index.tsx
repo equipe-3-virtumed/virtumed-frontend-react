@@ -1,6 +1,8 @@
 import { Button, Modal } from "antd";
-import { Dispatch } from "react";
+import { Dispatch, useState } from "react";
 import * as Styled from "./styled";
+import { useParams } from "react-router";
+import ChatWidget from "components/Chat/ChatWidget";
 
 interface ModalProps {
   openModal: boolean;
@@ -11,14 +13,21 @@ interface ModalProps {
   };
 }
 
-const ChatModal = ({ openModal, setOpenModal, routeData }: ModalProps) => {
+const ChatModal = () => {
+  const [name, setName] = useState("");
+  const { roomId } = useParams();
+
   const handleCancel = () => {
-    setOpenModal(false);
+    // setOpenModal(false);
   };
 
   return (
     <Modal
-      open={openModal}
+      style={{
+        width: '600px',
+        height: 'auto'
+      }}
+      open={true}
       onCancel={handleCancel}
       footer={[
         <div
@@ -27,6 +36,7 @@ const ChatModal = ({ openModal, setOpenModal, routeData }: ModalProps) => {
             display: "flex",
             justifyContent: "space-evenly",
             alignItems: "center",
+            width: '100%'
           }}
         >
           <Button
@@ -40,11 +50,7 @@ const ChatModal = ({ openModal, setOpenModal, routeData }: ModalProps) => {
       ]}
     >
       <Styled.ChatContainer>
-        <div>
-          {" "}
-          Doutor(a) {routeData.doctor}: Boa noite <br />
-          Paciente {routeData.patient}: Boa noite
-        </div>
+        <ChatWidget username={name} room={roomId} />
       </Styled.ChatContainer>
     </Modal>
   );

@@ -2,17 +2,31 @@ import React, { useEffect, useState } from "react";
 import socket from "services/socket";
 import ScrollToBottom from "react-scroll-to-bottom";
 import * as Styled from "./styles";
-import "./styles.module.css";
+import Styles from "./styles.module.css";
 import { Typography } from "antd";
 
 interface Props {
   username: string;
+  room: string | undefined;
+}
+
+interface MessageTypes {
+  sender: string;
   room: string;
+  message: string;
+  time: string;
 }
 
 const ChatWidget = ({ username, room }: Props) => {
   const [currentMessage, setCurrentMessage] = useState("");
-  const [messageList, setMessageList] = useState<any[]>([]);
+  const [messageList, setMessageList] = useState<MessageTypes[]>([
+    {
+      message: "Olá, tudo bem?",
+      room: "1234",
+      sender: "Pedro",
+      time: "21:07",
+    },
+  ]);
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
@@ -28,57 +42,62 @@ const ChatWidget = ({ username, room }: Props) => {
 
       await socket.emit("chatToServer", messageData);
       setCurrentMessage("");
-      return
+      return;
     }
   };
 
   useEffect(() => {
     socket.on("chatToClient", (data) => {
-      console.log(data);
-      setMessageList([data]);
-      console.log(messageList)
+      setMessageList((list) => [...list, data]);
     });
   }, [socket]);
 
   return (
     <Styled.ContainerChat>
-      <Styled.HeaderChat>
-        <p>Chat de conversa</p>
-      </Styled.HeaderChat>
-
       <Styled.ContentMsg>
-        <ScrollToBottom className="scroll">
+        <ScrollToBottom className={Styles.Scroll}>
           {messageList.map((messageContent, index) => (
             <div
               key={index}
               className={
                 username === messageContent.sender
-                  ? "ContentSending"
-                  : "ContentSender"
+                  ? Styles.ContentSender
+                  : Styles.ContentSending
               }
             >
               <>
                 <div
                   className={
                     username === messageContent.sender
-                      ? "MsgSending"
-                      : "MsgSender"
+                      ? Styles.MsgContentSender
+                      : Styles.MsgContentSending
                   }
                 >
-                  <Typography>{messageContent.message}</Typography>
+                  <Typography style={{ fontWeight: "bold" }}>
+                    {messageContent.sender}
+                  </Typography>
                 </div>
 
                 <div
                   className={
                     username === messageContent.sender
-                      ? "MsgContentSending"
-                      : "MsgContentSender"
+                      ? Styles.MsgSender
+                      : Styles.MsgSending
+                  }
+                >
+                  <Typography style={{ fontWeight: "500", color: "#f4f5f9" }}>
+                    {messageContent.message}
+                  </Typography>
+                </div>
+
+                <div
+                  className={
+                    username === messageContent.sender
+                      ? Styles.MsgContentSender
+                      : Styles.MsgContentSending
                   }
                 >
                   <Typography>{messageContent.time}</Typography>
-                  <Typography style={{ marginLeft: "8px", fontWeight: "bold" }}>
-                    {messageContent.sender}
-                  </Typography>
                 </div>
               </>
             </div>
@@ -87,23 +106,23 @@ const ChatWidget = ({ username, room }: Props) => {
       </Styled.ContentMsg>
 
       <Styled.BoxInput>
-        <input 
-            style={{
-                height: '100%',
-                display: 'flex',
-                outline: 'none',
-                padding: '12px 0',
-                flexBasis: '80%'
-            }}
-            type='text'
-            value={currentMessage}
-            placeholder="Mensagem"
-            onChange={(e) => {
-                setCurrentMessage(e.target.value)
-            }}
-            onKeyDown={(e) => {
-                e.key === 'Enter' && sendMessage();
-            }}
+        <input
+          style={{
+            height: "100%",
+            width: "auto",
+            display: "flex",
+            outline: "none",
+            flexBasis: "80%",
+          }}
+          type="text"
+          value={currentMessage}
+          placeholder="Mensagem"
+          onChange={(e) => {
+            setCurrentMessage(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            e.key === "Enter" && sendMessage();
+          }}
         />
 
         <Styled.BtnMsg onClick={sendMessage}>Enviar</Styled.BtnMsg>
