@@ -4,6 +4,8 @@ import {
   ReactNode,
   useState,
   useEffect,
+  Dispatch,
+  SetStateAction,
 } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api"
@@ -30,12 +32,20 @@ interface AllFields {
 
 interface AuthProviderData {
   logged: boolean;
-  login: (params: LoginParams) => void;
-  role: string;
-  logout: () => void;
   user: AllFields | undefined;
+  role: string;
   loading: boolean;
+  patient: AllFields | undefined;
+  doctor: AllFields | undefined;
+  roomAdmin: boolean;
+  socketId: string;
+  setPatient: Dispatch<SetStateAction<AllFields | undefined>>;
+  setDoctor: Dispatch<SetStateAction<AllFields | undefined>>;
+  setRoomAdmin: Dispatch<SetStateAction<boolean>>;
+  setSocketId: Dispatch<SetStateAction<string>>;
   getLoader: (arg0: number) => void;
+  login: (params: LoginParams) => void;
+  logout: () => void;
 }
 
 const AuthContext = createContext<AuthProviderData>({} as AuthProviderData);
@@ -44,9 +54,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const navigate = useNavigate();
 
   const [logged, setLogged] = useState<boolean>(false);
-  const [role, setRole] = useState<string>('');
   const [user, setUser] = useState<AllFields>();
   const [loading, setLoading] = useState<boolean>(false);
+  const [role, setRole] = useState<string>('');
+  const [patient, setPatient] = useState<AllFields>();
+  const [doctor, setDoctor] = useState<AllFields>();
+  const [roomAdmin, setRoomAdmin] = useState<boolean>(false);
+  const [socketId, setSocketId] = useState<string>("");
   
   const getLoader = (time: number) => {
     setLoading(true);
@@ -104,7 +118,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ logged, role, login, logout, user, loading, getLoader }}>
+    <AuthContext.Provider value={{
+        logged, user, role, loading, patient, doctor, roomAdmin, socketId,
+        setPatient, setDoctor, setRoomAdmin, setSocketId, getLoader, login, logout
+      }}>
       {children}
     </AuthContext.Provider>
   );
