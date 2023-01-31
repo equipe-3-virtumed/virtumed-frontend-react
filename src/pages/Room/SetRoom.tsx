@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import socket from "services/socket";
 import { useParams } from "react-router";
 import { useRoom } from "contexts/roomContext";
+import { CheckCircleOutlined } from "@ant-design/icons"
 
 const SetRoom = () => {
 
@@ -49,8 +50,17 @@ const SetRoom = () => {
               Entrar na Consulta
             </Button>
         }
-        <h3>Consulta com {participant?.name}</h3>
-        <h3>{participantReady && "Está pronto"}</h3>
+        <h3>{participant?.name}</h3>
+        {participantReady ?
+          <h3>
+            <CheckCircleOutlined style={{
+              color: "green",
+              fontSize: "1rem"
+            }}
+          /> Já está na sala!</h3>
+          :
+          <Spin size="small" />
+        }
       </Styled.SetRoom>
     </>
   )

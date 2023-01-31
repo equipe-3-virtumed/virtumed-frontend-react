@@ -36,8 +36,6 @@ const Room = () => {
             setParticipant(res.data.doctor);
           }
         })
-      .then(() => {
-      })
       .catch(() => {
         alert('Você não tem acesso a esta consulta');
         navigate('/')
