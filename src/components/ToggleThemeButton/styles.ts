@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const ToggleIcon = styled.i`
   width: 2rem;
+  display: flex;
+  align-items: center;
   font-size: 1.6rem;
   color: ${(props) => props.theme.text};
   cursor: pointer;

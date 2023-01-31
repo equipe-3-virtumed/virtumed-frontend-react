@@ -24,6 +24,11 @@ export const Navbar = styled.nav`
   }
 `;
 
+export const ToggleButtonHeaderModal = styled.nav`
+display: flex;
+align-items: center;
+gap: 2rem;`
+
 export const Logo = styled.img`
   height: 2.5rem;
 `;
