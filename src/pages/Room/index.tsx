@@ -20,7 +20,7 @@ const Room = () => {
         meetingId,
         micEnabled: true,
         webcamEnabled: true,
-        name: "C.V. Raman",
+        name: "Bruno",
       }}
       token={videoToken}
     >

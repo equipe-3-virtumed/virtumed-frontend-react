@@ -6,23 +6,27 @@ const VideoComponent = (props: any) => {
   const micRef: any = useRef(null);
   const { webcamStream, micStream, webcamOn, micOn, isLocal } = useParticipant(
     props.participantId
-  );
+    );
+  console.log("🚀 ~ file: index.tsx:10 ~ VideoComponent ~ webcamStream", webcamStream)
   console.log(
-    "🚀 ~ file: index.tsx:60 ~ VideoComponent ~ props.participantId",
+    "🚀 ~ file: index.tsx:12 ~ VideoComponent ~ props.participantId",
     props.participantId
   );
 
   const videoStream = useMemo(() => {
-    if (webcamOn) {
+    if (webcamOn && webcamStream) {
+
       const mediaStream = new MediaStream([webcamStream.track]);
+      console.log("🚀 ~ file: index.tsx:19 ~ videoStream ~ webcamStream.track", webcamStream.track)
       return mediaStream;
     }
   }, [webcamStream, webcamOn]);
 
   useEffect(() => {
     if (micRef.current) {
-      if (micOn) {
+      if (micOn && micStream) {
         const mediaStream = new MediaStream([micStream.track]);
+        console.log("🚀 ~ file: index.tsx:28 ~ useEffect ~ micStream.track", micStream.track)
 
         micRef.current.srcObject = mediaStream;
         micRef.current

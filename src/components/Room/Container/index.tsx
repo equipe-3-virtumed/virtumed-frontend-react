@@ -5,8 +5,8 @@ import VideoComponent from "../VideoComponent";
 
 const Container = (props: { meetingId: string }) => {
   const [joined, setJoined] = useState(false);
-  const { join } = useMeeting();
-  const { participants } = useMeeting();
+  const { join, participants } = useMeeting();
+  // const { participants } = useMeeting();
   const joinMeeting = () => {
     setJoined(true);
     join();
