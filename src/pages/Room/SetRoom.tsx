@@ -2,7 +2,7 @@ import * as Styled from "./styles";
 import { useAuth } from "contexts/authContext";
 import Header from "components/Header";
 import { Button, Spin } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import socket from "services/socket";
 import { useParams } from "react-router";
 import { useRoom } from "contexts/roomContext";
@@ -10,25 +10,34 @@ import { useRoom } from "contexts/roomContext";
 const SetRoom = () => {
 
   const { roomId } = useParams();
-  const { user, loading, getLoader } = useAuth();
-  const { localParticipant, roomAdmin } = useRoom();
+  const { loading, getLoader } = useAuth();
+  const { localParticipant, localParticipantReady, setLocalParticipantReady,
+          participant, participantReady, setParticipantReady } = useRoom();
   
   const emitReady = () => {
-    socket.emit('ready', roomId);
-    // setImReady(true);
+    const credentials = {
+      roomId,
+      localParticipant: localParticipant?.id
+    }
+    socket.emit('ready', credentials);
+    setLocalParticipantReady(true);  
     getLoader(5000);
   }
   
-  // useEffect(() => {
-  //   console.log("🚀 ~ file: SetRoom.tsx:15 ~ SetRoom ~ localParticipant", localParticipant)
-    
-  // }, [localParticipant])
+  useEffect(() => {
+    socket.on('readyToGo', (userId) => {
+      if (userId !== localParticipant?.id) {
+        setParticipantReady(true);
+      }
+    })    
+  }, [socket])
   
   return (
     <>
       <Header />
       <Styled.SetRoom>
         <h2>Olá {localParticipant?.name}</h2>
+        <h3>{localParticipant?.id}</h3>
         {
           loading ?
             <>
@@ -40,6 +49,8 @@ const SetRoom = () => {
               Entrar na Consulta
             </Button>
         }
+        <h3>Consulta com {participant?.name}</h3>
+        <h3>{participantReady && "Está pronto"}</h3>
       </Styled.SetRoom>
     </>
   )

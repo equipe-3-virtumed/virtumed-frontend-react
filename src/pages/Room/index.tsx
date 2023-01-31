@@ -13,7 +13,7 @@ const Room = () => {
   const navigate = useNavigate();
 
   const { roomId } = useParams();
-  const { setPatient, setDoctor, setRoomAdmin, setLocalParticipant } = useRoom();
+  const { setRoomAdmin, setLocalParticipant, setParticipant } = useRoom();
   const { user } = useAuth();
 
   const [authorized, setAuthorized] = useState(false);
@@ -23,17 +23,17 @@ const Room = () => {
     api.get(`appointment/connect/${roomId}`)
       .then((res) => {
           socket.emit("joinRoom", roomId);
-          setDoctor(res.data.doctor);
-          setPatient(res.data.patient);
           setTimeout(() => {
             setLoading(false);
             setAuthorized(true);
           }, 1000);
           if (res.data.userRole === 'doctor') {
             setRoomAdmin(true);
-            setLocalParticipant(user)
+            setLocalParticipant(user);
+            setParticipant(res.data.patient);
           } else {
-            setLocalParticipant(user)
+            setLocalParticipant(user);
+            setParticipant(res.data.doctor);
           }
         })
       .then(() => {
