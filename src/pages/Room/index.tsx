@@ -34,7 +34,7 @@ const Room = () => {
       <Styled.RoomContainer>
         <Spin size="large" />
         <h3>Aguarde um momento</h3>
-        <h4>Estamos preparando sua consulta!</h4>
+        <h4>Estamos preparando a consulta :)</h4>
       </Styled.RoomContainer>
     :
       <VideoChat />
