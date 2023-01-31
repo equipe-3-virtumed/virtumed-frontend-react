@@ -26,11 +26,13 @@ interface RoomProviderData {
   patient: AllFields | undefined;
   doctor: AllFields | undefined;
   roomAdmin: boolean;
-  socketId: string;
+  localParticipant: AllFields | undefined;
+  participant: AllFields | undefined;
   setPatient: Dispatch<SetStateAction<AllFields | undefined>>;
   setDoctor: Dispatch<SetStateAction<AllFields | undefined>>;
   setRoomAdmin: Dispatch<SetStateAction<boolean>>;
-  setSocketId: Dispatch<SetStateAction<string>>;
+  setLocalParticipant: Dispatch<SetStateAction<AllFields | undefined>>;
+  setParticipant: Dispatch<SetStateAction<AllFields | undefined>>;
 }
 
 const RoomContext = createContext<RoomProviderData>({} as RoomProviderData);
@@ -40,12 +42,13 @@ export const RoomProvider = ({ children }: RoomProviderProps) => {
   const [patient, setPatient] = useState<AllFields>();
   const [doctor, setDoctor] = useState<AllFields>();
   const [roomAdmin, setRoomAdmin] = useState<boolean>(false);
-  const [socketId, setSocketId] = useState<string>("");
+  const [localParticipant, setLocalParticipant] = useState<AllFields>();
+  const [participant, setParticipant] = useState<AllFields>();
 
   return (
     <RoomContext.Provider value={{
-        patient, doctor, roomAdmin, socketId,
-        setPatient, setDoctor, setRoomAdmin, setSocketId
+        patient, doctor, roomAdmin, localParticipant, participant,
+        setPatient, setDoctor, setRoomAdmin, setLocalParticipant, setParticipant
       }}>
       {children}
     </RoomContext.Provider>

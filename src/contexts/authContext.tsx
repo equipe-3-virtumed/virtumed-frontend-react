@@ -35,14 +35,6 @@ interface AuthProviderData {
   user: AllFields | undefined;
   role: string;
   loading: boolean;
-  patient: AllFields | undefined;
-  doctor: AllFields | undefined;
-  roomAdmin: boolean;
-  socketId: string;
-  setPatient: Dispatch<SetStateAction<AllFields | undefined>>;
-  setDoctor: Dispatch<SetStateAction<AllFields | undefined>>;
-  setRoomAdmin: Dispatch<SetStateAction<boolean>>;
-  setSocketId: Dispatch<SetStateAction<string>>;
   getLoader: (arg0: number) => void;
   login: (params: LoginParams) => void;
   logout: () => void;
@@ -57,11 +49,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<AllFields>();
   const [loading, setLoading] = useState<boolean>(false);
   const [role, setRole] = useState<string>('');
-  const [patient, setPatient] = useState<AllFields>();
-  const [doctor, setDoctor] = useState<AllFields>();
-  const [roomAdmin, setRoomAdmin] = useState<boolean>(false);
-  const [socketId, setSocketId] = useState<string>("");
-  
+ 
   const getLoader = (time: number) => {
     setLoading(true);
     setTimeout(() => {
@@ -119,8 +107,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   return (
     <AuthContext.Provider value={{
-        logged, user, role, loading, patient, doctor, roomAdmin, socketId,
-        setPatient, setDoctor, setRoomAdmin, setSocketId, getLoader, login, logout
+        logged, user, role, loading, getLoader, login, logout
       }}>
       {children}
     </AuthContext.Provider>

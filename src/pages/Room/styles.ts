@@ -9,7 +9,7 @@ export const RoomContainer = styled.div`
   justify-content: center;
 `
 
-export const WaitingRoom = styled.div`
+export const SetRoom = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;

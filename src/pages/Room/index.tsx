@@ -7,12 +7,14 @@ import socket from "services/socket";
 import * as Styled from "./styles";
 import SetRoom from "./SetRoom";
 import { useRoom } from "contexts/roomContext";
+import { useAuth } from "contexts/authContext";
 
 const Room = () => {
   const navigate = useNavigate();
 
   const { roomId } = useParams();
-  const { setPatient, setDoctor, setRoomAdmin, setSocketId } = useRoom();
+  const { setPatient, setDoctor, setRoomAdmin, setLocalParticipant } = useRoom();
+  const { user } = useAuth();
 
   const [authorized, setAuthorized] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -23,13 +25,16 @@ const Room = () => {
           socket.emit("joinRoom", roomId);
           setDoctor(res.data.doctor);
           setPatient(res.data.patient);
-          if (res.data.userRole === 'doctor') {
-            setRoomAdmin(true);
-          }
           setTimeout(() => {
             setLoading(false);
             setAuthorized(true);
           }, 1000);
+          if (res.data.userRole === 'doctor') {
+            setRoomAdmin(true);
+            setLocalParticipant(user)
+          } else {
+            setLocalParticipant(user)
+          }
         })
       .then(() => {
       })
@@ -38,12 +43,6 @@ const Room = () => {
         navigate('/')
       })
   }
-
-  useEffect(() => {
-    socket.on('joinedRoom', (socketId: string) => {
-      setSocketId(socketId)      
-    })
-  }, [socket])
 
   useEffect(() => {
     if (!authorized) {

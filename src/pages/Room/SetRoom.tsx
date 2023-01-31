@@ -10,26 +10,25 @@ import { useRoom } from "contexts/roomContext";
 const SetRoom = () => {
 
   const { roomId } = useParams();
-  const { user, roomAdmin, loading, getLoader } = useAuth();
-  const { socketId } = useRoom();
-  
-  const [joined, setJoined] = useState<boolean>(false);
-  const [imReady, setImReady] = useState<boolean>(false);
-  const [participantReady, setParticipantReady] = useState<boolean>(false);
-  
-  console.log("🚀 ~ file: SetRoom.tsx:17 ~ SetRoom ~ socketId", socketId)
+  const { user, loading, getLoader } = useAuth();
+  const { localParticipant, roomAdmin } = useRoom();
   
   const emitReady = () => {
     socket.emit('ready', roomId);
-    setImReady(true);
+    // setImReady(true);
     getLoader(5000);
   }
+  
+  // useEffect(() => {
+  //   console.log("🚀 ~ file: SetRoom.tsx:15 ~ SetRoom ~ localParticipant", localParticipant)
+    
+  // }, [localParticipant])
   
   return (
     <>
       <Header />
-      <Styled.WaitingRoom>
-        <h2>Olá {user?.name}</h2>
+      <Styled.SetRoom>
+        <h2>Olá {localParticipant?.name}</h2>
         {
           loading ?
             <>
@@ -41,7 +40,7 @@ const SetRoom = () => {
               Entrar na Consulta
             </Button>
         }
-      </Styled.WaitingRoom>
+      </Styled.SetRoom>
     </>
   )
 }
