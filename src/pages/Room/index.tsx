@@ -1,18 +1,18 @@
 import { Spin } from "antd";
 import Header from "components/Header";
-import { useAuth } from "contexts/authContext";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import api from "services/api";
 import socket from "services/socket";
 import * as Styled from "./styles";
 import SetRoom from "./SetRoom";
+import { useRoom } from "contexts/roomContext";
 
 const Room = () => {
   const navigate = useNavigate();
 
   const { roomId } = useParams();
-  const { setPatient, setDoctor, setRoomAdmin, setSocketId } = useAuth();
+  const { setPatient, setDoctor, setRoomAdmin, setSocketId } = useRoom();
 
   const [authorized, setAuthorized] = useState(false);
   const [loading, setLoading] = useState(true);

@@ -5,15 +5,13 @@ import { Button, Spin } from "antd";
 import { useEffect, useState } from "react";
 import socket from "services/socket";
 import { useParams } from "react-router";
-
-interface UserSocket {
-  socketId: string;
-}
+import { useRoom } from "contexts/roomContext";
 
 const SetRoom = () => {
 
   const { roomId } = useParams();
-  const { user, roomAdmin, loading, socketId, getLoader } = useAuth();
+  const { user, roomAdmin, loading, getLoader } = useAuth();
+  const { socketId } = useRoom();
   
   const [joined, setJoined] = useState<boolean>(false);
   const [imReady, setImReady] = useState<boolean>(false);
