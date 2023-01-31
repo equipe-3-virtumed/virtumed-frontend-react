@@ -4,6 +4,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import * as Styled from "./styles";
 import Styles from "./styles.module.css";
 import { Typography } from "antd";
+import moment from "moment";
 
 interface Props {
   username: string;
@@ -19,14 +20,10 @@ interface MessageTypes {
 
 const ChatWidget = ({ username, room }: Props) => {
   const [currentMessage, setCurrentMessage] = useState("");
-  const [messageList, setMessageList] = useState<MessageTypes[]>([
-    {
-      message: "Olá, tudo bem?",
-      room: "1234",
-      sender: "Pedro",
-      time: "21:07",
-    },
-  ]);
+  const [messageList, setMessageList] = useState<MessageTypes[]>([]);
+
+  const date = moment()
+  const messageTime = date.get('hours') + ":" + date.get('minutes');
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
@@ -34,10 +31,7 @@ const ChatWidget = ({ username, room }: Props) => {
         sender: username,
         room: room,
         message: currentMessage,
-        time:
-          new Date(Date.now()).getHours +
-          ":" +
-          new Date(Date.now()).getMinutes(),
+        time: messageTime,
       };
 
       await socket.emit("chatToServer", messageData);

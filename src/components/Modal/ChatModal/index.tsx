@@ -1,8 +1,9 @@
 import { Button, Modal } from "antd";
-import { Dispatch, useState } from "react";
+import { Dispatch, useEffect, useState } from "react";
 import * as Styled from "./styled";
 import { useParams } from "react-router";
 import ChatWidget from "components/Chat/ChatWidget";
+import socket from "services/socket";
 
 interface ModalProps {
   openModal: boolean;
@@ -14,8 +15,22 @@ interface ModalProps {
 }
 
 const ChatModal = () => {
-  const [name, setName] = useState("");
+  const [name, setName] = useState("Pedro");
+  const [showChat, setShowChat] = useState(false);
+
   const { roomId } = useParams();
+
+  const joinRoom = () => {
+    if (name !== "") {
+      socket.emit("joinRoom", roomId);
+      console.log(socket)
+      setShowChat(true);
+    }
+  };
+
+  useEffect(() => {
+    joinRoom()
+  }, [setName])
 
   const handleCancel = () => {
     // setOpenModal(false);
@@ -27,7 +42,7 @@ const ChatModal = () => {
         width: '600px',
         height: 'auto'
       }}
-      open={true}
+      open={showChat}
       onCancel={handleCancel}
       footer={[
         <div
