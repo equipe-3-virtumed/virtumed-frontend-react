@@ -12,19 +12,30 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
+interface LoginParams {
+  email: string;
+  password: string;
+}
+
+interface AllFields {
+  id: string;
+  email: string;
+  name: string;
+  image: string;
+  phone: string;
+  cnpj: string;
+  crm: string;
+  role: string;
+}
+
 interface AuthProviderData {
   logged: boolean;
   login: (params: LoginParams) => void;
   role: string;
   logout: () => void;
-  user: Object;
+  user: AllFields | undefined;
   loading: boolean;
   getLoader: (arg0: number) => void;
-}
-
-interface LoginParams {
-  email: string;
-  password: string;
 }
 
 const AuthContext = createContext<AuthProviderData>({} as AuthProviderData);
@@ -33,11 +44,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const navigate = useNavigate();
 
   const [logged, setLogged] = useState<boolean>(false);
-  console.log("🚀 ~ file: authContext.tsx:36 ~ AuthProvider ~ logged", logged)
   const [role, setRole] = useState<string>('');
-  const [user, setUser] = useState<any>({});
+  const [user, setUser] = useState<AllFields>();
   const [loading, setLoading] = useState<boolean>(false);
-
+  
   const getLoader = (time: number) => {
     setLoading(true);
     setTimeout(() => {
@@ -48,7 +58,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const login = ({ email, password }: LoginParams) => {
     api.post('/login', {email, password})
       .then((res) => {
+        console.log("🚀 ~ file: authContext.tsx:73 ~ .then ~ res", res.data.user)
         localStorage.setItem("token", res.data.token);
+        setUser(res.data.user);
         setLogged(true);
         setRole(res.data.user.role);
       })
