@@ -1,20 +1,20 @@
+import React, { useEffect, useState } from "react";
 import { Spin } from "antd";
 import Header from "components/Header";
-import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import api from "services/api";
 import socket from "services/socket";
-import * as Styled from "./styles";
-import SetRoom from "./SetRoom";
 import { useRoom } from "contexts/roomContext";
 import { useAuth } from "contexts/authContext";
+import CheckRoom from "./02-CheckRoom";
+import * as Styled from "./styles";
 
 const Room = () => {
   const navigate = useNavigate();
 
   const { roomId } = useParams();
-  const { setRoomAdmin, setLocalParticipant, setParticipant } = useRoom();
   const { user } = useAuth();
+  const { setRoomAdmin, setLocalParticipant, setParticipant } = useRoom();
 
   const [authorized, setAuthorized] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -52,14 +52,14 @@ const Room = () => {
     <>
       <Header />
       {
-          loading && !authorized ?
+        loading && !authorized ?
           <Styled.RoomContainer>
             <Spin size="large" />
             <h3>Aguarde um momento</h3>
             <h4>Estamos preparando a consulta :)</h4>
           </Styled.RoomContainer>
         :
-          <SetRoom />
+          <CheckRoom />
       }
     </>
   )

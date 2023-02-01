@@ -1,15 +1,15 @@
+import React, { useEffect } from "react";
+import { useParams } from "react-router";
+import { CheckCircleOutlined } from "@ant-design/icons"
 import * as Styled from "./styles";
 import { useAuth } from "contexts/authContext";
 import Header from "components/Header";
 import { Button, Spin } from "antd";
-import { useEffect } from "react";
 import socket from "services/socket";
-import { useParams } from "react-router";
 import { useRoom } from "contexts/roomContext";
-import { CheckCircleOutlined } from "@ant-design/icons"
-import ChatRoom from "./ChatRoom";
+import VideoChatRoom from "./03-VideoChatRoom";
 
-const SetRoom = () => {
+const CheckRoom = () => {
 
   const { roomId } = useParams();
   const { loading, getLoader } = useAuth();
@@ -38,11 +38,11 @@ const SetRoom = () => {
     <>
       {
         localParticipantReady && participantReady ?
-          <ChatRoom />
+          <VideoChatRoom />
         :
           <>
             <Header />
-            <Styled.SetRoom>
+            <Styled.CheckRoom>
               <h2>Olá {localParticipant?.name}</h2>
               <h3>{localParticipant?.id}</h3>
               {
@@ -67,11 +67,11 @@ const SetRoom = () => {
                 :
                 <Spin size="small" />
               }
-            </Styled.SetRoom>        
+            </Styled.CheckRoom>        
           </>
       }      
     </>
   )
 }
 
-export default SetRoom;
+export default CheckRoom;

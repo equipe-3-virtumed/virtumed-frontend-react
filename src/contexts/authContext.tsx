@@ -60,7 +60,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const login = ({ email, password }: LoginParams) => {
     api.post('/login', {email, password})
       .then((res) => {
-        console.log("🚀 ~ file: authContext.tsx:73 ~ .then ~ res", res.data.user)
         localStorage.setItem("token", res.data.token);
         setUser(res.data.user);
         setLogged(true);
