@@ -8,32 +8,13 @@ import socket from "services/socket";
 interface ModalProps {
   openModal: boolean;
   setOpenModal: Dispatch<boolean>;
-  routeData: {
-    doctor: string;
-    patient: string;
-  };
+  usernameChat: string | undefined;
+  roomId: string | undefined;
 }
 
-const ChatModal = () => {
-  const [name, setName] = useState("Pedro");
-  const [showChat, setShowChat] = useState(false);
-
-  const { roomId } = useParams();
-
-  const joinRoom = () => {
-    if (name !== "") {
-      socket.emit("joinRoom", roomId);
-      console.log(socket)
-      setShowChat(true);
-    }
-  };
-
-  useEffect(() => {
-    joinRoom()
-  }, [setName])
-
+const ChatModal = ({ openModal, setOpenModal, roomId, usernameChat }: ModalProps) => {
   const handleCancel = () => {
-    // setOpenModal(false);
+    setOpenModal(false);
   };
 
   return (
@@ -42,7 +23,7 @@ const ChatModal = () => {
         width: '600px',
         height: 'auto'
       }}
-      open={showChat}
+      open={openModal}
       onCancel={handleCancel}
       footer={[
         <div
@@ -65,7 +46,7 @@ const ChatModal = () => {
       ]}
     >
       <Styled.ChatContainer>
-        <ChatWidget username={name} room={roomId} />
+        <ChatWidget username={usernameChat} room={roomId} />
       </Styled.ChatContainer>
     </Modal>
   );

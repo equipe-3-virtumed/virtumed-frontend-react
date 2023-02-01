@@ -7,7 +7,7 @@ import { Typography } from "antd";
 import moment from "moment";
 
 interface Props {
-  username: string;
+  username: string | undefined;
   room: string | undefined;
 }
 

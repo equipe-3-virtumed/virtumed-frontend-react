@@ -47,10 +47,10 @@ const Routes = () => {
       path: RoutesPath.CONNECT_ROOM_PAGE,
       element: logged ? <Room /> : <Login />
     },
-    {
-      path: RoutesPath.TESTING_CHAT,
-      element: <ChatModal />
-    }
+    // {
+    //   path: RoutesPath.TESTING_CHAT,
+    //   element: <ChatModal />
+    // }
   ]);
 };
 

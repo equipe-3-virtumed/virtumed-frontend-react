@@ -38,7 +38,7 @@ const SetRoom = () => {
     <>
       {
         localParticipantReady && participantReady ?
-          <ChatRoom />
+          <ChatRoom roomId={roomId} />
         :
           <>
             <Header />
