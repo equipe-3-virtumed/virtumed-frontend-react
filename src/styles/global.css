@@ -54,3 +54,9 @@ table {
 .ant-form label {
   font-size: 1.2rem;
 }
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

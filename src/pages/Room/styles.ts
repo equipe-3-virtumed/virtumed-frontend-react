@@ -21,8 +21,8 @@ export const CheckRoom = styled.div`
 `
 
 export const LocalVideo = styled.div`
-  width: 30vw;
-  height: auto;
+  width: auto;
+  height: 20%;
   position: absolute;
   bottom: 1rem;
   right: 1rem;
