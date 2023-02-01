@@ -12,7 +12,7 @@ import ChatContainerTesting from "components/Chat";
 import ChatModal from "components/Modal/ChatModal";
 
 const Routes = () => {
-  const { logged } = useAuth();
+  const { logged, role } = useAuth();
 
   return useRoutes([
     {
@@ -29,15 +29,15 @@ const Routes = () => {
     },
     {
       path: RoutesPath.PATIENT_PAGE,
-      element: logged ? <PatientPage /> : <Login />
+      element: logged && (role === 'patient') ? <PatientPage /> : <Login />
     },
      {
       path: RoutesPath.DOCTOR_PAGE,
-      element: logged ? <DoctorPage /> : <Login />
+      element: logged && (role === 'doctor') ? <DoctorPage /> : <Login />
     },
     {
       path: RoutesPath.CLINIC_PAGE,
-      element: logged ? <ClinicPage /> : <Login />
+      element: logged && (role === 'organization') ? <ClinicPage /> : <Login />
     },
     {
       path: RoutesPath.ROOM_PAGE,

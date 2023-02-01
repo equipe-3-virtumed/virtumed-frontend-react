@@ -6,12 +6,21 @@ import {
   MailOutlined,
   SafetyCertificateOutlined,
 } from "@ant-design/icons";
-import { Form, Input } from "antd";
+import { Form, Input, Spin } from "antd";
 
 import Header from "components/Header";
 import BackIcon from "components/BackIcon";
+import { useAuth } from "contexts/authContext";
+import api from "services/api";
 
 const Register = () => {
+
+  const { loading } = useAuth();
+
+  const handleRegister = () => {
+    // api.post()
+    return
+  }
 
   return (
     <Styled.Container>
@@ -177,7 +186,13 @@ const Register = () => {
                   width: "100%",
                 }}
               >
-                <Styled.Button type="submit">Cadastrar</Styled.Button>
+                {
+                  loading ? 
+                    <Spin size="large" />
+                  :
+                    <Styled.Button type="submit" onClick={handleRegister}>Cadastrar</Styled.Button>
+                }
+                
               </Form.Item>
             </Form>
           </Styled.FormContainer>

@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./authContext";
 import ThemeDesign from "styles/themeColors";
+import { RoomProvider } from "./roomContext";
 import { ThemeProvider } from "./ThemeContext";
 
 interface ProviderProp {
@@ -13,7 +14,11 @@ const Providers = ({ children }: ProviderProp) => {
     <BrowserRouter>
       <AuthProvider>
         <ThemeProvider>
-          <ThemeDesign>{children}</ThemeDesign>
+          <ThemeDesign>
+            <RoomProvider>
+              {children}
+            </RoomProvider>
+          </ThemeDesign>
         </ThemeProvider>
       </AuthProvider>
     </BrowserRouter>

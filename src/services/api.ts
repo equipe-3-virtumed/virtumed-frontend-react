@@ -1,12 +1,12 @@
 import axios from "axios";
 
+// const api = axios.create({
+//   baseURL: "https://virtumed-backend-production.up.railway.app/"
+// });
+
 const api = axios.create({
   baseURL: "http://localhost:3333/"
 });
-
-// const api = axios.create({
-//   baseURL: "http://localhost:3333/"
-// });
 
 api.interceptors.request.use((config: any) => {
   try {
