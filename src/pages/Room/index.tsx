@@ -6,11 +6,11 @@ import JoinScreen from "../../components/Room/JoinScreen";
 import Container from "../../components/Room/Container";
 
 const Room = () => {
-  const [meetingId, setMeetingId] = useState<string>('');
+  const [meetingId, setMeetingId] = useState(null);
 
-  const getMeetingAndToken = async (id: string) => {
+  const getMeetingAndToken = async (id: string | null) => {
     const meetingId =
-      id == null ? await createMeeting({ token: videoToken }) : id;
+      id === null ? await createMeeting({ token: videoToken }) : id;
     setMeetingId(meetingId);
   };
 
