@@ -56,5 +56,3 @@ export const RoomProvider = ({ children }: RoomProviderProps) => {
 };
 
 export const useRoom = () => useContext(RoomContext);
-//export const useAuth = () => ({ logged: true, admin: true , login: (...args: any[]): any => {} });
-

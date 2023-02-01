@@ -1,31 +1,31 @@
 import * as Styled from "./styles";
-
 import ReactPlayer from "react-player";
-import { useSocket } from "./SocketStreamContext";
+import { useStreamSource } from "./Contexts/StreamSource";
+import { Button } from "antd";
 
 const VideoChatRoom = () => {
 
-  // const { roomId } = useParams();
-
-  // const { localParticipant, localParticipantReady, setLocalParticipantReady,
-  //         participant, participantReady, setParticipantReady } = useRoom();
-  
-  const { localStream, participantStream } = useSocket();
+  const { localStream, getStream } = useStreamSource();
 
   return (
     <Styled.RoomContainer>
-      <Styled.LocalVideo>
+
+      <Styled.ParticipantVideo>
         <ReactPlayer 
-          className='react-player'
           url={localStream}
           width='100%'
           height='100%'
-          playsinline
+          playing={true}
+        />
+      <Styled.LocalVideo>
+        <ReactPlayer 
+          url={localStream}
+          width='100%'
+          height='100%'
+          playing={true}
         />
       </Styled.LocalVideo>
-      <Styled.LocalVideo>
-        <ReactPlayer />
-      </Styled.LocalVideo>
+      </Styled.ParticipantVideo>
     </Styled.RoomContainer>
   )
 }

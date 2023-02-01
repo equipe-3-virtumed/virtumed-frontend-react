@@ -22,16 +22,18 @@ export const CheckRoom = styled.div`
 
 export const LocalVideo = styled.div`
   width: auto;
-  height: 20%;
-  position: absolute;
+  height: 10rem;
   bottom: 1rem;
   right: 1rem;
+  position: absolute;
   z-index: 1;
 `
 
 export const ParticipantVideo = styled.div`
   width: auto;
-  height: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-
 `
