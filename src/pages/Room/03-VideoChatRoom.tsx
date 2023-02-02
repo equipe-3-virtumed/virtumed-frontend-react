@@ -2,24 +2,14 @@ import * as Styled from "./styles";
 import ReactPlayer from "react-player";
 import { useStreamSource } from "./Contexts/StreamSource";
 import VideoControls from "./Contexts/VideoControls/Controls";
-import { useEffect } from "react";
-import { useSocket } from "./Contexts/Sockets";
 import { useRoom } from "contexts/roomContext";
 
 const VideoChatRoom = () => {
 
   const { roomAdmin } = useRoom();
   const { stream, getStream, participantStream } = useStreamSource();
-  const { emitId, getPeer } = useSocket();
 
-  useEffect(() => {
-    emitId()
-    getStream();
-    if (!roomAdmin) {
-      getPeer();
-    }
-  }, [])
-  
+ 
   return (
     <Styled.RoomContainer>
       <Styled.ParticipantVideo>

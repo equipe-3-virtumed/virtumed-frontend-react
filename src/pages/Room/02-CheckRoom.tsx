@@ -7,7 +7,6 @@ import { Button, Spin } from "antd";
 import socket from "services/socket";
 import { useRoom } from "contexts/roomContext";
 import VideoChatRoom from "./03-VideoChatRoom";
-import { useSocket } from "./Contexts/Sockets";
 import { useAuth } from "contexts/authContext";
 
 const CheckRoom = () => {
@@ -16,8 +15,6 @@ const CheckRoom = () => {
   const { loading } = useAuth();
   const { roomAdmin, roomReady, localParticipant, participant,
           setRoomReady } = useRoom();
-  
-  const { initiatePeer } = useSocket();
 
   const [ready, setReady] = useState<boolean>(false);
 
@@ -36,7 +33,6 @@ const CheckRoom = () => {
       localParticipant: localParticipant?.id
     }
     socket.emit('ready', credentials);   
-    initiatePeer();
     setRoomReady(true);
     setReady(true);
   }
