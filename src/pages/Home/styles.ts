@@ -7,7 +7,7 @@ export const Container = styled.main`
     position: absolute;
     z-index: -1;
     width: 100vw;
-    height: 20rem;
+    height: 18rem;
     background-size: cover;
     background-position: 50% 0px;
     background-repeat: no-repeat;
