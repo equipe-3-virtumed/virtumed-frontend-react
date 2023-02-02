@@ -8,10 +8,12 @@ import socket from "services/socket";
 import { useRoom } from "contexts/roomContext";
 import VideoChatRoom from "./03-VideoChatRoom";
 import { useSocket } from "./Contexts/Sockets";
+import { useAuth } from "contexts/authContext";
 
 const CheckRoom = () => {
 
   const { roomId } = useParams();
+  const { loading } = useAuth();
   const { roomAdmin, roomReady, localParticipant, participant,
           setRoomReady } = useRoom();
   
@@ -20,7 +22,12 @@ const CheckRoom = () => {
   const [ready, setReady] = useState<boolean>(false);
 
   const imReady = () => {
+    const credentials = {
+      roomId,
+      localParticipant: localParticipant?.id
+    }
     setReady(true);
+    socket.emit('ready', credentials); 
   }
   
   const emitReady = () => {
@@ -33,14 +40,6 @@ const CheckRoom = () => {
     setRoomReady(true);
     setReady(true);
   }
-  
-  useEffect(() => {
-    socket.on('readyToGo', () => {
-      if (!roomAdmin) {
-        setRoomReady(true);
-      }
-    })
-  }, [socket])
 
   return (
     <>
@@ -60,7 +59,7 @@ const CheckRoom = () => {
                     Liberar Consulta
                   </Button>
                 :
-                roomReady ?
+                roomReady && !loading ?
                   <>
                     <Button type="primary" onClick={imReady}>
                       Entrar na Consulta

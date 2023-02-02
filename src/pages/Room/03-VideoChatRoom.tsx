@@ -4,15 +4,20 @@ import { useStreamSource } from "./Contexts/StreamSource";
 import VideoControls from "./Contexts/VideoControls/Controls";
 import { useEffect } from "react";
 import { useSocket } from "./Contexts/Sockets";
+import { useRoom } from "contexts/roomContext";
 
 const VideoChatRoom = () => {
 
+  const { roomAdmin } = useRoom();
   const { stream, getStream, participantStream } = useStreamSource();
-  const { getPeer } = useSocket();
+  const { emitId, getPeer } = useSocket();
 
   useEffect(() => {
+    emitId()
     getStream();
-    getPeer();
+    if (!roomAdmin) {
+      getPeer();
+    }
   }, [])
   
   return (
