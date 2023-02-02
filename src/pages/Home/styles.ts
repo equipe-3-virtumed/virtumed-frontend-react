@@ -22,7 +22,7 @@ export const Container = styled.main`
 
   h3 {
     text-align: center;
-    margin-top: 32px;
+    margin: 32px 0 16px 0;
   }
 
   h4 {
@@ -71,6 +71,7 @@ export const ContainerInformation = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 32px;
 
   p {
     font-weight: 300;
@@ -78,11 +79,10 @@ export const ContainerInformation = styled.div`
 
   div {
     background-color: rgba(255, 255, 255, 0.7);
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
     display: flex;
     align-items: center;
-    margin: 2.1rem;
     box-shadow: 0 0 16px 0 #0004;
     :nth-child(1) {
       border-radius: 0 0 16px 0;
