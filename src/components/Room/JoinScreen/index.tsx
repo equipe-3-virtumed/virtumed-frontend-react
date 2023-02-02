@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 interface JoinScreenProps {
-  getMeetingAndToken: (id: string) => void;
+  getMeetingAndToken: (id: string | null) => void;
 }
 
 const JoinScreen = ({ getMeetingAndToken }: JoinScreenProps) => {
-  const [meetingId, setMeetingId] = useState("");
-  const onClick = async () => {
-    await getMeetingAndToken(meetingId);
+  const [meetingId, setMeetingId] = useState<string | null>(null);
+  const onClick = () => {
+    getMeetingAndToken(meetingId);
   };
   return (
     <div>
