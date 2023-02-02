@@ -3,11 +3,11 @@ import { Spin } from "antd";
 import Header from "components/Header";
 import { useNavigate, useParams } from "react-router";
 import api from "services/api";
-import socket from "services/socket";
 import { useRoom } from "contexts/roomContext";
 import { useAuth } from "contexts/authContext";
 import CheckRoom from "./02-CheckRoom";
 import * as Styled from "./styles";
+import { useSocket } from "./Contexts/Sockets";
 
 const Room = () => {
   const navigate = useNavigate();
@@ -15,6 +15,7 @@ const Room = () => {
   const { roomId } = useParams();
   const { user } = useAuth();
   const { setRoomAdmin, setLocalParticipant, setParticipant } = useRoom();
+  const { emitJoin } = useSocket();
 
   const [authorized, setAuthorized] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -22,7 +23,7 @@ const Room = () => {
   const getAuthorization = () => {
     api.get(`appointment/connect/${roomId}`)
       .then((res) => {
-          socket.emit("joinRoom", roomId);
+          emitJoin(roomId);
           setTimeout(() => {
             setLoading(false);
             setAuthorized(true);
@@ -50,14 +51,16 @@ const Room = () => {
 
   return (
     <>
-      <Header />
       {
         loading && !authorized ?
+        <>
+          <Header />
           <Styled.RoomContainer>
             <Spin size="large" />
             <h3>Aguarde um momento</h3>
             <h4>Estamos preparando a consulta :)</h4>
           </Styled.RoomContainer>
+        </>
         :
           <CheckRoom />
       }

@@ -3,9 +3,8 @@ import {
   useContext,
   ReactNode,
   useState,
-  useEffect,
-  useRef,
-  useMemo
+  Dispatch,
+  SetStateAction,
 } from "react";
 
 interface ProviderProps {
@@ -13,29 +12,26 @@ interface ProviderProps {
 }
 
 interface StreamSourceProviderData {
-  localStream: MediaStream | undefined;
+  stream: MediaStream | undefined;
   getStream: () => Promise<void>;
+  participantStream: MediaStream | undefined;
+  setLocalParticipantStream: Dispatch<SetStateAction<MediaStream | undefined>>;
 }
 
 const StreamSourceContext = createContext<StreamSourceProviderData>({} as StreamSourceProviderData);
 
 export const StreamSourceProvider = ({ children }: ProviderProps) => {
 
-  const [localStream, setLocalStream] = useState<MediaStream>();
+  const [stream, setLocalStream] = useState<MediaStream>();
+  const [participantStream, setLocalParticipantStream] = useState<MediaStream>();
 
   const getStream = async () => {
     let devices = await navigator.mediaDevices.getUserMedia({'video': true, 'audio': true});
     setLocalStream(devices);
   }
 
-  useEffect(() => {
-    if (!localStream) {
-      getStream()
-    }
-  }, [localStream])
-
   return (
-    <StreamSourceContext.Provider value={{localStream, getStream}}>
+    <StreamSourceContext.Provider value={{stream, getStream, participantStream, setLocalParticipantStream }}>
       {children}
     </StreamSourceContext.Provider>
   );
