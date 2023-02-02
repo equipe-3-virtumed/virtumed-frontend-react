@@ -23,32 +23,32 @@ interface AllFields {
 }
 
 interface RoomProviderData {
+  roomId: string | undefined;
   roomAdmin: boolean;
+  roomReady: boolean;
   localParticipant: AllFields | undefined;
   participant: AllFields | undefined;
-  localParticipantReady: boolean;
-  participantReady: boolean;
+  setRoomId: Dispatch<SetStateAction<string | undefined>>;
   setRoomAdmin: Dispatch<SetStateAction<boolean>>;
+  setRoomReady: Dispatch<SetStateAction<boolean>>;
   setLocalParticipant: Dispatch<SetStateAction<AllFields | undefined>>;
-  setLocalParticipantReady: Dispatch<SetStateAction<boolean>>;
   setParticipant: Dispatch<SetStateAction<AllFields | undefined>>;
-  setParticipantReady: Dispatch<SetStateAction<boolean>>;
 }
 
 const RoomContext = createContext<RoomProviderData>({} as RoomProviderData);
 
 export const RoomProvider = ({ children }: RoomProviderProps) => {
 
+  const [roomId, setRoomId] = useState<string | undefined>();
   const [roomAdmin, setRoomAdmin] = useState<boolean>(false);
+  const [roomReady, setRoomReady] = useState<boolean>(false);
   const [localParticipant, setLocalParticipant] = useState<AllFields>();
-  const [localParticipantReady, setLocalParticipantReady] = useState<boolean>(false);
   const [participant, setParticipant] = useState<AllFields>();
-  const [participantReady, setParticipantReady] = useState<boolean>(false);
 
   return (
     <RoomContext.Provider value={{
-        roomAdmin, localParticipant, localParticipantReady, participant, participantReady,
-        setRoomAdmin, setLocalParticipant, setLocalParticipantReady, setParticipant, setParticipantReady
+        roomId, roomAdmin, roomReady, localParticipant, participant,
+        setRoomId, setRoomAdmin, setRoomReady, setLocalParticipant, setParticipant,
       }}>
       {children}
     </RoomContext.Provider>

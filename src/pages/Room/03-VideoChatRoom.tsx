@@ -4,7 +4,6 @@ import { useStreamSource } from "./Contexts/StreamSource";
 import VideoControls from "./Contexts/VideoControls/Controls";
 import { useEffect } from "react";
 import { useSocket } from "./Contexts/Sockets";
-import image from "../../assets/myHealthImg.svg"
 
 const VideoChatRoom = () => {
 
@@ -18,10 +17,9 @@ const VideoChatRoom = () => {
   
   return (
     <Styled.RoomContainer>
-
       <Styled.ParticipantVideo>
         <ReactPlayer 
-          url={participantStream || stream}
+          url={participantStream}
           width='100%'
           height='100%'
           playing={true}

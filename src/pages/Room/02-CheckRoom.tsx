@@ -1,43 +1,51 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { CheckCircleOutlined } from "@ant-design/icons"
 import * as Styled from "./styles";
-import { useAuth } from "contexts/authContext";
 import Header from "components/Header";
 import { Button, Spin } from "antd";
 import socket from "services/socket";
 import { useRoom } from "contexts/roomContext";
 import VideoChatRoom from "./03-VideoChatRoom";
+import { useSocket } from "./Contexts/Sockets";
 
 const CheckRoom = () => {
 
   const { roomId } = useParams();
-  const { loading, getLoader } = useAuth();
-  const { localParticipant, localParticipantReady, setLocalParticipantReady,
-          participant, participantReady, setParticipantReady } = useRoom();
+  const { roomAdmin, roomReady, localParticipant, participant,
+          setRoomReady } = useRoom();
+  
+  const { initiatePeer } = useSocket();
+
+  const [ready, setReady] = useState<boolean>(false);
+
+  const imReady = () => {
+    setReady(true);
+  }
   
   const emitReady = () => {
     const credentials = {
       roomId,
       localParticipant: localParticipant?.id
     }
-    socket.emit('ready', credentials);
-    setLocalParticipantReady(true);  
-    getLoader(5000);
+    socket.emit('ready', credentials);   
+    initiatePeer();
+    setRoomReady(true);
+    setReady(true);
   }
   
   useEffect(() => {
-    socket.on('readyToGo', (userId) => {
-      if (userId !== localParticipant?.id) {
-        setParticipantReady(true);
+    socket.on('readyToGo', () => {
+      if (!roomAdmin) {
+        setRoomReady(true);
       }
-    })    
+    })
   }, [socket])
 
   return (
     <>
       {
-        localParticipantReady && participantReady ?
+        roomReady && ready ?
           <VideoChatRoom />
         :
           <>
@@ -45,31 +53,31 @@ const CheckRoom = () => {
             <Styled.CheckRoom>
               <h2>Olá {localParticipant?.name}</h2>
               <h3>{localParticipant?.id}</h3>
+
               {
-                loading ?
+                roomAdmin ?
+                  <Button type="primary" onClick={emitReady}>
+                    Liberar Consulta
+                  </Button>
+                :
+                roomReady ?
                   <>
-                    <Spin size="large" />
-                    <h3>Verificando se estão todos prontos</h3>
+                    <Button type="primary" onClick={imReady}>
+                      Entrar na Consulta
+                    </Button>
+                    <CheckCircleOutlined />
                   </>
                 :
-                  <Button type="primary" onClick={emitReady}>
-                    Entrar na Consulta
-                  </Button>
+                  <>
+                    <Spin size="small" /> 
+                    <h4>Aguardando...</h4>
+                  </>
               }
+                            
               <h3>{participant?.name}</h3>
-              {participantReady ?
-                <h3>
-                  <CheckCircleOutlined style={{
-                    color: "green",
-                    fontSize: "1rem"
-                  }}
-                /> Já está na sala!</h3>
-                :
-                <Spin size="small" />
-              }
-            </Styled.CheckRoom>        
+            </Styled.CheckRoom>
           </>
-      }      
+      }
     </>
   )
 }

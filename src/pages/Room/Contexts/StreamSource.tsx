@@ -15,7 +15,7 @@ interface StreamSourceProviderData {
   stream: MediaStream | undefined;
   getStream: () => Promise<void>;
   participantStream: MediaStream | undefined;
-  setLocalParticipantStream: Dispatch<SetStateAction<MediaStream | undefined>>;
+  setParticipantStream: Dispatch<SetStateAction<MediaStream | undefined>>;
 }
 
 const StreamSourceContext = createContext<StreamSourceProviderData>({} as StreamSourceProviderData);
@@ -23,7 +23,7 @@ const StreamSourceContext = createContext<StreamSourceProviderData>({} as Stream
 export const StreamSourceProvider = ({ children }: ProviderProps) => {
 
   const [stream, setLocalStream] = useState<MediaStream>();
-  const [participantStream, setLocalParticipantStream] = useState<MediaStream>();
+  const [participantStream, setParticipantStream] = useState<MediaStream>();
 
   const getStream = async () => {
     let devices = await navigator.mediaDevices.getUserMedia({'video': true, 'audio': true});
@@ -31,7 +31,7 @@ export const StreamSourceProvider = ({ children }: ProviderProps) => {
   }
 
   return (
-    <StreamSourceContext.Provider value={{stream, getStream, participantStream, setLocalParticipantStream }}>
+    <StreamSourceContext.Provider value={{stream, getStream, participantStream, setParticipantStream }}>
       {children}
     </StreamSourceContext.Provider>
   );

@@ -7,6 +7,7 @@ import {
 import socket from "services/socket";
 import { useStreamSource } from "./StreamSource";
 import Peer from "simple-peer";
+import { useRoom } from "contexts/roomContext";
 
 interface SocketProviderProps {
   children: ReactNode;
@@ -14,6 +15,7 @@ interface SocketProviderProps {
 
 interface SocketProviderData {
   emitJoin: (roomId: string | undefined) => void;
+  initiatePeer: () => void;
   getPeer: () => void;
 }
 
@@ -26,40 +28,38 @@ const SocketContext = createContext<SocketProviderData>({} as SocketProviderData
 
 export const SocketProvider = ({ children }: SocketProviderProps) => {
 
-  const [roomId, setRoomId] = useState<string | undefined>("");
-
+  const { roomId, roomAdmin } = useRoom();
   const emitJoin = (roomId: string | undefined) => {
     socket.emit("joinRoom", roomId);
-    setRoomId(roomId);
   }
 
   const [localSocketId, setLocalSocketId] = useState<string>("");
-
   socket.on('joinedRoom', (clientId) => {
-    setLocalSocketId(clientId)
+    setLocalSocketId(clientId);
   })
 
-  const { stream, participantStream, setLocalParticipantStream } = useStreamSource();
+  const { stream, setParticipantStream } = useStreamSource();
 
-  const getPeer = () => {
-    const peer = new Peer({ initiator: true, trickle: true, stream });
+  const initiatePeer = async () => {
+
+  }
+
+  const getPeer = async () => {
+    const peer = new Peer({ initiator: false, trickle: false, stream });
 
     peer.on('signal', (data) => {
       socket.emit('videoRequest', { room: roomId, signal: data });
     });
 
-    peer.on('stream', (incomingStream: IncomingStream) => {
-      console.log("🚀 ~ file: Sockets.tsx:52 ~ peer.on ~ incomingStream", incomingStream)
-      if (incomingStream.id !== localSocketId) {
-        setLocalParticipantStream(incomingStream.signal)
+    peer.on('stream', (currentStream: IncomingStream) => {
+      if (currentStream.id !== localSocketId) {
+        setParticipantStream(currentStream.signal)
       }
     })
-
-    peer.signal('videoStream')
   }
 
   return (
-    <SocketContext.Provider value={{ emitJoin, getPeer }}>
+    <SocketContext.Provider value={{ emitJoin, initiatePeer, getPeer }}>
       {children}
     </SocketContext.Provider>
   );
