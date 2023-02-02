@@ -1,34 +1,34 @@
-import { useParticipant } from "@videosdk.live/react-sdk";
 import { useEffect, useMemo, useRef } from "react";
+import { useMeeting, useParticipant } from "@videosdk.live/react-sdk";
 import ReactPlayer from "react-player";
+import { useNavigate } from "react-router";
 
 const VideoComponent = (props: any) => {
+  const { leave, toggleMic, toggleWebcam } = useMeeting();
   const micRef: any = useRef(null);
   const { webcamStream, micStream, webcamOn, micOn, isLocal } = useParticipant(
     props.participantId
-    );
-  console.log("🚀 ~ file: index.tsx:10 ~ VideoComponent ~ webcamStream", webcamStream)
-  console.log(
-    "🚀 ~ file: index.tsx:12 ~ VideoComponent ~ props.participantId",
-    props.participantId
   );
+  const navigate = useNavigate();
 
   const videoStream = useMemo(() => {
     if (webcamOn && webcamStream) {
+      const mediaStreamCam = new MediaStream([webcamStream.track]);
+      // mediaStreamCam.addTrack(webcamStream.track);
+      toggleWebcam(mediaStreamCam);
 
-      const mediaStream = new MediaStream([webcamStream.track]);
-      console.log("🚀 ~ file: index.tsx:19 ~ videoStream ~ webcamStream.track", webcamStream.track)
-      return mediaStream;
+      return mediaStreamCam;
     }
-  }, [webcamStream, webcamOn]);
+  }, [toggleWebcam, webcamOn, webcamStream]);
 
   useEffect(() => {
     if (micRef.current) {
       if (micOn && micStream) {
-        const mediaStream = new MediaStream([micStream.track]);
-        console.log("🚀 ~ file: index.tsx:28 ~ useEffect ~ micStream.track", micStream.track)
+        const mediaStreamMic = new MediaStream([micStream.track]);
+        // mediaStreamMic.addTrack(micStream.track);
+        toggleMic(mediaStreamMic);
 
-        micRef.current.srcObject = mediaStream;
+        micRef.current.srcObject = mediaStreamMic;
         micRef.current
           .play()
           .catch((error: any) =>
@@ -38,30 +38,42 @@ const VideoComponent = (props: any) => {
         micRef.current.srcObject = null;
       }
     }
-  }, [micStream, micOn]);
+  }, [micStream, micOn, toggleMic]);
 
   return (
     <div key={props.participantId}>
       {micOn && micRef && <audio ref={micRef} autoPlay muted={isLocal} />}
-      {webcamOn && (
-        <ReactPlayer
-          //
-          playsinline // very very imp prop
-          pip={false}
-          light={false}
-          controls={true}
-          muted={true}
-          playing={true}
-          //
-          url={videoStream}
-          //
-          height={"250px"}
-          width={"250px"}
-          onError={(err) => {
-            console.log(err, "participant video error");
+      <div>
+        <button
+          onClick={() => {
+            leave();
+            navigate("/consulta/entrar/id");
           }}
-        />
-      )}
+        >
+          Leave
+        </button>
+        <button onClick={() => toggleMic()}>toggleMic</button>
+        <button onClick={() => toggleWebcam()}>toggleWebcam</button>
+      </div>
+      <div style={{ backgroundColor: "#000", width: "300px", height: "300px" }}>
+        {webcamOn && (
+          <ReactPlayer
+            //
+
+            muted={true}
+            playing={true}
+            //
+
+            url={videoStream}
+            //
+            height={"300px"}
+            width={"300px"}
+            onError={(err) => {
+              console.log(err, "participant video error");
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 };

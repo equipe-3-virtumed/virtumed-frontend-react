@@ -1,5 +1,5 @@
 import "./styles";
-import React, { useState } from "react";
+import { useState } from "react";
 import { MeetingProvider, MeetingConsumer } from "@videosdk.live/react-sdk";
 import { videoToken, createMeeting } from "../../api";
 import JoinScreen from "../../components/Room/JoinScreen";
