@@ -46,6 +46,8 @@ const ChatWidget = ({ username, room }: Props) => {
     });
   }, [socket]);
 
+  console.log(messageList);
+
   return (
     <Styled.ContainerChat>
       <Styled.ContentMsg>

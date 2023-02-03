@@ -2,9 +2,10 @@ import * as Styled from "./styles";
 import ReactPlayer from "react-player";
 import { useStreamSource } from "./Contexts/StreamSource";
 import VideoControls from "./VideoControls/Controls";
+import { useRoom } from "./Contexts/roomContext";
 
 const VideoChatRoom = () => {
-
+  const { roomId } = useRoom()
   const { stream, participantStream } = useStreamSource();
  
   return (
@@ -15,7 +16,6 @@ const VideoChatRoom = () => {
           width='100%'
           height='100%'
           playing={true}
-          muted
         />
       </Styled.ParticipantVideo>
         <Styled.LocalVideo>
@@ -24,10 +24,9 @@ const VideoChatRoom = () => {
             width='100%'
             height='100%'
             playing={true}
-            muted
           />
         </Styled.LocalVideo>
-      <VideoControls />
+      <VideoControls roomId={roomId} />
     </Styled.RoomContainer>
   )
 }
