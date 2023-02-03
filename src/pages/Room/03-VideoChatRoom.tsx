@@ -12,24 +12,24 @@ const VideoChatRoom = () => {
  
   return (
     <Styled.RoomContainer>
-      <Styled.ParticipantVideo>
+      {/* <Styled.ParticipantVideo> */}
         <ReactPlayer 
           url={participantStream}
-          width='100%'
-          height='100%'
+          width='200px'
+          height='200px'
           playing={true}
           muted
         />
-      <Styled.LocalVideo>
+      {/* <Styled.LocalVideo> */}
         <ReactPlayer 
           url={stream}
-          width='100%'
-          height='100%'
+          width='100px'
+          height='100px'
           playing={true}
           muted
         />
-      </Styled.LocalVideo>
-      </Styled.ParticipantVideo>
+      {/* </Styled.LocalVideo> */}
+      {/* </Styled.ParticipantVideo> */}
       <VideoControls />
     </Styled.RoomContainer>
   )

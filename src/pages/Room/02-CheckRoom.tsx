@@ -6,6 +6,7 @@ import { useRoom } from "contexts/roomContext";
 import VideoChatRoom from "./03-VideoChatRoom";
 import { useSocket } from "./Contexts/Sockets";
 import { useEffect } from "react";
+import { useStreamSource } from "./Contexts/StreamSource";
 
 const CheckRoom = () => {
 
@@ -13,8 +14,11 @@ const CheckRoom = () => {
   
   const { localSocketId, participantSocket, emitId, callUser, answerCall } = useSocket();
 
+  const { getStream } = useStreamSource();
+  
   useEffect(() => {
     emitId(roomId)
+    getStream()
   }, [])
 
   return (
@@ -31,22 +35,22 @@ const CheckRoom = () => {
 
               {
                 roomAdmin ?
-                  <Button type="primary" onClick={callUser}>
+                  <Button type="primary" onClick={callUser} disabled={participantSocket ? false : true}>
                     Chamar Paciente
                   </Button>
                 :
-                roomReady ?
+                // roomReady ?
                   <>
                     <Button type="primary" onClick={answerCall}>
                       Entrar na Consulta
                     </Button>
                     <CheckCircleOutlined />
                   </>
-                :
-                  <>
-                    <Spin size="small" /> 
-                    <h4>Aguardando...</h4>
-                  </>
+                // :
+                //   <>
+                //     <Spin size="small" /> 
+                //     <h4>Aguardando...</h4>
+                //   </>
               }
                             
               <h3>{participant?.name}</h3>

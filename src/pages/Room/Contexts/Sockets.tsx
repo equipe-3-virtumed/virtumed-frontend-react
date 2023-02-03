@@ -11,7 +11,6 @@ import { useRoom } from "contexts/roomContext";
 import { useStreamSource } from "./StreamSource";
 import socket from "services/socket";
 import Peer, { Instance } from "simple-peer";
-import { log } from "console";
 
 interface SocketProviderProps {
   children: ReactNode;
@@ -27,24 +26,14 @@ interface SocketProviderData {
 }
 
 interface Call {
-  isReceivedCall: boolean;
-  from: string;
-  name: string;
   signal: any;
+  from: string;
 }
 
 const SocketContext = createContext<SocketProviderData>({} as SocketProviderData);
 
 export const SocketProvider = ({ children }: SocketProviderProps) => {
 
-  const emitJoin = (roomId: string | undefined) => {
-    socket.emit("joinRoom", roomId);
-  }
-
-  const emitId = (roomId: string | undefined) => {
-    socket.emit("emitId", roomId)
-  }
-  
   const { setRoomReady } = useRoom();
   const { stream, setParticipantStream } = useStreamSource();
   const { user } = useAuth();
@@ -54,25 +43,24 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
   const [call, setCall] = useState<Call | undefined>();
   const [callAccepted, setCallAccepted] = useState<boolean>(false);
   const [callEnded, setCallEnded] = useState<boolean>(false);
-  const connectionRef = useRef<Instance>();
 
-  useEffect(() => {
+  const emitJoin = (roomId: string | undefined) => {
+    socket.emit("joinRoom", roomId);
     socket.on('joinedRoom', (clientId) => {
-      if (localSocketId === "") {
-        setLocalSocketId(clientId);
-      }
+      setLocalSocketId(clientId)
     })
+  }
 
-    socket.on('emitId', (socketId: string) => {
-      if (socketId !== localSocketId) {
-        setParticipantSocket(socketId)
-      }
+  const emitId = (roomId: string | undefined) => {
+    socket.emit("emitId", roomId)
+    socket.on('emittedId', (socketId: string) => {
+      localSocketId !== socketId && socketId && setParticipantSocket(socketId)
     })
-
-    socket.on('calluser', ({ from, name: callerName, signal }) => {
-      setCall({ isReceivedCall: true, from, name: callerName, signal})
+    socket.on('usercalling', ({ signal, from }) => {
+      setCall({ signal, from })
     })
-  }, [])
+  }  
+  const connectionRef = useRef<Instance>();
 
   const answerCall = () => {
     setRoomReady(true);
@@ -91,8 +79,13 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
     peer.signal(call?.signal);
 
     connectionRef.current = peer;
-
   }
+
+  // useEffect(() => {
+  //   socket.on('calluser', ({ from, signal }) => {
+  //     setCall({ isReceivedCall: true, from, signal})
+  //   })
+  // }, [socket])
 
   const callUser = () => {
     setRoomReady(true);
@@ -100,12 +93,22 @@ export const SocketProvider = ({ children }: SocketProviderProps) => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
 
     peer.on('signal', (data) => {
-      socket.emit('calluser', { userToCall: participantSocket, signalData: data, from: localSocketId, name: user?.name });
+      const callData = {
+        userToCall: participantSocket,
+        signalData: data,
+      }
+      socket.emit('calluser', callData);
     })
     
     peer.on('stream', (currentStream) => {
       setParticipantStream(currentStream)
     })
+
+    socket.on('callaccepted', (signal) => {
+      peer.signal(signal)
+    })
+
+    connectionRef.current = peer;
   }
 
   const leaveCall = () => {
