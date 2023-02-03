@@ -7,7 +7,7 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
-  scrollbar-width: 8px; /* works on firefox */
+  scrollbar-width: 1rem; /* works on firefox */
   scrollbar-color: #ddd; /* works on firefox */
   scroll-behavior: smooth;
 }
@@ -20,8 +20,7 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 12px;               /* width of the entire scrollbar */
-  
+  width: 1rem;               /* width of the entire scrollbar */
 }
 
 body::-webkit-scrollbar-thumb {

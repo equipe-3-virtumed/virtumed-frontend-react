@@ -4,6 +4,8 @@ import {
   ReactNode,
   useState,
   useEffect,
+  Dispatch,
+  SetStateAction,
 } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api"
@@ -12,17 +14,30 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-interface AuthProviderData {
-  logged: boolean;
-  login: (params: LoginParams) => void;
-  role: string;
-  logout: () => void;
-  user: Object;
-}
-
 interface LoginParams {
   email: string;
   password: string;
+}
+
+interface AllFields {
+  id: string;
+  email: string;
+  name: string;
+  image: string;
+  phone: string;
+  cnpj: string;
+  crm: string;
+  role: string;
+}
+
+interface AuthProviderData {
+  logged: boolean;
+  user: AllFields | undefined;
+  role: string;
+  loading: boolean;
+  getLoader: (arg0: number) => void;
+  login: (params: LoginParams) => void;
+  logout: () => void;
 }
 
 const AuthContext = createContext<AuthProviderData>({} as AuthProviderData);
@@ -31,13 +46,23 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const navigate = useNavigate();
 
   const [logged, setLogged] = useState<boolean>(false);
+  const [user, setUser] = useState<AllFields>();
+  const [loading, setLoading] = useState<boolean>(false);
   const [role, setRole] = useState<string>('');
-  const [user, setUser] = useState<any>({});
+ 
+  const getLoader = (time: number) => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, time);
+  }
 
   const login = ({ email, password }: LoginParams) => {
     api.post('/login', {email, password})
       .then((res) => {
+        console.log("🚀 ~ file: authContext.tsx:73 ~ .then ~ res", res.data.user)
         localStorage.setItem("token", res.data.token);
+        setUser(res.data.user);
         setLogged(true);
         setRole(res.data.user.role);
       })
@@ -81,7 +106,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ logged, role, login, logout, user }}>
+    <AuthContext.Provider value={{
+        logged, user, role, loading, getLoader, login, logout
+      }}>
       {children}
     </AuthContext.Provider>
   );
