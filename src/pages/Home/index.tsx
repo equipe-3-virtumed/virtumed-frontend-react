@@ -7,8 +7,11 @@ import {
 import Header from "components/Header";
 import { SwapRightOutlined, LinkedinOutlined } from "@ant-design/icons";
 import Logo from "../../assets/logo.svg";
+import { useDesign } from "contexts/themeContext";
 
 const Home = () => {
+  const { lightTheme } = useDesign();
+
   return (
     <Styled.Container>
       <Header />
@@ -61,7 +64,9 @@ const Home = () => {
         </Styled.ContainerCarouselClients>
       </section>
 
-      <Styled.ContainerQuestions>
+      <Styled.ContainerQuestions
+        style={{ color: lightTheme ? "#000" : "#fff" }}
+      >
         <div>
           <SwapRightOutlined style={{ fontSize: "40px", marginLeft: "16px" }} />
           <h4>Ainda em dúvida?</h4>
@@ -97,7 +102,7 @@ const Home = () => {
           © Todos os direitos reservados - {new Date().getFullYear()}
         </p>
       </footer>
-    </Styled.Container>   
+    </Styled.Container>
   );
 };
 
