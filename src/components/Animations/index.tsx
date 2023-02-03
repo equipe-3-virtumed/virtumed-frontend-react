@@ -13,6 +13,7 @@ import {
   IdcardOutlined,
 } from "@ant-design/icons";
 import { Carousel } from "antd";
+import { useDesign } from "contexts/themeContext";
 import { useEffect, useState } from "react";
 import TextTransition, { presets } from "react-text-transition";
 
@@ -49,6 +50,8 @@ export const TransitionText = () => {
 
 // Componente do Carrossel de informações
 export const CarouselInformation: React.FC = () => {
+  const { lightTheme } = useDesign();
+
   // 1º componente de informações
   const InformationOne = () => {
     return (
@@ -58,6 +61,7 @@ export const CarouselInformation: React.FC = () => {
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
+          color: lightTheme ? "#000" : "#fff",
         }}
       >
         <div
@@ -98,6 +102,7 @@ export const CarouselInformation: React.FC = () => {
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
+          color: lightTheme ? "#000" : "#fff",
         }}
       >
         <div
@@ -140,6 +145,7 @@ export const CarouselInformation: React.FC = () => {
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
+          color: lightTheme ? "#000" : "#fff",
         }}
       >
         <div
@@ -184,6 +190,7 @@ export const CarouselInformation: React.FC = () => {
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
+          color: lightTheme ? "#000" : "#fff",
         }}
       >
         <div
@@ -222,6 +229,7 @@ export const CarouselInformation: React.FC = () => {
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
+          color: lightTheme ? "#000" : "#fff",
         }}
       >
         <div
@@ -258,7 +266,9 @@ export const CarouselInformation: React.FC = () => {
         alignItems: "center",
         textAlign: "center",
         fontSize: "14px",
-        backgroundImage: "linear-gradient(to right, #fc7fbd, #66d3e2)",
+        backgroundImage: lightTheme
+          ? "linear-gradient(to right, #fc7fbd, #66d3e2)"
+          : "linear-gradient(to right, #5223AD, #1b1b1b",
         borderRadius: "8px",
         boxShadow: "0px 8px 8px 0px #0004",
       }}
