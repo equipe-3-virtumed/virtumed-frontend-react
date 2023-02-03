@@ -8,7 +8,7 @@ export const Header = styled.header`
   height: auto;
   border: transparent;
   padding: 0.5rem 2rem 0.5rem 1.5rem;
-	background: ${(props) => props.theme.headerBackground};
+	background: ${(props) => props.theme.body};
   transition: all 0.6s ease-in-out;
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
