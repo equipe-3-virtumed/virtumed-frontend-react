@@ -10,6 +10,7 @@ export const RoomContainer = styled.div`
   position: relative;
   background: ${(props) => props.theme.headerBackground};
   color: ${(props) => props.theme.text};
+  overflow: hidden;
 `
 
 export const CheckRoom = styled.div`
@@ -28,13 +29,18 @@ export const LocalVideo = styled.div`
   width: auto;
   height: 20%;
   position: absolute;
-  bottom: 1rem;
+  bottom: 12vh;
   right: 1rem;
   z-index: 1;
+
+  @media screen and (min-aspect-ratio: 16/10) {
+    bottom: 1rem;
+    right: 15vh;
+  }
 `
 
 export const ParticipantVideo = styled.div`
-  width: auto;
+  width: max-content;
   height: 90vh;
   position: absolute;
   top: 0;

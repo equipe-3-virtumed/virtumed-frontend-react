@@ -1,16 +1,23 @@
 import * as Styled from './styles';
+import {
+  AudioOutlined,
+  MessageOutlined,
+  VideoCameraOutlined,
+} from "@ant-design/icons";
 
 const VideoControls = () => {
+
+
   return (
     <Styled.ControlContainer>
       <div>
-        Toggle Mic
+        <AudioOutlined />
       </div>
       <div>
-        Toggle Camera
+        <VideoCameraOutlined />
       </div>
       <div>
-        Chat
+        <MessageOutlined />
       </div>
     </Styled.ControlContainer>
   )

@@ -17,16 +17,16 @@ const VideoChatRoom = () => {
           playing={true}
           muted
         />
-      <Styled.LocalVideo>
-        <ReactPlayer 
-          url={stream}
-          width='100%'
-          height='100%'
-          playing={true}
-          muted
-        />
-      </Styled.LocalVideo>
       </Styled.ParticipantVideo>
+        <Styled.LocalVideo>
+          <ReactPlayer 
+            url={stream}
+            width='100%'
+            height='100%'
+            playing={true}
+            muted
+          />
+        </Styled.LocalVideo>
       <VideoControls />
     </Styled.RoomContainer>
   )
