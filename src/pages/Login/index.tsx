@@ -1,13 +1,15 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Form, Input, Spin } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Styled from "./styles";
 import { useState } from "react";
 import { useAuth } from "contexts/authContext";
 import Header from "components/Header";
 import BackIcon from "components/BackIcon";
+import { RoutesPath } from "router/paths";
 
 const Login = () => {
+  const navigate = useNavigate()
 
   const { login, loading, getLoader } = useAuth();
 
@@ -17,6 +19,7 @@ const Login = () => {
   const handleLogin = () => {
     login({ email, password });
     getLoader(3000);
+    // navigate(RoutesPath.HOME)
   };
 
   return (

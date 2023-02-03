@@ -1,9 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL:
-    "http://localhost:3333/" ||
-    "https://virtumed-backend-production.up.railway.app/"
+  baseURL: process.env.REACT_APP_BASE_URL || "http://localhost:3333/",
 });
 
 api.interceptors.request.use((config: any) => {
