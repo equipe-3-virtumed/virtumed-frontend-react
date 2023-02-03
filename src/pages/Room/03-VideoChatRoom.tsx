@@ -1,7 +1,7 @@
 import * as Styled from "./styles";
 import ReactPlayer from "react-player";
 import { useStreamSource } from "./Contexts/StreamSource";
-import VideoControls from "./Contexts/VideoControls/Controls";
+import VideoControls from "./VideoControls/Controls";
 
 const VideoChatRoom = () => {
 

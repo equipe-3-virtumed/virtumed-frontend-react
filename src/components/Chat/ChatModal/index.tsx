@@ -1,9 +1,7 @@
 import { Button, Modal } from "antd";
-import { Dispatch, useEffect, useState } from "react";
+import { Dispatch } from "react";
 import * as Styled from "./styled";
-import { useParams } from "react-router";
 import ChatWidget from "components/Chat/ChatWidget";
-import socket from "services/socket";
 
 interface ModalProps {
   openModal: boolean;

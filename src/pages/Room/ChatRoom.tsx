@@ -1,8 +1,8 @@
 import { useState } from "react";
 import * as Styled from "./styles";
 import { MdChat } from "react-icons/md";
-import { useRoom } from "contexts/roomContext";
-import ChatModal from "components/Modal/ChatModal";
+import { useRoom } from "pages/Room/Contexts/roomContext";
+import ChatModal from "components/Chat/ChatModal";
 import socket from "services/socket";
 
 interface Props {

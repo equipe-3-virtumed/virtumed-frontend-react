@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./authContext";
 import ThemeDesign from "styles/themeColors";
-import { RoomProvider } from "./roomContext";
+import { RoomProvider } from "../pages/Room/Contexts/roomContext";
 import { ThemeProvider } from "./themeContext";
 import RoomProviders from "pages/Room/Contexts";
 
@@ -16,11 +16,9 @@ const Providers = ({ children }: ProviderProp) => {
       <AuthProvider>
         <ThemeProvider>
           <ThemeDesign>
-            <RoomProvider>
-              <RoomProviders>
-                {children}
-              </RoomProviders>
-            </RoomProvider>
+            <RoomProviders>
+              {children}
+            </RoomProviders>
           </ThemeDesign>
         </ThemeProvider>
       </AuthProvider>

@@ -1,5 +1,5 @@
 import Providers from "./contexts";
-import { Routes } from "types/routes";
+import { Routes } from "router/routes";
 
 function App() {
   return (

@@ -3,7 +3,7 @@ import { Spin } from "antd";
 import Header from "components/Header";
 import { useNavigate, useParams } from "react-router";
 import api from "services/api";
-import { useRoom } from "contexts/roomContext";
+import { useRoom } from "pages/Room/Contexts/roomContext";
 import { useAuth } from "contexts/authContext";
 import CheckRoom from "./02-CheckRoom";
 import * as Styled from "./styles";

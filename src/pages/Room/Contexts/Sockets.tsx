@@ -5,7 +5,7 @@ import {
   useState,
   useRef,
 } from 'react';
-import { useRoom } from 'contexts/roomContext';
+import { useRoom } from 'pages/Room/Contexts/roomContext';
 import { useStreamSource } from './StreamSource';
 import socket from 'services/socket';
 import Peer, { Instance } from 'simple-peer';

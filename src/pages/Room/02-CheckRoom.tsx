@@ -2,7 +2,7 @@ import { CheckCircleOutlined } from "@ant-design/icons"
 import * as Styled from "./styles";
 import Header from "components/Header";
 import { Button, Spin } from "antd";
-import { useRoom } from "contexts/roomContext";
+import { useRoom } from "pages/Room/Contexts/roomContext";
 import VideoChatRoom from "./03-VideoChatRoom";
 import { useSocket } from "./Contexts/Sockets";
 import { useEffect } from "react";

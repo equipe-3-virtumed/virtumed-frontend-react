@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { StreamSourceProvider } from "./StreamSource";
 import { SocketProvider } from "./Sockets";
+import { RoomProvider } from "./roomContext";
 
 
 interface ProviderProp {
@@ -9,11 +10,13 @@ interface ProviderProp {
 
 const RoomProviders = ({ children }: ProviderProp) => {
   return (
-    <StreamSourceProvider>
-      <SocketProvider>
-        {children}
-      </SocketProvider>
-    </StreamSourceProvider>
+    <RoomProvider>
+      <StreamSourceProvider>
+        <SocketProvider>
+          {children}
+        </SocketProvider>
+      </StreamSourceProvider>
+    </RoomProvider>
   );
 };
 
