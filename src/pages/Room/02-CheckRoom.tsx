@@ -12,7 +12,7 @@ const CheckRoom = () => {
 
   const { roomId, roomAdmin, roomReady, localParticipant, participant } = useRoom();
   
-  const { localSocketId, participantSocket, emitId, callUser, answerCall } = useSocket();
+  const { participantSocket, callAccepted, emitId, callUser, answerCall } = useSocket();
 
   const { getStream } = useStreamSource();
   
@@ -24,14 +24,13 @@ const CheckRoom = () => {
   return (
     <>
       {
-        roomReady ?
+        callAccepted ?
           <VideoChatRoom />
         :
           <>
             <Header />
             <Styled.CheckRoom>
               <h2>Olá {localParticipant?.name}</h2>
-              <h3>{localSocketId}</h3>
 
               {
                 roomAdmin ?
@@ -39,22 +38,21 @@ const CheckRoom = () => {
                     Chamar Paciente
                   </Button>
                 :
-                // roomReady ?
+                roomReady ?
                   <>
                     <Button type="primary" onClick={answerCall}>
                       Entrar na Consulta
                     </Button>
                     <CheckCircleOutlined />
                   </>
-                // :
-                //   <>
-                //     <Spin size="small" /> 
-                //     <h4>Aguardando...</h4>
-                //   </>
+                :
+                  <>
+                    <Spin size="small" /> 
+                    <h4>Aguardando...</h4>
+                  </>
               }
                             
               <h3>{participant?.name}</h3>
-              <h4>{participantSocket}</h4>
             </Styled.CheckRoom>
           </>
       }
