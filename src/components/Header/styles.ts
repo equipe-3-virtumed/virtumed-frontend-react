@@ -8,11 +8,11 @@ export const Header = styled.header`
   height: auto;
   border: transparent;
   padding: 0.5rem 2rem 0.5rem 1.5rem;
-	background: ${(props) => props.theme.headerBackground};
+  background: ${(props) => props.theme.body};
   transition: all 0.6s ease-in-out;
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 `;
 
 export const Navbar = styled.nav`
@@ -21,6 +21,10 @@ export const Navbar = styled.nav`
   justify-content: space-between;
   gap: 4.5rem;
 
+  @media (max-width: 420px) {
+    gap: 0;
+  }
+
   svg {
     color: ${(props) => props.theme.text};
     transition: all 0.6s ease-out;
@@ -28,9 +32,14 @@ export const Navbar = styled.nav`
 `;
 
 export const ToggleButtonHeaderModal = styled.nav`
-display: flex;
-align-items: center;
-gap: 2rem;`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  @media (max-width:420px){
+  gap: 0
+}
+`;
 
 export const Logo = styled.img`
   height: 2.5rem;
