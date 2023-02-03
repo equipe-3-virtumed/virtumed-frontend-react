@@ -29,7 +29,7 @@ const Routes = () => {
       path: RoutesPath.PATIENT_PAGE,
       element: logged && (role === 'patient') ? <PatientPage /> : <Login />
     },
-     {
+    {
       path: RoutesPath.DOCTOR_PAGE,
       element: logged && (role === 'doctor') ? <DoctorPage /> : <Login />
     },
@@ -39,7 +39,7 @@ const Routes = () => {
     },
     {
       path: RoutesPath.ROOM_PAGE,
-      element: "Página da consulta"
+      element: "Página da consulta",
     },
     {
       path: RoutesPath.CONNECT_ROOM_PAGE,

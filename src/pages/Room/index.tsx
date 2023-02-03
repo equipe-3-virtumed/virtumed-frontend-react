@@ -8,9 +8,15 @@ import * as Styled from "./styles";
 import SetRoom from "./SetRoom";
 import { useRoom } from "contexts/roomContext";
 import { useAuth } from "contexts/authContext";
+import { MeetingProvider, MeetingConsumer } from "@videosdk.live/react-sdk";
+import { videoToken, createMeeting } from "../../api";
+import JoinScreen from "../../components/Room/JoinScreen";
+import Container from "../../components/Room/Container";
 
 const Room = () => {
   const navigate = useNavigate();
+  const [meetingId, setMeetingId] = useState(null);
+
 
   const { roomId } = useParams();
   const { setRoomAdmin, setLocalParticipant, setParticipant } = useRoom();
@@ -18,6 +24,12 @@ const Room = () => {
 
   const [authorized, setAuthorized] = useState(false);
   const [loading, setLoading] = useState(true);
+  
+  const getMeetingAndToken = async (id: string | null) => {
+  const meetingId =
+    id === null ? await createMeeting({ token: videoToken }) : id;
+    setMeetingId(meetingId);
+  };
 
   const getAuthorization = () => {
     api.get(`appointment/connect/${roomId}`)
@@ -60,6 +72,25 @@ const Room = () => {
           </Styled.RoomContainer>
         :
           <SetRoom />
+      }
+      {
+      videoToken && meetingId ? (
+    <MeetingProvider
+      config={{
+        meetingId,
+        micEnabled: true,
+        webcamEnabled: true,
+        name: "Bruno",
+      }}
+      token={videoToken}
+    >
+      <MeetingConsumer>
+        {() => <Container meetingId={meetingId} />}
+      </MeetingConsumer>
+    </MeetingProvider>
+  ) : (
+    <JoinScreen getMeetingAndToken={getMeetingAndToken} />
+  );
       }
     </>
   )
