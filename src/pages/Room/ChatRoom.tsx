@@ -12,11 +12,7 @@ interface Props {
 const ChatRoom = ({ roomId }: Props) => {
   const {
     localParticipant,
-    localParticipantReady,
-    setLocalParticipantReady,
     participant,
-    participantReady,
-    setParticipantReady,
   } = useRoom();
 
   const [openModalChat, setOpenModalChat] = useState(false);
