@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import socket from "services/socket";
 import ScrollToBottom from "react-scroll-to-bottom";
 import * as Styled from "./styles";

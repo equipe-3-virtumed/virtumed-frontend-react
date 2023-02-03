@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./authContext";
 import ThemeDesign from "styles/themeColors";
 import { RoomProvider } from "./roomContext";
-import { ThemeProvider } from "./ThemeContext";
+import { ThemeProvider } from "./themeContext";
 
 interface ProviderProp {
   children: ReactNode;
