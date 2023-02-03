@@ -4,8 +4,6 @@ import {
   ReactNode,
   useState,
   useEffect,
-  Dispatch,
-  SetStateAction,
 } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api"
@@ -60,7 +58,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const login = ({ email, password }: LoginParams) => {
     api.post('/login', {email, password})
       .then((res) => {
-        console.log("🚀 ~ file: authContext.tsx:73 ~ .then ~ res", res.data.user)
         localStorage.setItem("token", res.data.token);
         setUser(res.data.user);
         setLogged(true);
@@ -115,5 +112,3 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
-//export const useAuth = () => ({ logged: true, admin: true , login: (...args: any[]): any => {} });
-

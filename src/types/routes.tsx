@@ -4,7 +4,7 @@ import Register from "pages/Register";
 import PatientPage from "pages/Patient";
 import ClinicPage from "pages/Clinic";
 import DoctorPage from "pages/Doctor";
-import Room from "pages/Room/index";
+import Room from "pages/Room/01-Room";
 import { useRoutes } from "react-router";
 import { RoutesPath } from "./paths";
 import { useAuth } from "contexts/authContext";
