@@ -5,16 +5,21 @@ export const Container = styled.main`
     content: "";
     filter: opacity(70%) blur(0.1rem);
     position: absolute;
-    z-index: -1;
+    z-index: 0;
     width: 100vw;
     height: 18rem;
     background-size: cover;
     background-position: 50% 0px;
     background-repeat: no-repeat;
     background-image: url("imgs/background-main.png");
+
   }
 
+  background: ${(props) => props.theme.headerBackground};
+  color: ${(props) => props.theme.text};
+
   p {
+    filter: opacity(100%);
     text-align: center;
     padding: 1rem;
     font-weight: 500;
@@ -78,7 +83,7 @@ export const ContainerInformation = styled.div`
   }
 
   div {
-    background-color: rgba(255, 255, 255, 0.7);
+    background: ${(props) => props.theme.headerBackground};
     width: 140px;
     height: 140px;
     display: flex;
@@ -112,4 +117,8 @@ export const ContainerQuestions = styled.section`
   p {
     font-weight: 300;
   }
+`;
+
+export const Logo = styled.img`
+  height: 2.5rem;
 `;

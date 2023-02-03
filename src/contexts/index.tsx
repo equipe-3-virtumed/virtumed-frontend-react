@@ -1,9 +1,8 @@
 import { ReactNode } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./authContext";
-import ThemeDesign from "styles/themeColors";
-import { RoomProvider } from "../pages/Room/Contexts/roomContext";
 import { ThemeProvider } from "./themeContext";
+import ThemeDesign from "styles/themeColors";
 import RoomProviders from "pages/Room/Contexts";
 
 interface ProviderProp {

@@ -15,7 +15,7 @@ const ThemeContext = createContext<ThemeContextType>(
 );
 
 export const ThemeProvider = ({ children }: Prop) => {
-  const [lightTheme, setLightTheme] = useState<boolean>(true);
+  const [lightTheme, setLightTheme] = useState<boolean>(false);
 
   const toggleTheme = () => {
     setLightTheme(!lightTheme);
