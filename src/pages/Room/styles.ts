@@ -8,6 +8,8 @@ export const RoomContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  background: ${(props) => props.theme.headerBackground};
+  color: ${(props) => props.theme.text};
 `
 
 export const CheckRoom = styled.div`
@@ -18,6 +20,8 @@ export const CheckRoom = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: ${(props) => props.theme.headerBackground};
+  color: ${(props) => props.theme.text};
 `
 
 export const LocalVideo = styled.div`
@@ -34,4 +38,8 @@ export const ParticipantVideo = styled.div`
   height: 90vh;
   position: absolute;
   top: 0;
+
+  @media screen and (min-aspect-ratio: 16/10) { 
+    height: 100vh;
+  }
 `

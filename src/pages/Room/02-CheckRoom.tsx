@@ -34,8 +34,11 @@ const CheckRoom = () => {
 
               {
                 roomAdmin ?
-                  <Button type="primary" onClick={callUser} disabled={participantSocket ? false : true}>
-                    Chamar Paciente
+                  <Button
+                    type="primary"
+                    onClick={callUser}
+                    disabled={participantSocket ? false : true}>
+                      Chamar Paciente
                   </Button>
                 :
                 roomReady ?

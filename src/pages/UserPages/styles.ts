@@ -10,7 +10,7 @@ const size = {
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background: ${(props) => props.theme.body};
+  background: ${(props) => props.theme.background};
   margin: 0;
   padding: 0;
   text-align: center;
