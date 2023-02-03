@@ -89,8 +89,12 @@ export const UpDiv = styled.div`
   border-radius: 10px;
 
   p {
-    width: 7.1rem;
+    width: 114px;
     height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     font-size: 0.9rem;
     font-weight: 600;
     color: #ffffff;
@@ -148,7 +152,11 @@ export const MiddleDiv = styled.div`
 
   p {
     width: 114px;
-    height: 45px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     font-size: 0.9rem;
     font-weight: 600;
     color: #ffffff;
@@ -174,6 +182,10 @@ export const Middle2Div = styled.div`
   p {
     width: 114px;
     height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     font-size: 0.9rem;
     font-weight: 600;
     color: #ffffff;
