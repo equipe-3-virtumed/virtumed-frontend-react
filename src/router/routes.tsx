@@ -1,10 +1,10 @@
 import Home from "pages/Home";
 import Login from "pages/Login";
 import Register from "pages/Register";
-import PatientPage from "pages/Patient";
-import ClinicPage from "pages/Clinic";
-import DoctorPage from "pages/Doctor";
-import Room from "pages/Room/index";
+import PatientPage from "pages/UserPages/Patient";
+import ClinicPage from "pages/UserPages/Clinic";
+import DoctorPage from "pages/UserPages/Doctor";
+import Room from "pages/Room/01-Room";
 import { useRoutes } from "react-router";
 import { RoutesPath } from "./paths";
 import { useAuth } from "contexts/authContext";
@@ -43,8 +43,8 @@ const Routes = () => {
     },
     {
       path: RoutesPath.CONNECT_ROOM_PAGE,
-      element: logged && (role === 'patient' || role === 'doctor') ? <Room /> : <Login />
-    }
+      element: logged ? <Room /> : <Login />
+    },
   ]);
 };
 

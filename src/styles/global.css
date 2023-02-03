@@ -28,6 +28,10 @@ body::-webkit-scrollbar-thumb {
   border-radius: 20px;       /* roundness of the scroll thumb */
 }
 
+.iNxQBs div {
+  margin-left: 0;
+}
+
 ol,
 ul {
   list-style: none;

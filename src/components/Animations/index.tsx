@@ -30,7 +30,7 @@ export const TransitionText = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{ filter: "opacity(100%)" }}>
       <h1 style={{ fontSize: "150%", paddingLeft: "1rem", paddingTop: "5rem" }}>
         Conectando &nbsp;{/* <= Código para manter espaço em branco*/}
         {/* Componente de transição de texto */}

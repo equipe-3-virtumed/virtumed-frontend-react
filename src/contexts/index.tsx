@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./authContext";
 import { ThemeProvider } from "./themeContext";
 import ThemeDesign from "styles/themeColors";
-import { RoomProvider } from "./roomContext";
+import RoomProviders from "pages/Room/Contexts";
 
 interface ProviderProp {
   children: ReactNode;
@@ -15,9 +15,9 @@ const Providers = ({ children }: ProviderProp) => {
       <AuthProvider>
         <ThemeProvider>
           <ThemeDesign>
-            <RoomProvider>
+            <RoomProviders>
               {children}
-            </RoomProvider>
+            </RoomProviders>
           </ThemeDesign>
         </ThemeProvider>
       </AuthProvider>

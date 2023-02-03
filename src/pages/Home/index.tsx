@@ -5,8 +5,8 @@ import {
 } from "components/Animations";
 import Header from "components/Header";
 import { SwapRightOutlined, LinkedinOutlined } from "@ant-design/icons";
-import Logo from "../../assets/logo.svg";
-import  CarouselClients from "components/new-animation";
+import LightLogo from "../../assets/light-logo.svg";
+import DarkLogo from "../../assets/logo.svg";
 import { useDesign } from "contexts/themeContext";
 
 const Home = () => {
@@ -82,7 +82,10 @@ const Home = () => {
 
       <footer>
         <div>
-          <img src={Logo} alt="logo-virtumed" />
+          <Styled.Logo
+            src={lightTheme ? DarkLogo : LightLogo}
+            alt="Logo Virtumed"
+          />
           <a
             style={{ color: "inherit" }}
             href="https://www.linkedin.com/company/virtumedbr/"

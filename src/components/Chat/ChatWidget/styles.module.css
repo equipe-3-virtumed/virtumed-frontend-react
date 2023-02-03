@@ -1,0 +1,64 @@
+.Scroll {
+  width: 100%;
+  height: 500px;
+  overflow-x: hidden;
+  scroll-snap-type: none;
+}
+
+.ContentSending {
+  height: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-end;
+}
+
+.ContentSender {
+  height: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.MsgSending {
+  height: 40px;
+  width: 160px;
+  background-color: #DF479A;
+  border-radius: 6px;
+  margin: 6px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  overflow-wrap: break-word;
+}
+
+.MsgSender {
+  height: 40px;
+  width: 160px;
+  background-color: #70C8DD;
+  border-radius: 6px;
+  margin: 6px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  overflow-wrap: break-word;
+}
+
+.MsgContentSending {
+  height: auto;
+  width: auto;
+  margin-top: 6px;
+  justify-content: flex-start;
+}
+
+.MsgContentSender {
+  height: auto;
+  width: auto;
+  margin-top: 6px;
+  justify-content: flex-end;
+}
