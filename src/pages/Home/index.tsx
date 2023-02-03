@@ -2,6 +2,7 @@ import * as Styled from "./styles";
 import {
   TransitionText,
   CarouselInformation,
+  CarouselClients,
 } from "components/Animations";
 import Header from "components/Header";
 import { SwapRightOutlined, LinkedinOutlined } from "@ant-design/icons";
