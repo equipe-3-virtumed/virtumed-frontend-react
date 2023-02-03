@@ -267,8 +267,8 @@ export const CarouselInformation: React.FC = () => {
         textAlign: "center",
         fontSize: "14px",
         backgroundImage: lightTheme
-          ? "linear-gradient(to right, #fc7fbd, #66d3e2)"
-          : "linear-gradient(to right, #5223AD, #303030",
+          ? "linear-gradient(to right, #66d2e2, #e54197)"
+          : "linear-gradient(to right, #303030, #5223AD)",
         borderRadius: "8px",
         boxShadow: "0px 8px 8px 0px #0004",
       }}

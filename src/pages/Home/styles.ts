@@ -105,7 +105,7 @@ export const ContainerCarouselClients = styled.div`
 `;
 
 export const ContainerQuestions = styled.section`
-  background-image: linear-gradient(to right, #fc7fbd, #66d3e2);
+  background-image: ${(props) => props.theme.body};
   padding: 16px 0;
   margin: 32px 0;
 
