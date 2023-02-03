@@ -40,13 +40,15 @@ const ChatWidget = ({ username, room }: Props) => {
     }
   };
 
-  useEffect(() => {
-    socket.on("chatToClient", (data) => {
+  const socketClientMsg = async () => {
+    await socket.on("chatToClient", (data) => {
       setMessageList((list) => [...list, data]);
     });
-  }, [socket]);
+  }
 
-  console.log(messageList);
+  useEffect(() => {
+    socketClientMsg()
+  }, [socket]);
 
   return (
     <Styled.ContainerChat>

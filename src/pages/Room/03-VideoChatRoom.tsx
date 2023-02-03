@@ -5,9 +5,10 @@ import VideoControls from "./VideoControls/Controls";
 import { useRoom } from "./Contexts/roomContext";
 
 const VideoChatRoom = () => {
-  const { roomId } = useRoom()
+  const { roomId } = useRoom()  
   const { stream, participantStream } = useStreamSource();
- 
+  
+  console.log(roomId)
   return (
     <Styled.RoomContainer>
       <Styled.ParticipantVideo>
